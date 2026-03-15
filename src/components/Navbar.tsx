@@ -31,11 +31,11 @@ export const Navbar = () => {
         scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <a href="#hero" className="font-mono text-sm tracking-widest text-signal uppercase">
-          SYS.ARCH
+      <div className="container mx-auto flex items-center justify-between h-14 px-6">
+        <a href="#hero" className="text-sm font-semibold tracking-tight">
+          Portfolio
         </a>
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -45,8 +45,8 @@ export const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="signal" size="sm" asChild>
-            <a href="#contact">Let's Build</a>
+          <Button size="sm" asChild>
+            <a href="#contact">Get in Touch</a>
           </Button>
         </div>
         <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
