@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { projects } from "@/config/projects";
 import { ArrowUpRight } from "lucide-react";
 
@@ -60,5 +61,3 @@ export const StartupsSection = () => {
     </section>
   );
 };
-
-import { Separator } from "@/components/ui/separator";
