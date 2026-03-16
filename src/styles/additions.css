@@ -1,0 +1,207 @@
+/* ─────────────────────────────────────────────
+   Portfolio Additions — premium utility layer
+   ───────────────────────────────────────────── */
+
+/* Gradient headline text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 45%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle violet gradient text for accents */
+.gradient-text-sm {
+  background: linear-gradient(90deg, #a78bfa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow card — base */
+.glow-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.glow-card:hover {
+  border-color: rgba(139, 92, 246, 0.35) !important;
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.12), 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(139, 92, 246, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Domain-specific glow variants */
+.glow-card-amber:hover {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.1), 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(245, 158, 11, 0.05);
+  transform: translateY(-1px);
+}
+
+.glow-card-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(16, 185, 129, 0.05);
+  transform: translateY(-1px);
+}
+
+.glow-card-sky:hover {
+  border-color: rgba(14, 165, 233, 0.35) !important;
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.1), 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 60px rgba(14, 165, 233, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Violet primary button with glow */
+.btn-violet {
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+  color: white;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-violet:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Terminal block */
+.terminal {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.terminal-prompt {
+  color: #8b5cf6;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.terminal-cmd {
+  color: #e2e8f0;
+}
+
+.terminal-output {
+  color: rgba(148, 163, 184, 0.7);
+  padding-left: 16px;
+}
+
+.terminal-comment {
+  color: rgba(148, 163, 184, 0.45);
+}
+
+/* Dot grid / canvas overlay radial */
+.hero-glow {
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 92, 246, 0.08), transparent 70%);
+}
+
+/* Phase number label */
+.phase-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #8b5cf6;
+  opacity: 0.75;
+}
+
+/* Stat number gradient */
+.stat-number {
+  background: linear-gradient(135deg, #fff, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Section label */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(139, 92, 246, 0.8);
+}
+
+/* Startup card gradient accent */
+.startup-card-racquet {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.04) 0%, rgba(15, 15, 15, 0) 60%);
+  border-color: rgba(245, 158, 11, 0.12) !important;
+}
+
+.startup-card-racquet:hover {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.06), 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.startup-card-athletiqx {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(15, 15, 15, 0) 60%);
+  border-color: rgba(139, 92, 246, 0.12) !important;
+}
+
+.startup-card-athletiqx:hover {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.08), 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Noise overlay for texture */
+.noise-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Active nav indicator */
+.nav-link-active {
+  color: rgba(255, 255, 255, 0.95) !important;
+  position: relative;
+}
+
+/* Animated underline for active nav */
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+}
+
+/* Domain tab active states */
+.tab-sports[data-state="active"] { color: #f59e0b !important; }
+.tab-healthcare[data-state="active"] { color: #10b981 !important; }
+.tab-business[data-state="active"] { color: #0ea5e9 !important; }
+.tab-startups[data-state="active"] { color: #8b5cf6 !important; }
