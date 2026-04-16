@@ -22,9 +22,17 @@ const SEQUENCE_SEC = 11.5;
 
 type CinematicIntroProps = {
   onComplete: () => void;
+  /** When false, session is not written here (e.g. chained intro sequences handle persistence). Default true. */
+  persistToSession?: boolean;
+  /** Skip / Esc jumps past the entire intro pipeline (no second scene). */
+  onSkipEntireSequence?: () => void;
 };
 
-export function CinematicIntro({ onComplete }: CinematicIntroProps) {
+export function CinematicIntro({
+  onComplete,
+  persistToSession = true,
+  onSkipEntireSequence,
+}: CinematicIntroProps) {
   const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<Phase>(1);
   const [exiting, setExiting] = useState(false);
@@ -82,10 +90,25 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
       /* ignore */
     }
     window.setTimeout(() => {
-      sessionStorage.setItem(STORAGE_KEY, "1");
+      if (persistToSession) {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+      }
       onComplete();
     }, 650);
-  }, [exiting, onComplete]);
+  }, [exiting, onComplete, persistToSession]);
+
+  const skipOrExit = useCallback(() => {
+    if (onSkipEntireSequence) {
+      try {
+        audioRef.current?.pause();
+      } catch {
+        /* ignore */
+      }
+      onSkipEntireSequence();
+      return;
+    }
+    finish();
+  }, [onSkipEntireSequence, finish]);
 
   const toggleSound = useCallback(async () => {
     if (soundEnabled) {
@@ -112,11 +135,11 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") finish();
+      if (e.key === "Escape") skipOrExit();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [finish]);
+  }, [skipOrExit]);
 
   return (
     <motion.div
@@ -331,7 +354,7 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
         </button>
         <button
           type="button"
-          onClick={finish}
+          onClick={skipOrExit}
           className="text-xs font-medium uppercase tracking-widest text-white/40 transition hover:text-white/80"
         >
           Skip

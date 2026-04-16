@@ -4,14 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { CinematicIntro, shouldShowCinematicIntro } from "@/components/intro/CinematicIntro";
+import { IntroSequence, shouldShowPortfolioIntro } from "@/components/intro/IntroSequence";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [showIntro, setShowIntro] = useState(shouldShowCinematicIntro);
+  const [showIntro, setShowIntro] = useState(shouldShowPortfolioIntro);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -29,9 +29,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        {showIntro && (
-          <CinematicIntro key="cinematic-intro" onComplete={() => setShowIntro(false)} />
-        )}
+        {showIntro && <IntroSequence key="portfolio-intro" onComplete={() => setShowIntro(false)} />}
       </TooltipProvider>
     </QueryClientProvider>
   );
