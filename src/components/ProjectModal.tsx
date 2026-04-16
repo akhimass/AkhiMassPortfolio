@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type Project, domainDetails } from "@/config/projects";
-import { ExternalLink, Github, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, X } from "lucide-react";
 import { IPhoneMockup } from "@/components/IPhoneMockup";
 import { cn } from "@/lib/utils";
 
@@ -22,10 +22,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const accent = project ? domainDetails[project.domain].color : "#7c3aed";
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [ctbnSlide, setCtbnSlide] = useState(0);
 
   useEffect(() => {
     setIframeLoaded(false);
     setLightbox(null);
+    setCtbnSlide(0);
   }, [project?.id]);
 
   const archSteps = useMemo(() => {
@@ -116,31 +118,13 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 {project.imageType === "screenshots" && project.images && project.images.length > 0 && (
                   <>
                     {project.id === "ctbn" ? (
-                      <div className="relative h-48 mb-4 flex items-center justify-center perspective-[800px]">
-                        {project.images.slice(0, 4).map((src, i) => (
-                          <motion.button
-                            type="button"
-                            key={src}
-                            onClick={() => setLightbox(src)}
-                            className="absolute w-[200px] rounded-lg border border-white/10 overflow-hidden shadow-xl bg-black"
-                            style={{ zIndex: 4 - i }}
-                            initial={false}
-                            whileHover={{
-                              y: -8,
-                              rotateZ: -6 + i * 4,
-                              scale: 1.02,
-                              transition: { type: "spring", stiffness: 260, damping: 20 },
-                            }}
-                            animate={{
-                              x: (i - 1.5) * 56,
-                              rotateZ: -8 + i * 5,
-                              y: i * 4,
-                            }}
-                          >
-                            <img src={src} alt="" className="w-full h-32 object-cover object-top" />
-                          </motion.button>
-                        ))}
-                      </div>
+                      <CtbnScreenshotCarousel
+                        images={project.images}
+                        activeIndex={ctbnSlide}
+                        onIndexChange={setCtbnSlide}
+                        onOpenLightbox={setLightbox}
+                        accent={accent}
+                      />
                     ) : (
                       <div className="w-full overflow-x-auto pb-2 mb-4">
                         <div className="flex gap-3 min-w-min">
@@ -268,6 +252,89 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     </>
   );
 };
+
+function CtbnScreenshotCarousel({
+  images,
+  activeIndex,
+  onIndexChange,
+  onOpenLightbox,
+  accent,
+}: {
+  images: string[];
+  activeIndex: number;
+  onIndexChange: (i: number) => void;
+  onOpenLightbox: (src: string) => void;
+  accent: string;
+}) {
+  const n = images.length;
+  const safeIndex = n > 0 ? activeIndex % n : 0;
+  const go = (delta: number) => onIndexChange((safeIndex + delta + n) % n);
+
+  if (n === 0) return null;
+
+  return (
+    <div className="mb-4">
+      <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-xl border border-white/10 bg-black">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.button
+            type="button"
+            key={images[safeIndex]}
+            className="relative block w-full cursor-zoom-in outline-none"
+            onClick={() => onOpenLightbox(images[safeIndex])}
+            initial={{ opacity: 0, x: 14 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -14 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img
+              src={images[safeIndex]}
+              alt={`CTBN screenshot ${safeIndex + 1} of ${n}`}
+              className="aspect-[16/9] max-h-[min(52vh,420px)] w-full object-cover object-top"
+            />
+          </motion.button>
+        </AnimatePresence>
+
+        <button
+          type="button"
+          aria-label="Previous screenshot"
+          className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/70 text-white shadow-md backdrop-blur-sm transition hover:bg-black/90"
+          onClick={() => go(-1)}
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          aria-label="Next screenshot"
+          className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/70 text-white shadow-md backdrop-blur-sm transition hover:bg-black/90"
+          onClick={() => go(1)}
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="mt-3 flex items-center justify-center gap-2">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to screenshot ${i + 1}`}
+            aria-current={i === safeIndex ? "true" : undefined}
+            className={cn(
+              "h-2 rounded-full transition-all duration-200",
+              i === safeIndex ? "w-6" : "w-2 hover:bg-white/45",
+            )}
+            style={
+              i === safeIndex
+                ? { backgroundColor: accent }
+                : { backgroundColor: "rgba(255,255,255,0.22)" }
+            }
+            onClick={() => onIndexChange(i)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function StatMini({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
