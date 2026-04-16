@@ -89,29 +89,46 @@ function StartupCard({ project, onView }: { project: Project; onView: () => void
           )}
 
           {project.id === "racquethub" && (
-            <SafariBrowserMockup
-              url="https://racquethub.app"
-              tabs={["RacquetHub — Home", "Pick your plan"]}
-              activeTabIndex={0}
-              className="w-full"
-            >
-              <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
-                {["/images/RacquetHub1.png", "/images/RacquetHub2.png"].map((src, idx) => (
-                  <img
-                    key={src}
-                    src={src}
-                    alt=""
-                    className={`aspect-[16/10] w-full border-white/[0.06] object-cover object-top ${idx === 0 ? "sm:border-r" : ""}`}
-                  />
-                ))}
-              </div>
-            </SafariBrowserMockup>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
+              <SafariBrowserMockup
+                url="https://racquethub.app"
+                tabs={["RacquetHub — Home"]}
+                activeTabIndex={0}
+                className="w-full min-w-0"
+              >
+                <img
+                  src="/images/RacquetHub1.png"
+                  alt="RacquetHub home"
+                  className="aspect-[16/10] w-full object-cover object-top"
+                />
+              </SafariBrowserMockup>
+              <SafariBrowserMockup
+                url="https://racquethub.app/pricing"
+                tabs={["Pick your plan"]}
+                activeTabIndex={0}
+                className="w-full min-w-0"
+              >
+                <img
+                  src="/images/RacquetHub2.png"
+                  alt="RacquetHub pricing"
+                  className="aspect-[16/10] w-full object-cover object-top"
+                />
+              </SafariBrowserMockup>
+            </div>
           )}
 
           {isAthlet && (
             <div className="grid grid-cols-1 items-end gap-6 py-2 sm:grid-cols-2 sm:gap-8">
-              <IPhoneMockup src="/images/CoachClaw.png" alt="CoachClaw companion" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
-              <IPhoneMockup src="/images/AthletIQX2.PNG" alt="AthletIQX dashboard" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
+              <IPhoneMockup
+                src="/images/AthletIQX2.PNG"
+                alt="AthletIQX screen 1"
+                className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]"
+              />
+              <IPhoneMockup
+                src="/images/AthletIQX3.PNG"
+                alt="AthletIQX screen 2"
+                className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]"
+              />
             </div>
           )}
 
