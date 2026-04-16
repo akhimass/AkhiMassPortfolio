@@ -41,14 +41,14 @@ export function FloatingWidgetScene({ onComplete }: FloatingWidgetSceneProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[200] overflow-hidden bg-black"
+      className="absolute inset-0 z-10 overflow-hidden bg-black"
       role="dialog"
       aria-modal="true"
       aria-label="Portfolio worlds transition"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: reduceMotion ? 0.15 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reduceMotion ? 0.15 : 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.07]">
         <div

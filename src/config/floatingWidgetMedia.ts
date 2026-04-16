@@ -8,9 +8,13 @@ export const FLOATING_SCENE_TIMINGS_MS = {
 /**
  * Data-driven definitions for the post–cinematic-intro floating media scene.
  *
- * Swap `media.src` for your own files under `public/videos/` or `public/images/`.
- * `sourceNote` documents the intended editorial source (curate clips yourself;
- * we do not fetch or scrape YouTube from the app).
+ * **Video sources:** The app does not scrape or download YouTube automatically (fragile,
+ * often against YouTube ToS, and bad for production). Easiest path: export or obtain
+ * short MP4s you have rights to use, place them under `public/videos/`, and set `media.src`.
+ * Optional: on your own machine, tools like `yt-dlp` can download a clip you then commit
+ * as a self-hosted file — keep that workflow outside the portfolio build.
+ *
+ * `sourceNote` is documentation only for which editorial clip each tile represents.
  */
 
 export type WidgetCategory =

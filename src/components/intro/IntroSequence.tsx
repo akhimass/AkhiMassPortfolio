@@ -36,11 +36,13 @@ export function IntroSequence({ onComplete }: IntroSequenceProps) {
   }, []);
 
   return (
-    <>
+    <div className="fixed inset-0 z-[200] isolate">
+      {/* Opaque base so the homepage never flashes between cinematic exit and floating scene mount */}
+      <div className="absolute inset-0 bg-black" aria-hidden />
       {phase === "cinematic" && (
         <CinematicIntro persistToSession={false} onComplete={afterCinematic} onSkipEntireSequence={persistAndExit} />
       )}
       {phase === "widgets" && <FloatingWidgetScene onComplete={persistAndExit} />}
-    </>
+    </div>
   );
 }
