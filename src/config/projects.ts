@@ -204,6 +204,7 @@ export const projects: Project[] = [
     tags: ["Genomics", "NSF Research", "Antibiotic Resistance", "Bioinformatics Pipeline", "Flipper Discovery"],
     images: ["/images/Burk1.png", "/images/Burk2.png", "/images/Burk3.png"],
     imageType: "screenshots",
+    links: {},
     featured: true,
     stats: { complexity: "High", dataPoints: "800K+ genomic variants", metric: "NSF×UNCC Research" },
     caseStudy: {
@@ -233,6 +234,7 @@ export const projects: Project[] = [
     tags: ["Data Engineering", "GCP", "ELT Pipeline", "BigQuery", "Event-Driven Architecture"],
     images: ["/images/CTBN1.png", "/images/CTBN2.png", "/images/CTBN3.png", "/images/CTBN4.png"],
     imageType: "screenshots",
+    links: {},
     featured: true,
     stats: { complexity: "Medium", dataPoints: "50K+ member records", metric: "GCP Production Pipeline" },
     caseStudy: {
@@ -291,6 +293,7 @@ export const projects: Project[] = [
     tags: ["Startup", "Marketplace", "Sports-Tech", "Co-Founded", "Dual-Sided Platform"],
     images: ["/images/RacquetHub1.png", "/images/RacquetHub2.png"],
     imageType: "screenshots",
+    links: {},
     featured: true,
     stats: { complexity: "High", dataPoints: "$28B TAM", metric: "47M+ US Players" },
     caseStudy: {
@@ -320,6 +323,7 @@ export const projects: Project[] = [
     tags: ["Hackathon Winner", "Multi-Agent AI", "Sports Performance", "iOS App", "Voice AI"],
     images: ["/images/CoachClaw1.png", "/images/AthletIQX1.png", "/images/AthletIQX2.png"],
     imageType: "ios",
+    links: {},
     featured: true,
     stats: { complexity: "Very High", dataPoints: "$45B TAM", metric: "2nd SF Founders · 1st ElevenLabs" },
     caseStudy: {

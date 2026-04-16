@@ -18,7 +18,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-const liveDemoUrl = (p: Project) => p.links.demo ?? p.links.vercel;
+const liveDemoUrl = (p: Project) => p.links?.demo ?? p.links?.vercel ?? "";
 
 const ProjectCard = ({
   project,

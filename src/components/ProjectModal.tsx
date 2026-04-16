@@ -15,7 +15,7 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-const demoUrl = (p: Project) => p.links.demo ?? p.links.vercel;
+const demoUrl = (p: Project) => p.links?.demo ?? p.links?.vercel ?? "";
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const open = !!project;
