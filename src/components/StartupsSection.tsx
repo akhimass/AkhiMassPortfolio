@@ -7,6 +7,7 @@ import { projects, domainDetails } from "@/config/projects";
 import type { Project } from "@/config/projects";
 import { ProjectModal } from "@/components/ProjectModal";
 import { IPhoneMockup } from "@/components/IPhoneMockup";
+import { SafariBrowserMockup } from "@/components/SafariBrowserMockup";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export const StartupsSection = () => {
@@ -15,7 +16,7 @@ export const StartupsSection = () => {
 
   return (
     <section id="startups" className="py-24">
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +31,7 @@ export const StartupsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {startups.map((startup) => (
             <StartupCard key={startup.id} project={startup} onView={() => setSelected(startup)} />
           ))}
@@ -88,21 +89,29 @@ function StartupCard({ project, onView }: { project: Project; onView: () => void
           )}
 
           {project.id === "racquethub" && (
-            <div className="flex gap-2 overflow-x-auto pb-1">
-              {["/images/RacquetHub1.png", "/images/RacquetHub2.png"].map((src) => (
-                <img key={src} src={src} alt="" className="h-28 w-44 flex-shrink-0 rounded-md border border-white/10 object-cover object-top" />
-              ))}
-            </div>
+            <SafariBrowserMockup
+              url="https://racquethub.app"
+              tabs={["RacquetHub — Home", "Pick your plan"]}
+              activeTabIndex={0}
+              className="w-full"
+            >
+              <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
+                {["/images/RacquetHub1.png", "/images/RacquetHub2.png"].map((src, idx) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt=""
+                    className={`aspect-[16/10] w-full border-white/[0.06] object-cover object-top ${idx === 0 ? "sm:border-r" : ""}`}
+                  />
+                ))}
+              </div>
+            </SafariBrowserMockup>
           )}
 
           {isAthlet && (
-            <div className="flex gap-3 justify-center py-2">
-              <div className="w-[100px]">
-                <IPhoneMockup src="/images/CoachClaw1.png" alt="CoachClaw" className="h-[200px]" />
-              </div>
-              <div className="w-[100px]">
-                <IPhoneMockup src="/images/AthletIQX1.png" alt="AthletIQX" className="h-[200px]" />
-              </div>
+            <div className="grid grid-cols-1 items-end gap-6 py-2 sm:grid-cols-2 sm:gap-8">
+              <IPhoneMockup src="/images/CoachClaw.png" alt="CoachClaw companion" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
+              <IPhoneMockup src="/images/AthletIQX2.PNG" alt="AthletIQX dashboard" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
             </div>
           )}
 

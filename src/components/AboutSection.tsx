@@ -11,10 +11,10 @@ const pillars = [
 ];
 
 const metrics = [
-  { label: "Shipped systems", value: 8, suffix: "" },
-  { label: "Domains", value: 4, suffix: "" },
-  { label: "Years building", value: 5, suffix: "+" },
-  { label: "NFL teams modeled", value: 32, suffix: "" },
+  { label: "Production-grade applications shipped", value: 10, suffix: "+" },
+  { label: "Years building", value: 3, suffix: "+" },
+  { label: "Pro sports organizations worked with", value: 5, suffix: "" },
+  { label: "Hackathons won", value: 2, suffix: "" },
 ];
 
 export const AboutSection = () => {
@@ -41,7 +41,7 @@ export const AboutSection = () => {
 
   return (
     <section id="about" ref={sectionRef} className="py-24">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -141,19 +141,35 @@ export const AboutSection = () => {
               ))}
             </div>
 
-            <div ref={statsRef} className="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-4">
+            <div ref={statsRef} className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map((m, i) => (
                 <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-4">
-                  <div
-                    className="text-2xl sm:text-3xl font-bold font-display bg-gradient-to-r from-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent"
-                  >
+                  <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent sm:text-3xl">
                     {counts[i]}
                     {m.suffix}
                   </div>
-                  <div className="text-[11px] text-muted-foreground mt-1">{m.label}</div>
+                  <div className="mt-1 text-[11px] text-muted-foreground">{m.label}</div>
+                  {m.label === "Hackathons won" && (
+                    <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground/90">
+                      Zerve AI × UNC Charlotte Application Analytics Datathon · OpenClaw × Fontaine Founders (Kaggle longevity)
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={statsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: 0.15 }}
+              className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-4"
+            >
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-violet-300/90">Competition & recognition</div>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Kaggle March Madness 2026 — top 8% of 4,000+ participants · YC Bio × AI Hackathon · additional strong showings across
+                competitive builds
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

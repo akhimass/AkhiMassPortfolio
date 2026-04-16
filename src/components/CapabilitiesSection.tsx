@@ -142,7 +142,7 @@ const CapabilityCard = ({ cap, index }: { cap: (typeof CAPABILITIES)[0]; index: 
 export const CapabilitiesSection = () => {
   return (
     <section id="capabilities" className="py-28">
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

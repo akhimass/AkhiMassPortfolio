@@ -18,6 +18,8 @@ const COPY: Record<Exclude<Phase, 5>, string> = {
   4: "Systems become intelligence.",
 };
 
+const SEQUENCE_SEC = 11.5;
+
 type CinematicIntroProps = {
   onComplete: () => void;
 };
@@ -27,6 +29,7 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
   const [phase, setPhase] = useState<Phase>(1);
   const [exiting, setExiting] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
+  const [showIdentity, setShowIdentity] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timers = useRef<number[]>([]);
   const sequenceStartedAt = useRef<number>(0);
@@ -61,6 +64,15 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
     return clearTimers;
   }, [clearTimers]);
 
+  useEffect(() => {
+    if (phase !== 5) {
+      setShowIdentity(false);
+      return;
+    }
+    const id = window.setTimeout(() => setShowIdentity(true), reduceMotion ? 0 : 1700);
+    return () => clearTimeout(id);
+  }, [phase, reduceMotion]);
+
   const finish = useCallback(() => {
     if (exiting) return;
     setExiting(true);
@@ -86,8 +98,9 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
       audioRef.current.loop = false;
     }
     const elapsedSec = (Date.now() - sequenceStartedAt.current) / 1000;
-    // Keep score loosely aligned with the on-screen sequence (≈12s arc → start early in the bed).
-    audioRef.current.currentTime = Math.min(35.5, Math.max(0, elapsedSec * 2.8));
+    const dur = Number.isFinite(audioRef.current.duration) ? audioRef.current.duration : 12.8;
+    const progress = Math.min(1, Math.max(0, elapsedSec / SEQUENCE_SEC));
+    audioRef.current.currentTime = Math.min(dur * 0.97, progress * dur * 0.94);
     audioRef.current.volume = 0.35;
     try {
       await audioRef.current.play();
@@ -250,13 +263,32 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
             >
               {phase < 5 ? COPY[phase] : null}
             </motion.p>
+          ) : !showIdentity ? (
+            <motion.div
+              key="metrics"
+              initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-2xl space-y-4 px-2 text-center"
+            >
+              <p className="text-sm font-medium leading-relaxed text-white/88 sm:text-base md:text-lg">
+                10+ production-grade applications shipped · 3+ years building · 5 pro sports organizations · 2 hackathon wins
+              </p>
+              <p className="text-[11px] leading-relaxed text-white/50 sm:text-xs md:text-sm">
+                Zerve AI × UNC Charlotte Application Analytics Datathon · OpenClaw × Fontaine Founders (Kaggle longevity)
+              </p>
+              <p className="text-[11px] leading-relaxed text-white/45 sm:text-xs md:text-sm">
+                Top placements: Kaggle March Madness 2026 — top 8% of 4,000+ · YC Bio × AI Hackathon
+              </p>
+            </motion.div>
           ) : (
             <motion.div
               key="identity"
               initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center gap-4"
+              className="flex flex-col items-center gap-4 px-2"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-violet-300/90">
                 Akhi&apos;s Mass Portfolio
@@ -307,7 +339,7 @@ export function CinematicIntro({ onComplete }: CinematicIntroProps) {
       </div>
 
       <p className="pointer-events-none absolute bottom-4 left-0 right-0 text-center text-[10px] text-white/25">
-        Esc skip · Sound for cinematic score
+        Esc skip · Sound: NBA on ESPN Playoffs theme (trimmed to intro)
       </p>
     </motion.div>
   );

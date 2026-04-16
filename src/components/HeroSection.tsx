@@ -27,7 +27,7 @@ export const HeroSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="hero" className="relative min-h-screen pt-24 pb-16 lg:pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-[100dvh] sm:min-h-screen pt-24 pb-16 lg:pb-24 overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
@@ -36,25 +36,11 @@ export const HeroSection = () => {
         }}
       />
 
-      <div ref={ref} className="relative z-10 container mx-auto px-6 max-w-6xl">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-14 gap-12">
-          <div className="flex-1 w-full">
-            <motion.div
-              custom={0}
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-muted-foreground mb-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-500 opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
-              </span>
-              Incoming Panthers Analytics Engineer · Moving to SF May 2026
-            </motion.div>
-
+      <div ref={ref} className="relative z-10 mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-6 lg:px-10">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-14">
+          <div className="flex min-w-0 flex-1 flex-col justify-center">
             <motion.h1
-              custom={1}
+              custom={0}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -66,18 +52,18 @@ export const HeroSection = () => {
             </motion.h1>
 
             <motion.p
-              custom={2}
+              custom={1}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mb-8"
+              className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8"
             >
               Software engineer, data engineer, and AI platform builder. I engineer systems that transform complex data into
               decision-making tools — from NFL draft intelligence to AI drug discovery platforms.
             </motion.p>
 
             <motion.div
-              custom={3}
+              custom={2}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -95,7 +81,7 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.div
-              custom={4}
+              custom={3}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -115,7 +101,7 @@ export const HeroSection = () => {
 
             <motion.a
               href="#story"
-              custom={5}
+              custom={4}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -129,8 +115,8 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.35, duration: 0.55 }}
-            className="hidden lg:block flex-1 w-full min-h-[420px] max-h-[min(560px,70vh)]"
+            transition={{ delay: 0.2, duration: 0.55 }}
+            className="relative w-full min-h-[min(52dvh,440px)] max-h-[min(72dvh,680px)] lg:min-h-0 lg:max-h-none lg:h-[min(72dvh,680px)]"
           >
             <HeroCarousel />
           </motion.div>

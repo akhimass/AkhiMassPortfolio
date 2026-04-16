@@ -56,7 +56,7 @@ export const Navbar = () => {
         scrolled ? "bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5" : "bg-transparent",
       )}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-6 max-w-6xl">
+      <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
         <Link to="/" className="flex items-center gap-3 group">
           <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#7c3aed] to-[#6366f1] flex items-center justify-center text-[11px] font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.35)]">
             AK
