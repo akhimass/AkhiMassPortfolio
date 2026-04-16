@@ -341,52 +341,54 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
 }
 
 // ─── Scene config (3 scenes — sports / healthcare / Panthers performance) ───
-const VIDEO_SRCS = ["/videos/scene1.mp4", "/videos/scene2.mp4", "/videos/scene3.mp4"];
+/** Place matching files in public/videos/ (MP4). Sports slot: data-on-court viz + optional overlay.webm HUD. */
+const VIDEO_SRCS = [
+  "/videos/Cinematic_Data_Visualization_in_Sports_Arena.mp4",
+  "/videos/Healthcare_App_Video_Ready.mp4",
+  "/videos/pantherscoachingcarousel.mp4",
+] as const;
 
 const SCENES: Scene[] = [
   {
     id: "sports",
     domain: "Sports Analytics",
-    headline: "Sports analytics in motion",
-    sub: "Live signals layered over performance footage — from tracking to decision metrics.",
+    headline: "Data on the floor",
+    sub: "Court-level signals, models, and decision metrics — engineered like a broadcast HUD.",
     accent: "#10b981",
     accentGlow: "rgba(16,185,129,0.15)",
     draw: drawSportsScene,
     stats: [
-      { label: "Block Prob", value: "2.3%", x: "8%", y: "12%", delay: 0.2 },
-      { label: "Sprint", value: "20.1mph", x: "60%", y: "8%", delay: 0.4 },
-      { label: "Win Prob", value: "+34%", x: "5%", y: "70%", delay: 0.6 },
-      { label: "Def Rtg", value: "98.4", x: "62%", y: "72%", delay: 0.8 },
+      { label: "Shot quality", value: "0.82", x: "6%", y: "10%", delay: 0.15 },
+      { label: "Net rating", value: "+4.2", x: "58%", y: "12%", delay: 0.28 },
+      { label: "EPM", value: "+6.1", x: "8%", y: "68%", delay: 0.4 },
     ],
   },
   {
     id: "health",
     domain: "Healthcare Research",
-    headline: "Clinical & research intelligence",
-    sub: "Pipelines that compress normalization from days to hours — LangChain, Neo4j, and evidence-linked outputs.",
+    headline: "Research at pipeline speed",
+    sub: "Evidence-linked data products — from ingestion to graph-backed insights.",
     accent: "#0ea5e9",
     accentGlow: "rgba(14,165,233,0.15)",
     draw: drawHealthScene,
     stats: [
-      { label: "Time Saved", value: "70%", x: "5%", y: "10%", delay: 0.2 },
-      { label: "Records", value: "5M+", x: "62%", y: "8%", delay: 0.4 },
-      { label: "Pipeline", value: "LangChain", x: "5%", y: "72%", delay: 0.6 },
-      { label: "Stack", value: "Neo4j", x: "60%", y: "70%", delay: 0.8 },
+      { label: "Latency", value: "<200ms", x: "6%", y: "12%", delay: 0.15 },
+      { label: "Records", value: "12M+", x: "56%", y: "14%", delay: 0.28 },
+      { label: "Graph", value: "Neo4j", x: "10%", y: "66%", delay: 0.4 },
     ],
   },
   {
     id: "coaching",
     domain: "Panthers Performance",
-    headline: "Coaching & performance surfaces",
-    sub: "Real-time reporting and workload intelligence — Python + R in production workflows.",
+    headline: "Coaching intelligence",
+    sub: "Production reporting — Python, R, and live game context in one stack.",
     accent: "#a78bfa",
     accentGlow: "rgba(167,139,250,0.15)",
     draw: drawCoachScene,
     stats: [
-      { label: "Win Rate", value: "+23%", x: "5%", y: "10%", delay: 0.2 },
-      { label: "Routes", value: "847", x: "62%", y: "8%", delay: 0.4 },
-      { label: "Reports", value: "Real-time", x: "5%", y: "72%", delay: 0.6 },
-      { label: "Stack", value: "Python+R", x: "60%", y: "70%", delay: 0.8 },
+      { label: "EPA / play", value: "+0.14", x: "6%", y: "12%", delay: 0.15 },
+      { label: "Routes coded", value: "847", x: "54%", y: "14%", delay: 0.28 },
+      { label: "Stack", value: "Py + R", x: "10%", y: "66%", delay: 0.4 },
     ],
   },
 ];
@@ -402,31 +404,51 @@ const StatCard = ({
   active: boolean;
 }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.88, y: 6 }}
-    animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.88, y: 6 }}
-    transition={{ duration: 0.4, delay: active ? stat.delay : 0 }}
+    initial={{ opacity: 0, scale: 0.9, y: 8 }}
+    animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 8 }}
+    transition={{ duration: 0.38, delay: active ? stat.delay : 0, ease: [0.22, 1, 0.36, 1] }}
     style={{
       position: "absolute",
       left: stat.x,
       top: stat.y,
-      background: "rgba(0,0,0,0.65)",
-      backdropFilter: "blur(8px)",
-      WebkitBackdropFilter: "blur(8px)",
-      border: `1px solid ${accent}30`,
-      borderRadius: 8,
-      padding: "6px 10px",
-      minWidth: 80,
-      boxShadow: `0 0 16px ${accent}20`,
+      background: "rgba(0,0,0,0.72)",
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
+      border: `1px solid ${accent}44`,
+      borderRadius: 12,
+      padding: "10px 14px",
+      minWidth: 112,
+      maxWidth: 160,
+      boxShadow: `0 4px 24px rgba(0,0,0,0.45), 0 0 20px ${accent}18`,
     }}
   >
-    <div style={{ fontSize: 15, fontWeight: 700, color: accent, lineHeight: 1.2, fontFamily: "monospace" }}>
+    <div
+      style={{
+        fontSize: 20,
+        fontWeight: 800,
+        color: accent,
+        lineHeight: 1.05,
+        fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+        letterSpacing: "-0.02em",
+      }}
+    >
       {stat.value}
     </div>
-    <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.3 }}>
+    <div
+      style={{
+        fontSize: 11,
+        fontWeight: 600,
+        color: "rgba(255,255,255,0.62)",
+        lineHeight: 1.25,
+        marginTop: 4,
+        letterSpacing: "0.04em",
+        textTransform: "uppercase",
+      }}
+    >
       {stat.label}
     </div>
     {stat.sub && (
-      <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", lineHeight: 1.2, marginTop: 1 }}>
+      <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", lineHeight: 1.2, marginTop: 2 }}>
         {stat.sub}
       </div>
     )}
@@ -557,14 +579,15 @@ export const HeroCarousel = () => {
               />
             </motion.div>
           </AnimatePresence>
-          {overlayWebmOk && (
+          {/* Analytics HUD layer: sports analytics scene only (not healthcare / Panthers) */}
+          {overlayWebmOk && activeIdx === 0 && (
             <video
               src="/videos/overlay.webm"
               muted
               playsInline
               loop
               autoPlay
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.48] mix-blend-screen"
               onError={() => setOverlayWebmOk(false)}
             />
           )}
