@@ -2,8 +2,7 @@ import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { StorySection } from "@/components/StorySection";
-import { DomainSection } from "@/components/DomainSection";
+import { JourneyDomainsSection } from "@/components/JourneyDomainsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { CapabilitiesSection } from "@/components/CapabilitiesSection";
 import { StartupsSection } from "@/components/StartupsSection";
@@ -42,9 +41,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <div className="section-divider mx-auto my-4" />
-      <StorySection />
-      <div className="section-divider mx-auto my-4" />
-      <DomainSection />
+      <JourneyDomainsSection />
       <div className="section-divider mx-auto my-4" />
       <ProjectsSection />
       <div className="section-divider mx-auto my-4" />

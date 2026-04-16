@@ -22,12 +22,12 @@ export const StartupsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="mb-12 text-center"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">Ventures</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3 font-display">Building the Future of Sports Tech</h2>
-          <p className="text-muted-foreground max-w-lg mx-auto text-sm">
-            Founder-led platforms combining product thinking, scalable architecture, and domain expertise.
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">Ventures</p>
+          <h2 className="mb-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Founder-led products</h2>
+          <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+            Sports-adjacent and platform bets — co-built, shipped, and iterated like production companies, not demos.
           </p>
         </motion.div>
 

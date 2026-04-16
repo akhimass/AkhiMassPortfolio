@@ -135,16 +135,32 @@ export const ProjectsSection = () => {
     <section id="projects" className="py-24">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.45 }}
+          className="mb-10 text-center lg:text-left"
+        >
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-amber-400/90">Sports tech</p>
+          <h2 className="mb-8 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
+            Building the Future of Sports Tech
+          </h2>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">Selected Work</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display mb-3">Platforms & Intelligent Systems</h2>
-          <p className="text-muted-foreground text-sm max-w-xl">
-            Production-grade systems across sports intelligence, healthcare research, business data platforms, and ventures.
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">What I build</p>
+          <h2 className="mb-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Production systems in <span className="text-violet-300">high-stakes</span> environments
+          </h2>
+          <p className="max-w-2xl text-sm text-muted-foreground">
+            Case studies and live products — the same platform thinking as the domain grid above, now as shipped work across
+            sports, healthcare, business, and ventures.
           </p>
         </motion.div>
 
