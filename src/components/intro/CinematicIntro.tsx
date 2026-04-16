@@ -6,25 +6,38 @@ import {
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Volume2, VolumeX } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "akhi-portfolio-cinematic-intro-v1";
+/** Legacy: users who finished the two-phase intro before media scene was removed */
+const PORTFOLIO_SEQUENCE_LEGACY_KEY = "akhi-portfolio-intro-sequence-v2";
 
-type Phase = 1 | 2 | 3 | 4 | 5;
+type Phase = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-const COPY: Record<Exclude<Phase, 5>, string> = {
-  1: "Every system starts with a signal.",
-  2: "Data becomes information.",
-  3: "Information becomes systems.",
-  4: "Systems become intelligence.",
+const COPY: Record<Exclude<Phase, 7>, string> = {
+  1: "Performance leaves clues.",
+  2: "Clues become data.",
+  3: "Data becomes decisions.",
+  4: "Decisions become systems.",
+  5: "Systems become platforms.",
+  6: "Platforms transform performance.",
 };
 
-const SEQUENCE_SEC = 11.5;
+/** ~12s narrative arc for sound sync */
+const SEQUENCE_SEC = 12;
+
+const PHASE_SCHEDULE: Array<{ ms: number; phase: Phase }> = [
+  { ms: 1700, phase: 2 },
+  { ms: 3400, phase: 3 },
+  { ms: 5100, phase: 4 },
+  { ms: 6800, phase: 5 },
+  { ms: 8500, phase: 6 },
+  { ms: 10200, phase: 7 },
+];
 
 type CinematicIntroProps = {
   onComplete: () => void;
-  /** When false, session is not written here (e.g. chained intro sequences handle persistence). Default true. */
   persistToSession?: boolean;
-  /** Skip / Esc jumps past the entire intro pipeline (no second scene). */
   onSkipEntireSequence?: () => void;
 };
 
@@ -37,7 +50,6 @@ export function CinematicIntro({
   const [phase, setPhase] = useState<Phase>(1);
   const [exiting, setExiting] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [showIdentity, setShowIdentity] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timers = useRef<number[]>([]);
   const sequenceStartedAt = useRef<number>(0);
@@ -65,21 +77,16 @@ export function CinematicIntro({
     sequenceStartedAt.current = Date.now();
     clearTimers();
     const s = (ms: number, p: Phase) => timers.current.push(window.setTimeout(() => setPhase(p), ms));
-    s(2200, 2);
-    s(4600, 3);
-    s(7000, 4);
-    s(9400, 5);
-    return clearTimers;
-  }, [clearTimers]);
 
-  useEffect(() => {
-    if (phase !== 5) {
-      setShowIdentity(false);
-      return;
+    if (reduceMotion) {
+      const step = 280;
+      PHASE_SCHEDULE.forEach((_, i) => s(step * (i + 1), PHASE_SCHEDULE[i].phase));
+      return clearTimers;
     }
-    const id = window.setTimeout(() => setShowIdentity(true), reduceMotion ? 0 : 1700);
-    return () => clearTimeout(id);
-  }, [phase, reduceMotion]);
+
+    PHASE_SCHEDULE.forEach(({ ms, phase: p }) => s(ms, p));
+    return clearTimers;
+  }, [clearTimers, reduceMotion]);
 
   const finish = useCallback(() => {
     if (exiting) return;
@@ -92,6 +99,7 @@ export function CinematicIntro({
     window.setTimeout(() => {
       if (persistToSession) {
         sessionStorage.setItem(STORAGE_KEY, "1");
+        sessionStorage.setItem(PORTFOLIO_SEQUENCE_LEGACY_KEY, "1");
       }
       onComplete();
     }, 650);
@@ -141,6 +149,15 @@ export function CinematicIntro({
     return () => window.removeEventListener("keydown", onKey);
   }, [skipOrExit]);
 
+  const gridOpacity =
+    phase === 1 ? 0.03 : phase === 2 ? 0.06 : phase === 3 ? 0.09 : phase === 4 ? 0.11 : phase === 5 ? 0.13 : phase === 6 ? 0.15 : 0.1;
+  const particleBoost = phase >= 3;
+  const pipelineOn = phase >= 3;
+  const pipelineFull = phase >= 4;
+  const nodePulse = phase >= 5;
+  const glowPeak = phase >= 6;
+  const platformLayer = phase >= 5;
+
   return (
     <motion.div
       className="fixed inset-0 z-[200] flex flex-col bg-black text-white overflow-hidden will-change-transform"
@@ -155,23 +172,57 @@ export function CinematicIntro({
       aria-modal="true"
       aria-label="Welcome sequence"
     >
-
-      {/* Phase 2–4: grid */}
+      {/* Core pulse — phases 1–2: performance / clues */}
       <motion.div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        initial={false}
-        animate={{
-          opacity: phase >= 2 ? 0.12 : 0.04,
+        className="pointer-events-none absolute left-1/2 top-[38%] h-[min(42vh,320px)] w-[min(42vh,320px)] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          background: "radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 68%)",
         }}
-        transition={{ duration: 1.2 }}
+        animate={{
+          opacity: phase === 1 ? 0.35 : phase === 2 ? 0.55 : 0.25,
+          scale: phase <= 2 ? [1, 1.04, 1] : 1,
+        }}
+        transition={
+          phase <= 2
+            ? { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 0.8 }
+        }
+      />
+
+      {/* Grid — builds with narrative */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        initial={false}
+        animate={{ opacity: gridOpacity }}
+        transition={{ duration: 0.9 }}
         style={{
           backgroundImage: `
             linear-gradient(rgba(124,58,237,0.35) 1px, transparent 1px),
             linear-gradient(90deg, rgba(99,102,241,0.25) 1px, transparent 1px)
           `,
-          backgroundSize: "48px 48px",
+          backgroundSize: phase >= 5 ? "40px 40px" : "48px 48px",
         }}
       />
+
+      {/* Platform layer — systems → platforms */}
+      {platformLayer && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 flex items-center justify-center gap-[4vw]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: phase >= 6 ? 0.24 : phase >= 5 ? 0.14 : 0 }}
+          transition={{ duration: 0.85 }}
+        >
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="h-[28vh] w-[18vw] max-w-[220px] rounded-xl border border-white/[0.1] bg-gradient-to-b from-white/[0.05] to-transparent"
+              initial={{ y: 28, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: i * 0.08, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            />
+          ))}
+        </motion.div>
+      )}
 
       {/* Particles */}
       <div className="pointer-events-none absolute inset-0">
@@ -190,7 +241,7 @@ export function CinematicIntro({
                 ? { opacity: [0.15, 0.35] }
                 : {
                     y: [0, -p.d, 0],
-                    opacity: phase >= 2 ? [0.15, 0.45, 0.2] : [0.05, 0.12],
+                    opacity: particleBoost ? [0.12, 0.48, 0.22] : [0.04, 0.14, 0.08],
                   }
             }
             transition={{
@@ -203,7 +254,7 @@ export function CinematicIntro({
         ))}
       </div>
 
-      {/* Pipeline / network SVG */}
+      {/* Pipeline / decisions → systems */}
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -213,8 +264,8 @@ export function CinematicIntro({
           </linearGradient>
         </defs>
         <AnimatePresence>
-          {phase >= 3 && (
-            <motion.g initial={{ opacity: 0 }} animate={{ opacity: phase >= 3 ? 1 : 0 }} exit={{ opacity: 0 }}>
+          {pipelineOn && (
+            <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <motion.path
                 d="M10 55 Q30 25 50 55 T90 55"
                 fill="none"
@@ -222,7 +273,7 @@ export function CinematicIntro({
                 strokeWidth="0.35"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: reduceMotion ? 0.01 : 1.4, ease: "easeInOut" }}
+                transition={{ duration: reduceMotion ? 0.01 : 1.35, ease: "easeInOut" }}
               />
               <motion.path
                 d="M15 70 L35 40 L55 65 L85 35"
@@ -230,14 +281,14 @@ export function CinematicIntro({
                 stroke="rgba(124,58,237,0.45)"
                 strokeWidth="0.25"
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: phase >= 4 ? 1 : 0.6 }}
-                transition={{ duration: reduceMotion ? 0.01 : 1.6, ease: "easeInOut", delay: 0.15 }}
+                animate={{ pathLength: pipelineFull ? 1 : 0.45 }}
+                transition={{ duration: reduceMotion ? 0.01 : 1.55, ease: "easeInOut", delay: 0.12 }}
               />
             </motion.g>
           )}
         </AnimatePresence>
-        {phase >= 4 && (
-          <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+        {nodePulse && (
+          <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.75 }}>
             {[20, 40, 60, 78].map((cx, i) => (
               <motion.circle
                 key={cx}
@@ -246,91 +297,93 @@ export function CinematicIntro({
                 r="1.8"
                 fill="#a78bfa"
                 initial={{ scale: 0 }}
-                animate={{ scale: [0, 1.2, 1] }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
+                animate={{ scale: [0, 1.25, 1] }}
+                transition={{ delay: i * 0.1, duration: 0.55 }}
               />
             ))}
           </motion.g>
         )}
       </svg>
 
-      {/* Radial glows */}
+      {/* Radial glows — peak at platforms transform performance */}
       <motion.div
         className="pointer-events-none absolute -left-1/4 top-1/3 h-[60vh] w-[60vw] rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%)",
         }}
-        animate={{ opacity: phase >= 4 ? 0.85 : phase >= 3 ? 0.45 : 0.15, scale: phase >= 4 ? 1.05 : 1 }}
-        transition={{ duration: 1.4 }}
+        animate={{
+          opacity: glowPeak ? 0.95 : phase >= 4 ? 0.55 : phase >= 3 ? 0.32 : 0.12,
+          scale: glowPeak ? 1.08 : 1,
+        }}
+        transition={{ duration: 1.2 }}
       />
       <motion.div
         className="pointer-events-none absolute -right-1/4 bottom-0 h-[50vh] w-[55vw] rounded-full"
         style={{
           background: "radial-gradient(circle, rgba(14,165,233,0.22) 0%, transparent 72%)",
         }}
-        animate={{ opacity: phase >= 4 ? 0.7 : 0.1 }}
-        transition={{ duration: 1.2 }}
+        animate={{ opacity: glowPeak ? 0.85 : phase >= 4 ? 0.45 : 0.08 }}
+        transition={{ duration: 1.1 }}
+      />
+
+      {/* Culmination sweep */}
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-violet-500/[0.08] to-transparent"
+        animate={{ opacity: phase >= 6 ? 1 : 0 }}
+        transition={{ duration: 0.9 }}
       />
 
       {/* Center copy */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 text-center sm:px-8">
         <AnimatePresence mode="wait">
-          {phase < 5 ? (
+          {phase < 7 ? (
             <motion.p
               key={phase}
-              initial={{ opacity: 0, y: 14, filter: "blur(8px)" }}
+              initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-xl text-lg font-medium tracking-tight text-white/90 sm:text-xl md:text-2xl"
+              exit={{ opacity: 0, y: -16, filter: "blur(8px)" }}
+              transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+              className={cn(
+                "max-w-[min(100%,34rem)] text-balance font-medium tracking-tight text-white/90",
+                phase <= 2 && "text-[clamp(1rem,3.8vw,1.25rem)] leading-snug text-white/[0.78]",
+                phase >= 3 &&
+                  phase <= 4 &&
+                  "text-[clamp(1.05rem,4vw,1.45rem)] leading-snug text-white/[0.88]",
+                phase >= 5 &&
+                  "text-[clamp(1.15rem,4.5vw,1.75rem)] font-semibold leading-tight text-white sm:text-2xl md:text-3xl",
+              )}
             >
-              {phase < 5 ? COPY[phase] : null}
+              {COPY[phase as 1 | 2 | 3 | 4 | 5 | 6]}
             </motion.p>
-          ) : !showIdentity ? (
-            <motion.div
-              key="metrics"
-              initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-2xl space-y-4 px-2 text-center"
-            >
-              <p className="text-sm font-medium leading-relaxed text-white/88 sm:text-base md:text-lg">
-                10+ production-grade applications shipped · 3+ years building · 5 pro sports organizations · 2 hackathon wins
-              </p>
-              <p className="text-[11px] leading-relaxed text-white/50 sm:text-xs md:text-sm">
-                Zerve AI × UNC Charlotte Application Analytics Datathon · OpenClaw × Fontaine Founders (Kaggle longevity)
-              </p>
-              <p className="text-[11px] leading-relaxed text-white/45 sm:text-xs md:text-sm">
-                Top placements: Kaggle March Madness 2026 — top 8% of 4,000+ · YC Bio × AI Hackathon
-              </p>
-            </motion.div>
           ) : (
             <motion.div
               key="identity"
-              initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
+              initial={{ opacity: 0, scale: 0.94, filter: "blur(14px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center gap-4 px-2"
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="flex max-w-2xl flex-col items-center gap-5 px-2"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-violet-300/90">
-                Akhi&apos;s Mass Portfolio
+              <p className="text-[10px] font-semibold uppercase tracking-[0.42em] text-violet-300/80 sm:text-[11px]">
+                Portfolio
               </p>
-              <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-r from-white via-violet-100 to-indigo-200 bg-clip-text text-transparent">
+              <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-tight bg-gradient-to-r from-white via-violet-100 to-indigo-200 bg-clip-text text-transparent">
                 Akhi Chappidi
               </h1>
-              <p className="text-sm text-white/55 sm:text-base">
-                Software Engineer · Data Systems · AI Platforms
+              <p className="text-sm font-medium text-white/70 sm:text-base md:text-lg">
+                Software Engineer · Data Engineer · AI Platform Builder
+              </p>
+              <p className="max-w-xl text-xs leading-relaxed text-white/45 sm:text-sm">
+                Building full-stack platforms and analytical systems across sports, business, and healthcare.
               </p>
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.5 }}
-                className="mt-4 flex flex-col items-center gap-3 sm:flex-row"
+                transition={{ delay: 0.4, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-2"
               >
                 <Button
                   size="lg"
-                  className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] px-10 text-base shadow-[0_0_40px_rgba(124,58,237,0.35)]"
+                  className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] px-10 text-base shadow-[0_0_48px_rgba(124,58,237,0.38)]"
                   onClick={finish}
                 >
                   Enter Platform
@@ -341,7 +394,6 @@ export function CinematicIntro({
         </AnimatePresence>
       </div>
 
-      {/* Top bar: skip + optional sound */}
       <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 py-4 sm:px-6">
         <button
           type="button"
@@ -370,5 +422,7 @@ export function CinematicIntro({
 
 export function shouldShowCinematicIntro(): boolean {
   if (typeof window === "undefined") return false;
-  return sessionStorage.getItem(STORAGE_KEY) !== "1";
+  if (sessionStorage.getItem(STORAGE_KEY) === "1") return false;
+  if (sessionStorage.getItem(PORTFOLIO_SEQUENCE_LEGACY_KEY) === "1") return false;
+  return true;
 }
