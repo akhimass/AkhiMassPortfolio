@@ -5,7 +5,6 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "akhi-portfolio-cinematic-intro-v1";
@@ -22,9 +21,6 @@ const COPY: Record<Exclude<Phase, 7>, string> = {
   5: "Systems become platforms.",
   6: "Platforms transform performance.",
 };
-
-/** ~12s narrative arc for sound sync */
-const SEQUENCE_SEC = 12;
 
 const PHASE_SCHEDULE: Array<{ ms: number; phase: Phase }> = [
   { ms: 1700, phase: 2 },
@@ -49,10 +45,7 @@ export function CinematicIntro({
   const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<Phase>(1);
   const [exiting, setExiting] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const timers = useRef<number[]>([]);
-  const sequenceStartedAt = useRef<number>(0);
 
   const particleCount = reduceMotion ? 12 : 40;
 
@@ -74,7 +67,6 @@ export function CinematicIntro({
   }, []);
 
   useEffect(() => {
-    sequenceStartedAt.current = Date.now();
     clearTimers();
     const s = (ms: number, p: Phase) => timers.current.push(window.setTimeout(() => setPhase(p), ms));
 
@@ -91,11 +83,6 @@ export function CinematicIntro({
   const finish = useCallback(() => {
     if (exiting) return;
     setExiting(true);
-    try {
-      audioRef.current?.pause();
-    } catch {
-      /* ignore */
-    }
     window.setTimeout(() => {
       if (persistToSession) {
         sessionStorage.setItem(STORAGE_KEY, "1");
@@ -107,39 +94,11 @@ export function CinematicIntro({
 
   const skipOrExit = useCallback(() => {
     if (onSkipEntireSequence) {
-      try {
-        audioRef.current?.pause();
-      } catch {
-        /* ignore */
-      }
       onSkipEntireSequence();
       return;
     }
     finish();
   }, [onSkipEntireSequence, finish]);
-
-  const toggleSound = useCallback(async () => {
-    if (soundEnabled) {
-      audioRef.current?.pause();
-      setSoundEnabled(false);
-      return;
-    }
-    if (!audioRef.current) {
-      audioRef.current = new Audio("/audio/portfolio-intro.mp3");
-      audioRef.current.loop = false;
-    }
-    const elapsedSec = (Date.now() - sequenceStartedAt.current) / 1000;
-    const dur = Number.isFinite(audioRef.current.duration) ? audioRef.current.duration : 12.8;
-    const progress = Math.min(1, Math.max(0, elapsedSec / SEQUENCE_SEC));
-    audioRef.current.currentTime = Math.min(dur * 0.97, progress * dur * 0.94);
-    audioRef.current.volume = 0.35;
-    try {
-      await audioRef.current.play();
-      setSoundEnabled(true);
-    } catch {
-      setSoundEnabled(false);
-    }
-  }, [soundEnabled]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -394,16 +353,7 @@ export function CinematicIntro({
         </AnimatePresence>
       </div>
 
-      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-4 py-4 sm:px-6">
-        <button
-          type="button"
-          onClick={toggleSound}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 transition hover:border-violet-500/40 hover:text-white"
-          aria-pressed={soundEnabled}
-        >
-          {soundEnabled ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
-          <span className="hidden sm:inline">Sound</span>
-        </button>
+      <div className="absolute left-0 right-0 top-0 z-20 flex justify-end px-4 py-4 sm:px-6">
         <button
           type="button"
           onClick={skipOrExit}
@@ -413,9 +363,7 @@ export function CinematicIntro({
         </button>
       </div>
 
-      <p className="pointer-events-none absolute bottom-4 left-0 right-0 text-center text-[10px] text-white/25">
-        Esc skip · Sound: NBA on ESPN Playoffs theme (trimmed to intro)
-      </p>
+      <p className="pointer-events-none absolute bottom-4 left-0 right-0 text-center text-[10px] text-white/25">Esc to skip</p>
     </motion.div>
   );
 }
