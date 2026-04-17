@@ -17,7 +17,7 @@ const CAPABILITIES = [
     description:
       "Component-driven architectures with design systems, performance optimization, and seamless UX for data-rich interfaces.",
     tools: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    accent: "#6366f1",
+    accent: "#3b82f6",
   },
   {
     category: "Backend APIs",
@@ -41,7 +41,7 @@ const CAPABILITIES = [
     description:
       "LLM-powered applications, RAG pipelines, ML model deployment, and intelligent automation systems at production scale.",
     tools: ["LangChain", "OpenAI", "PyTorch", "scikit-learn", "Vector DBs"],
-    accent: "#a78bfa",
+    accent: "#38bdf9",
   },
   {
     category: "Cloud & Deployment",
@@ -175,7 +175,7 @@ export const CapabilitiesSection = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">
+          <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">
             Engineering Depth
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">

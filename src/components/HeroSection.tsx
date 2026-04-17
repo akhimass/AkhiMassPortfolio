@@ -32,7 +32,7 @@ export const HeroSection = () => {
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124,58,237,0.25), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(99,102,241,0.12), transparent)",
+            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37,99,235,0.25), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(59,130,246,0.12), transparent)",
         }}
       />
 
@@ -47,7 +47,7 @@ export const HeroSection = () => {
               className="text-[clamp(2.25rem,5vw,4.25rem)] font-bold tracking-tight text-balance leading-[1.05] font-display mb-6"
             >
               Building{" "}
-              <span className="bg-gradient-to-r from-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent">intelligent</span>{" "}
+              <span className="bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent">intelligent</span>{" "}
               platforms across sports, healthcare, and business.
             </motion.h1>
 
@@ -72,9 +72,9 @@ export const HeroSection = () => {
               {badges.map(({ label, icon: Icon }) => (
                 <span
                   key={label}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-muted-foreground hover:border-violet-500/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all cursor-default"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-muted-foreground hover:border-blue-500/40 hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] transition-all cursor-default"
                 >
-                  <Icon className="h-3.5 w-3.5 text-violet-300/80" />
+                  <Icon className="h-3.5 w-3.5 text-blue-300/80" />
                   {label}
                 </span>
               ))}
@@ -90,7 +90,7 @@ export const HeroSection = () => {
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] text-white shadow-[0_0_28px_rgba(99,102,241,0.35)] border-0"
+                className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white shadow-[0_0_28px_rgba(59,130,246,0.35)] border-0"
               >
                 <Link to="/projects">View Projects</Link>
               </Button>

@@ -19,7 +19,7 @@ const demoUrl = (p: Project) => p.links?.demo ?? p.links?.vercel ?? "";
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const open = !!project;
-  const accent = project ? domainDetails[project.domain].color : "#7c3aed";
+  const accent = project ? domainDetails[project.domain].color : "#2563eb";
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [ctbnSlide, setCtbnSlide] = useState(0);
@@ -86,7 +86,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     </Button>
                   )}
                   {project.hasVercelDemo && url && (
-                    <Button size="sm" asChild className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] border-0">
+                    <Button size="sm" asChild className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] border-0">
                       <a href={url} target="_blank" rel="noreferrer">
                         Live Demo <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
                       </a>

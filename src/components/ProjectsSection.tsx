@@ -46,7 +46,7 @@ const ProjectCard = ({
         transition={{ type: "spring", stiffness: 400, damping: 22 }}
         className={cn(
           "group relative flex h-full w-full flex-col rounded-xl border border-white/6 bg-[#0f0f11] text-left overflow-hidden cursor-pointer",
-          "transition-[box-shadow,border-color] duration-300 outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50",
+          "transition-[box-shadow,border-color] duration-300 outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50",
         )}
         style={{
           boxShadow: "0 0 0 1px rgba(255,255,255,0.04)",
@@ -141,7 +141,7 @@ export const ProjectsSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-10 text-center lg:text-left"
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">Portfolio</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">Portfolio</p>
           <h2 className="mb-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Projects</h2>
           <p className="max-w-2xl text-sm text-muted-foreground">
             Selected shipped work across sports, healthcare, business, and ventures — case studies, live demos, and production
@@ -208,7 +208,7 @@ function FilterPill({
               borderColor: `${color}55`,
             }
           : active
-            ? { background: "rgba(124,58,237,0.15)", borderColor: "rgba(124,58,237,0.35)" }
+            ? { background: "rgba(37,99,235,0.15)", borderColor: "rgba(37,99,235,0.35)" }
             : undefined
       }
     >

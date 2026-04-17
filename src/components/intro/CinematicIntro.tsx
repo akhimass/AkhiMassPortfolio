@@ -135,7 +135,7 @@ export function CinematicIntro({
       <motion.div
         className="pointer-events-none absolute left-1/2 top-[38%] h-[min(42vh,320px)] w-[min(42vh,320px)] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 68%)",
+          background: "radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 68%)",
         }}
         animate={{
           opacity: phase === 1 ? 0.35 : phase === 2 ? 0.55 : 0.25,
@@ -156,8 +156,8 @@ export function CinematicIntro({
         transition={{ duration: 0.9 }}
         style={{
           backgroundImage: `
-            linear-gradient(rgba(124,58,237,0.35) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99,102,241,0.25) 1px, transparent 1px)
+            linear-gradient(rgba(37,99,235,0.35) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59,130,246,0.25) 1px, transparent 1px)
           `,
           backgroundSize: phase >= 5 ? "40px 40px" : "48px 48px",
         }}
@@ -188,7 +188,7 @@ export function CinematicIntro({
         {particles.map((p) => (
           <motion.span
             key={p.id}
-            className="absolute rounded-full bg-violet-400/30"
+            className="absolute rounded-full bg-blue-400/30"
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,
@@ -217,8 +217,8 @@ export function CinematicIntro({
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#7c3aed" stopOpacity="0" />
-            <stop offset="50%" stopColor="#6366f1" stopOpacity="0.9" />
+            <stop offset="0%" stopColor="#2563eb" stopOpacity="0" />
+            <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -237,7 +237,7 @@ export function CinematicIntro({
               <motion.path
                 d="M15 70 L35 40 L55 65 L85 35"
                 fill="none"
-                stroke="rgba(124,58,237,0.45)"
+                stroke="rgba(37,99,235,0.45)"
                 strokeWidth="0.25"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: pipelineFull ? 1 : 0.45 }}
@@ -254,7 +254,7 @@ export function CinematicIntro({
                 cx={cx}
                 cy={38 + (i % 2) * 22}
                 r="1.8"
-                fill="#a78bfa"
+                fill="#38bdf9"
                 initial={{ scale: 0 }}
                 animate={{ scale: [0, 1.25, 1] }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
@@ -268,7 +268,7 @@ export function CinematicIntro({
       <motion.div
         className="pointer-events-none absolute -left-1/4 top-1/3 h-[60vh] w-[60vw] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%)",
         }}
         animate={{
           opacity: glowPeak ? 0.95 : phase >= 4 ? 0.55 : phase >= 3 ? 0.32 : 0.12,
@@ -287,7 +287,7 @@ export function CinematicIntro({
 
       {/* Culmination sweep */}
       <motion.div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-violet-500/[0.08] to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-blue-500/[0.08] to-transparent"
         animate={{ opacity: phase >= 6 ? 1 : 0 }}
         transition={{ duration: 0.9 }}
       />
@@ -322,10 +322,10 @@ export function CinematicIntro({
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="flex max-w-2xl flex-col items-center gap-5 px-2"
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.42em] text-violet-300/80 sm:text-[11px]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.42em] text-blue-300/80 sm:text-[11px]">
                 Portfolio
               </p>
-              <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-tight bg-gradient-to-r from-white via-violet-100 to-indigo-200 bg-clip-text text-transparent">
+              <h1 className="font-display text-[clamp(2rem,8vw,3.75rem)] font-bold leading-[1.02] tracking-tight bg-gradient-to-r from-white via-blue-100 to-sky-200 bg-clip-text text-transparent">
                 Akhi Chappidi
               </h1>
               <p className="text-sm font-medium text-white/70 sm:text-base md:text-lg">
@@ -342,7 +342,7 @@ export function CinematicIntro({
               >
                 <Button
                   size="lg"
-                  className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] px-10 text-base shadow-[0_0_48px_rgba(124,58,237,0.38)]"
+                  className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] px-10 text-base shadow-[0_0_48px_rgba(37,99,235,0.38)]"
                   onClick={finish}
                 >
                   Enter Platform

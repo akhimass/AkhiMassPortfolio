@@ -65,7 +65,7 @@
     color: #ffffff;
   }
   ::selection {
-    background: rgba(124, 58, 237, 0.25);
+    background: rgba(37, 99, 235, 0.28);
     color: white;
   }
 }
@@ -80,14 +80,14 @@
   .section-divider {
     height: 1px;
     max-width: 400px;
-    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.55), transparent);
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.55), transparent);
   }
 }
 
 /* Custom scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #7c3aed60 #7c3aed30;
+  scrollbar-color: #2563eb60 #2563eb30;
 }
 
 *::-webkit-scrollbar {
@@ -96,10 +96,10 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #7c3aed30;
+  background: #2563eb30;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #7c3aed60;
+  background: #2563eb60;
   border-radius: 999px;
 }

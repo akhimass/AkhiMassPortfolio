@@ -19,14 +19,14 @@ export default {
       },
       colors: {
         brand: {
-          primary: "#7c3aed",
-          accent: "#6366f1",
+          primary: "#2563eb",
+          accent: "#3b82f6",
         },
         domain: {
           sports: "#10b981",
           health: "#0ea5e9",
           business: "#f59e0b",
-          startups: "#a78bfa",
+          startups: "#38bdf9",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

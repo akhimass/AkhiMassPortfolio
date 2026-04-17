@@ -7,7 +7,7 @@ const JOURNEY = [
     label: "Software Engineering",
     description:
       "Building the foundation — full-stack systems, APIs, and scalable application architectures from the ground up.",
-    accent: "#6366f1",
+    accent: "#3b82f6",
     items: ["React / Next.js", "TypeScript", "Node.js", "REST APIs", "System Design"],
   },
   {
@@ -31,7 +31,7 @@ const JOURNEY = [
     label: "AI / LLM Systems",
     description:
       "Engineering the intelligence layer — LLM pipelines, ML model deployment, and AI-driven product experiences.",
-    accent: "#a78bfa",
+    accent: "#38bdf9",
     items: ["LangChain", "OpenAI", "PyTorch", "Vector DBs", "RAG Pipelines"],
   },
   {
@@ -123,7 +123,7 @@ export const StorySection = () => {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-96 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at left center, rgba(99,102,241,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse at left center, rgba(59,130,246,0.07) 0%, transparent 70%)",
         }}
       />
 
@@ -134,7 +134,7 @@ export const StorySection = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">
+          <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">
             The Journey
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">

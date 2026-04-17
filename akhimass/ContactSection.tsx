@@ -19,7 +19,7 @@ const LINKS = [
     icon: Mail,
     label: "Email",
     href: "mailto:hello@example.com",
-    color: "#a78bfa",
+    color: "#38bdf9",
   },
 ];
 
@@ -31,7 +31,7 @@ export const ContactSection = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 100%, rgba(124,58,237,0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse at 50% 100%, rgba(37,99,235,0.12) 0%, transparent 60%)",
         }}
       />
 
@@ -42,7 +42,7 @@ export const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-3">
+          <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-3">
             Contact
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -61,8 +61,8 @@ export const ContactSection = () => {
               asChild
               className="rounded-full px-7 text-sm font-medium"
               style={{
-                background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
-                boxShadow: "0 0 24px rgba(124,58,237,0.3)",
+                background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
+                boxShadow: "0 0 24px rgba(37,99,235,0.3)",
                 border: "none",
               }}
             >
@@ -75,7 +75,7 @@ export const ContactSection = () => {
               variant="outline"
               size="lg"
               asChild
-              className="rounded-full px-7 text-sm font-medium border-border/60 hover:border-violet-500/40 hover:bg-violet-500/5"
+              className="rounded-full px-7 text-sm font-medium border-border/60 hover:border-blue-500/40 hover:bg-blue-500/5"
             >
               <a href="#">
                 <FileText className="mr-2 h-4 w-4" />

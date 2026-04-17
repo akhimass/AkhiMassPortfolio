@@ -33,9 +33,9 @@ function AnimatedGridBg() {
       for (let y = 0; y < H; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
       const scanY = ((Math.sin(t * 0.001) + 1) / 2) * H;
       const g = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
-      g.addColorStop(0, "rgba(99,102,241,0)");
-      g.addColorStop(0.5, "rgba(99,102,241,0.03)");
-      g.addColorStop(1, "rgba(99,102,241,0)");
+      g.addColorStop(0, "rgba(59,130,246,0)");
+      g.addColorStop(0.5, "rgba(59,130,246,0.03)");
+      g.addColorStop(1, "rgba(59,130,246,0)");
       ctx.fillStyle = g; ctx.fillRect(0, scanY - 50, W, 100);
       t++; id = requestAnimationFrame(draw);
     };
@@ -54,7 +54,7 @@ export const HeroSection = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at 30% 50%, rgba(124,58,237,0.12) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at 30% 50%, rgba(37,99,235,0.12) 0%, transparent 60%)",
         }}
       />
 
@@ -70,10 +70,10 @@ export const HeroSection = () => {
               transition={{ duration: 0.5 }}
               className="mb-7"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-xs text-violet-400 font-semibold tracking-wide">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-xs text-blue-400 font-semibold tracking-wide">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-violet-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" />
                 </span>
                 Software Engineer · Data Engineer · AI Builder
               </div>
@@ -91,7 +91,7 @@ export const HeroSection = () => {
               <span
                 className="bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #a78bfa 0%, #818cf8 40%, #6366f1 100%)",
+                  backgroundImage: "linear-gradient(135deg, #38bdf9 0%, #60a5fa 40%, #3b82f6 100%)",
                 }}
               >
                 intelligent
@@ -129,8 +129,8 @@ export const HeroSection = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
                 >
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-border/50 bg-card/50 text-[11px] text-muted-foreground font-medium hover:border-violet-500/30 hover:text-foreground transition-all">
-                    <Icon className="h-3 w-3 text-violet-400 flex-shrink-0" />
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-border/50 bg-card/50 text-[11px] text-muted-foreground font-medium hover:border-blue-500/30 hover:text-foreground transition-all">
+                    <Icon className="h-3 w-3 text-blue-400 flex-shrink-0" />
                     {label}
                   </div>
                 </motion.div>
@@ -149,8 +149,8 @@ export const HeroSection = () => {
                 asChild
                 className="rounded-full px-6 text-sm font-medium"
                 style={{
-                  background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
-                  boxShadow: "0 0 24px rgba(124,58,237,0.35)",
+                  background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
+                  boxShadow: "0 0 24px rgba(37,99,235,0.35)",
                   border: "none",
                 }}
               >
@@ -162,7 +162,7 @@ export const HeroSection = () => {
                 variant="outline"
                 size="lg"
                 asChild
-                className="rounded-full px-6 text-sm font-medium border-border/60 hover:border-violet-500/40 hover:bg-violet-500/5"
+                className="rounded-full px-6 text-sm font-medium border-border/60 hover:border-blue-500/40 hover:bg-blue-500/5"
               >
                 <a href="#domains">Explore Case Studies</a>
               </Button>

@@ -9,9 +9,9 @@ const STATS = [
 ];
 
 const PILLARS = [
-  { icon: Code2, label: "Software Engineering", color: "#6366f1" },
+  { icon: Code2, label: "Software Engineering", color: "#3b82f6" },
   { icon: Database, label: "Data Engineering", color: "#06b6d4" },
-  { icon: Brain, label: "AI Platforms", color: "#a78bfa" },
+  { icon: Brain, label: "AI Platforms", color: "#38bdf9" },
   { icon: Rocket, label: "Product Thinking", color: "#f59e0b" },
 ];
 
@@ -27,7 +27,7 @@ export const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-3">
+            <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-3">
               About
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
@@ -91,7 +91,7 @@ export const AboutSection = () => {
                     className="text-3xl font-bold tracking-tight"
                     style={{
                       background:
-                        "linear-gradient(135deg, #a78bfa 0%, #6366f1 100%)",
+                        "linear-gradient(135deg, #38bdf9 0%, #3b82f6 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }}
@@ -114,7 +114,7 @@ export const AboutSection = () => {
               style={{
                 borderColor: "rgba(139,92,246,0.2)",
                 background:
-                  "linear-gradient(135deg, rgba(139,92,246,0.06) 0%, rgba(99,102,241,0.04) 100%)",
+                  "linear-gradient(135deg, rgba(139,92,246,0.06) 0%, rgba(59,130,246,0.04) 100%)",
               }}
             >
               <p className="text-sm text-foreground/70 italic leading-relaxed">
@@ -126,7 +126,7 @@ export const AboutSection = () => {
                   className="h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
                   style={{
                     background:
-                      "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
+                      "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
                   }}
                 >
                   AK

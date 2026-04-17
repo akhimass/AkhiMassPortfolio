@@ -27,8 +27,8 @@ const STARTUPS = [
     description:
       "An AI-driven athletic performance platform combining wearable data, training analytics, and intelligent coaching workflows to close the gap between elite and emerging athletes.",
     status: "Concept",
-    statusColor: "#a78bfa",
-    accent: "#a78bfa",
+    statusColor: "#38bdf9",
+    accent: "#38bdf9",
     glow: "rgba(167,139,250,0.15)",
     stack: ["Python", "FastAPI", "LangChain", "React", "PostgreSQL"],
     highlights: [
@@ -60,7 +60,7 @@ export const StartupsSection = () => {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">
+          <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">
             Startups
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">

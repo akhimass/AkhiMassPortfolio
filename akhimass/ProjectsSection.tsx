@@ -32,11 +32,11 @@ const DOMAIN_CONFIG: Record<
     dot: "#fbbf24",
   },
   Startups: {
-    color: "text-violet-400",
+    color: "text-blue-400",
     glow: "rgba(167,139,250,0.12)",
     bg: "rgba(167,139,250,0.06)",
     border: "rgba(167,139,250,0.2)",
-    dot: "#a78bfa",
+    dot: "#38bdf9",
   },
 };
 
@@ -186,7 +186,7 @@ export const ProjectsSection = () => {
         >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">
+              <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">
                 Featured Work
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">

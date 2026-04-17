@@ -61,7 +61,7 @@ export const AboutSection = () => {
             }}
             aria-label="Toggle headshot"
           >
-            <div className="relative aspect-[4/5] rounded-2xl border border-violet-500/25 overflow-hidden bg-black shadow-[0_0_60px_rgba(124,58,237,0.15)]">
+            <div className="relative aspect-[4/5] rounded-2xl border border-blue-500/25 overflow-hidden bg-black shadow-[0_0_60px_rgba(37,99,235,0.15)]">
               <AnimatePresence mode="wait">
                 {!panthers ? (
                   <motion.img
@@ -101,7 +101,7 @@ export const AboutSection = () => {
           </div>
 
           <div className="space-y-6">
-            <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest">About</p>
+            <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest">About</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">
               Building at the intersection of data, AI, and sport.
             </h2>
@@ -133,7 +133,7 @@ export const AboutSection = () => {
               {pillars.map(({ icon: Icon, label, sub }) => (
                 <Card key={label} className="border-white/10 bg-[#0f0f11]">
                   <CardContent className="pt-4 pb-4">
-                    <Icon className="h-4 w-4 text-violet-400 mb-2" />
+                    <Icon className="h-4 w-4 text-blue-400 mb-2" />
                     <div className="text-sm font-semibold text-white">{label}</div>
                     <div className="text-[11px] text-muted-foreground">{sub}</div>
                   </CardContent>
@@ -144,15 +144,18 @@ export const AboutSection = () => {
             <div ref={statsRef} className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map((m, i) => (
                 <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-4">
-                  <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent sm:text-3xl">
+                  <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent sm:text-3xl">
                     {counts[i]}
                     {m.suffix}
                   </div>
                   <div className="mt-1 text-[11px] text-muted-foreground">{m.label}</div>
                   {m.label === "Hackathons won" && (
-                    <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground/90">
-                      Zerve AI × UNC Charlotte Application Analytics Datathon · OpenClaw × Fontaine Founders (Kaggle longevity)
-                    </p>
+                    <div className="mt-2 space-y-1.5 text-[10px] leading-relaxed text-muted-foreground/90">
+                      <p>1) Zerve AI × UNC Charlotte Application Analytics Datathon</p>
+                      <p>
+                        2) OpenClaw Lovable.ai ElevenLabs x Fontaine Founders Hackathon for Longevity, Health and Wellness
+                      </p>
+                    </div>
                   )}
                 </div>
               ))}
@@ -164,10 +167,9 @@ export const AboutSection = () => {
               transition={{ duration: 0.45, delay: 0.15 }}
               className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-4"
             >
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-violet-300/90">Competition & recognition</div>
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">Competition & recognition</div>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Kaggle March Madness 2026 — top 8% of 4,000+ participants · YC Bio × AI Hackathon · additional strong showings across
-                competitive builds
+                Kaggle March Madness 2026 — top 8% of 4,000+ participants · YC Bio × AI Hackathon Participant
               </p>
             </motion.div>
           </div>

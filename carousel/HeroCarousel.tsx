@@ -206,7 +206,7 @@ function drawHealthScene(ctx: CanvasRenderingContext2D, w: number, h: number, t:
     ctx.arc(x1, y, 2.5, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = "#7c3aed";
+    ctx.fillStyle = "#2563eb";
     ctx.globalAlpha = Math.max(0.1, 1 - alpha1);
     ctx.beginPath();
     ctx.arc(x2, y, 2.5, 0, Math.PI * 2);
@@ -263,7 +263,7 @@ function drawHealthScene(ctx: CanvasRenderingContext2D, w: number, h: number, t:
 function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: number) {
   ctx.fillStyle = "#0d0a1a";
   ctx.fillRect(0, 0, w, h);
-  drawGrid(ctx, w, h, "#a78bfa");
+  drawGrid(ctx, w, h, "#38bdf9");
 
   // Heat map grid (field view)
   const cols = 10, rows = 7;
@@ -317,7 +317,7 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
     y: lineY + lineH - v * lineH,
   }));
 
-  ctx.strokeStyle = "#a78bfa";
+  ctx.strokeStyle = "#38bdf9";
   ctx.lineWidth = 1.5;
   ctx.globalAlpha = 0.8;
   ctx.beginPath();
@@ -331,7 +331,7 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
   if (idx < pts.length - 1) {
     const dx = pts[idx].x + (pts[idx + 1].x - pts[idx].x) * frac;
     const dy = pts[idx].y + (pts[idx + 1].y - pts[idx].y) * frac;
-    ctx.fillStyle = "#a78bfa";
+    ctx.fillStyle = "#38bdf9";
     ctx.globalAlpha = 1;
     ctx.beginPath();
     ctx.arc(dx, dy, 4, 0, Math.PI * 2);
@@ -340,11 +340,11 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
   ctx.globalAlpha = 1;
 }
 
-// ─── Scene config (3 scenes — sports / healthcare / Panthers performance) ───
-/** Place matching files in public/videos/ (MP4). Sports slot: data-on-court viz + optional overlay.webm HUD. */
+// ─── Scene config (3 scenes — sports analytics / healthcare / coaching) ───
+/** MP4s must live under public/videos/ so /videos/… resolves in dev and production. */
 const VIDEO_SRCS = [
   "/videos/Cinematic_Data_Visualization_in_Sports_Arena.mp4",
-  "/videos/Healthcare_App_Video_Ready.mp4",
+  "/videos/healthcarecarousel.mp4",
   "/videos/pantherscoachingcarousel.mp4",
 ] as const;
 
@@ -381,10 +381,11 @@ const SCENES: Scene[] = [
   },
   {
     id: "coaching",
-    domain: "Panthers Performance",
-    headline: "Coaching intelligence",
-    sub: "Production reporting — Python, R, and live game context in one stack.",
-    accent: "#a78bfa",
+    domain: "Coaching & team optimization",
+    headline: "Professional coaching intelligence",
+    sub:
+      "Tools for coaches and staff — player-level signals, team context, and live game workflows so professional athletes and organizations optimize performance together.",
+    accent: "#38bdf9",
     accentGlow: "rgba(167,139,250,0.15)",
     draw: drawCoachScene,
     stats: [
@@ -581,7 +582,7 @@ export const HeroCarousel = () => {
               />
             </motion.div>
           </AnimatePresence>
-          {/* Analytics HUD layer: sports analytics scene only (not healthcare / Panthers) */}
+          {/* Analytics HUD layer: sports analytics scene only (not healthcare / coaching) */}
           {overlayWebmOk && activeIdx === 0 && (
             <video
               src="/videos/overlay.webm"

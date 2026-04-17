@@ -29,7 +29,7 @@ const DOMAIN_CONFIG: Record<string, { color: string; accent: string; bg: string;
     emoji: "📊",
   },
   Startups: {
-    color: "#a78bfa",
+    color: "#38bdf9",
     accent: "#c4b5fd",
     bg: "rgba(167,139,250,0.06)",
     border: "rgba(167,139,250,0.2)",
@@ -50,7 +50,7 @@ export const DomainSection = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-xs text-violet-400 font-semibold uppercase tracking-widest mb-2">
+          <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">
             Domains
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">

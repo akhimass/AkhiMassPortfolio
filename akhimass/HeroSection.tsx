@@ -78,9 +78,9 @@ function AnimatedGrid() {
       // Signal pulses
       pulses.forEach((p) => {
         const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
-        grad.addColorStop(0, `rgba(99,102,241,${p.alpha * 0.15})`);
+        grad.addColorStop(0, `rgba(59,130,246,${p.alpha * 0.15})`);
         grad.addColorStop(0.4, `rgba(139,92,246,${p.alpha * 0.06})`);
-        grad.addColorStop(1, `rgba(99,102,241,0)`);
+        grad.addColorStop(1, `rgba(59,130,246,0)`);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = grad;
@@ -106,9 +106,9 @@ function AnimatedGrid() {
       // Drifting horizontal scan line
       const scanY = ((Math.sin(time * 0.001) + 1) / 2) * H;
       const scanGrad = ctx.createLinearGradient(0, scanY - 60, 0, scanY + 60);
-      scanGrad.addColorStop(0, "rgba(99,102,241,0)");
-      scanGrad.addColorStop(0.5, "rgba(99,102,241,0.04)");
-      scanGrad.addColorStop(1, "rgba(99,102,241,0)");
+      scanGrad.addColorStop(0, "rgba(59,130,246,0)");
+      scanGrad.addColorStop(0.5, "rgba(59,130,246,0.04)");
+      scanGrad.addColorStop(1, "rgba(59,130,246,0)");
       ctx.fillStyle = scanGrad;
       ctx.fillRect(0, scanY - 60, W, 120);
 
@@ -147,7 +147,7 @@ export const HeroSection = () => {
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-20"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(139,92,246,0.3) 0%, rgba(99,102,241,0.15) 40%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.15) 40%, transparent 70%)",
           }}
         />
       </div>
@@ -161,10 +161,10 @@ export const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-xs text-violet-400 font-medium tracking-wide">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-xs text-blue-400 font-medium tracking-wide">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-violet-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
             </span>
             Software Engineer · Data Engineer · AI Platform Builder
           </div>
@@ -183,7 +183,7 @@ export const HeroSection = () => {
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, #a78bfa 0%, #818cf8 40%, #6366f1 100%)",
+                "linear-gradient(135deg, #38bdf9 0%, #60a5fa 40%, #3b82f6 100%)",
             }}
           >
             platforms
@@ -218,8 +218,8 @@ export const HeroSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-border/60 bg-card/60 backdrop-blur-sm text-xs text-muted-foreground font-medium hover:border-violet-500/30 hover:text-foreground transition-all">
-                <Icon className="h-3 w-3 text-violet-400" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-border/60 bg-card/60 backdrop-blur-sm text-xs text-muted-foreground font-medium hover:border-blue-500/30 hover:text-foreground transition-all">
+                <Icon className="h-3 w-3 text-blue-400" />
                 {label}
               </div>
             </motion.div>
@@ -238,8 +238,8 @@ export const HeroSection = () => {
             asChild
             className="rounded-full px-6 text-sm font-medium"
             style={{
-              background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
-              boxShadow: "0 0 24px rgba(124,58,237,0.35)",
+              background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
+              boxShadow: "0 0 24px rgba(37,99,235,0.35)",
               border: "none",
             }}
           >
@@ -251,7 +251,7 @@ export const HeroSection = () => {
             variant="outline"
             size="lg"
             asChild
-            className="rounded-full px-6 text-sm font-medium border-border/60 hover:border-violet-500/40 hover:bg-violet-500/5"
+            className="rounded-full px-6 text-sm font-medium border-border/60 hover:border-blue-500/40 hover:bg-blue-500/5"
           >
             <a href="#domains">Explore Case Studies</a>
           </Button>

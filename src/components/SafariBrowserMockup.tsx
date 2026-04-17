@@ -58,7 +58,7 @@ export function SafariBrowserMockup({
               d="M6 1a3 3 0 0 0-3 3v1H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H9V4a3 3 0 0 0-3-3Zm0 2a1 1 0 0 1 1 1v1H5V4a1 1 0 0 1 1-1Z"
             />
           </svg>
-          <p className="truncate font-mono text-[10px] text-violet-100/85">{url}</p>
+          <p className="truncate font-mono text-[10px] text-blue-100/85">{url}</p>
         </div>
         <div className="hidden shrink-0 gap-1.5 sm:flex" aria-hidden>
           <span className="h-1.5 w-3 rounded-sm bg-white/10" />

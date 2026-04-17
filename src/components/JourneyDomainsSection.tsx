@@ -8,7 +8,7 @@ const JOURNEY = [
     label: "Software Engineering",
     description:
       "Building the foundation — full-stack systems, APIs, and scalable application architectures from the ground up.",
-    accent: "#6366f1",
+    accent: "#3b82f6",
     items: ["React / Next.js", "TypeScript", "Node.js", "REST APIs", "System Design"],
   },
   {
@@ -32,7 +32,7 @@ const JOURNEY = [
     label: "AI / LLM Systems",
     description:
       "Engineering the intelligence layer — LLM pipelines, ML model deployment, and AI-driven product experiences.",
-    accent: "#a78bfa",
+    accent: "#38bdf9",
     items: ["LangChain", "OpenAI", "PyTorch", "Vector DBs", "RAG Pipelines"],
   },
   {
@@ -114,7 +114,7 @@ export const JourneyDomainsSection = () => {
       <div
         className="pointer-events-none absolute left-0 top-1/2 h-96 w-72 -translate-y-1/2"
         style={{
-          background: "radial-gradient(ellipse at left center, rgba(99,102,241,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at left center, rgba(59,130,246,0.08) 0%, transparent 70%)",
         }}
       />
 
@@ -126,10 +126,10 @@ export const JourneyDomainsSection = () => {
           transition={{ duration: 0.5 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">How I build</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">How I build</p>
           <h2 className="mb-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
             From fundamentals to{" "}
-            <span className="bg-gradient-to-r from-violet-300 to-indigo-300 bg-clip-text text-transparent">high-stakes</span>{" "}
+            <span className="bg-gradient-to-r from-sky-300 to-blue-400 bg-clip-text text-transparent">high-stakes</span>{" "}
             domain systems
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -147,7 +147,7 @@ export const JourneyDomainsSection = () => {
               transition={{ duration: 0.45 }}
               className="mb-10"
             >
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">The journey</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">The journey</p>
               <h3 className="mb-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">From code to intelligent systems.</h3>
               <p className="max-w-lg text-sm text-muted-foreground">
                 Progressive depth — each layer compounds until you are shipping full platforms, not slides.
@@ -168,7 +168,7 @@ export const JourneyDomainsSection = () => {
               transition={{ duration: 0.45, delay: 0.05 }}
               className="mb-10"
             >
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-400">Domains</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">Domains</p>
               <h3 className="mb-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">
                 Where it ships — <span className="text-white">high-stakes</span> arenas
               </h3>

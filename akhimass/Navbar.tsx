@@ -52,8 +52,8 @@ export const Navbar = () => {
           <div
             className="h-7 w-7 rounded-md flex items-center justify-center text-xs font-bold text-white transition-all group-hover:scale-110"
             style={{
-              background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
-              boxShadow: "0 0 12px rgba(124,58,237,0.4)",
+              background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
+              boxShadow: "0 0 12px rgba(37,99,235,0.4)",
             }}
           >
             AK
@@ -98,7 +98,7 @@ export const Navbar = () => {
             asChild
             className="rounded-full text-xs px-4"
             style={{
-              background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
+              background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
               border: "none",
             }}
           >
@@ -137,7 +137,7 @@ export const Navbar = () => {
               ))}
               <div className="pt-3">
                 <Button size="sm" asChild className="w-full rounded-full" style={{
-                  background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)",
+                  background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
                   border: "none",
                 }}>
                   <a href="#contact" onClick={() => setMobileOpen(false)}>Get in Touch</a>

@@ -58,7 +58,7 @@ export const Navbar = () => {
     >
       <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#7c3aed] to-[#6366f1] flex items-center justify-center text-[11px] font-bold text-white shadow-[0_0_20px_rgba(124,58,237,0.35)]">
+          <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#2563eb] to-[#3b82f6] flex items-center justify-center text-[11px] font-bold text-white shadow-[0_0_20px_rgba(37,99,235,0.35)]">
             AK
           </div>
           <span className="text-sm font-semibold tracking-tight text-white/95 group-hover:text-white transition-colors">
@@ -74,7 +74,7 @@ export const Navbar = () => {
                 {isActive && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 rounded-full bg-white/[0.06] border border-white/10 shadow-[0_0_24px_rgba(124,58,237,0.12)]"
+                    className="absolute inset-0 rounded-full bg-white/[0.06] border border-white/10 shadow-[0_0_24px_rgba(37,99,235,0.12)]"
                     transition={{ type: "spring", stiffness: 380, damping: 28 }}
                   />
                 )}
@@ -87,7 +87,7 @@ export const Navbar = () => {
         <div className="hidden lg:block">
           <Button
             asChild
-            className="rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1] text-white shadow-[0_0_28px_rgba(99,102,241,0.35)] hover:opacity-95 border-0"
+            className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white shadow-[0_0_28px_rgba(59,130,246,0.35)] hover:opacity-95 border-0"
           >
             <Link to="/contact">Get in Touch</Link>
           </Button>
@@ -122,7 +122,7 @@ export const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button asChild className="mt-3 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#6366f1]">
+              <Button asChild className="mt-3 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6]">
                 <Link to="/contact" onClick={() => setMobileOpen(false)}>
                   Get in Touch
                 </Link>
