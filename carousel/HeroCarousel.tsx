@@ -342,11 +342,16 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
 
 // ─── Scene config (3 scenes — sports analytics / healthcare / coaching) ───
 /** MP4s must live under public/videos/ so /videos/… resolves in dev and production. */
-const VIDEO_SRCS = [
-  "/videos/Cinematic_Data_Visualization_in_Sports_Arena.mp4",
-  "/videos/Healthcare_App_Video_Ready.mp4",
-  "/videos/pantherscoachingcarousel.mp4",
-] as const;
+type SceneId = "sports" | "health" | "coaching";
+
+const SCENE_VIDEOS: Record<SceneId, string> = {
+  sports: "/videos/Cinematic_Data_Visualization_in_Sports_Arena.mp4",
+  health: "/videos/Healthcare_App_Video_Ready.mp4",
+  coaching: "/videos/pantherscoachingcarousel.mp4",
+} as const;
+
+/** Bump when changing hero MP4s so browsers/CDNs do not serve a stale cached clip. */
+const HERO_VIDEO_CACHE = "v=4";
 
 const SCENES: Scene[] = [
   {
@@ -386,7 +391,7 @@ const SCENES: Scene[] = [
     sub:
       "Tools for coaches and staff — player-level signals, team context, and live game workflows so professional athletes and organizations optimize performance together.",
     accent: "#38bdf9",
-    accentGlow: "rgba(167,139,250,0.15)",
+    accentGlow: "rgba(56,189,248,0.15)",
     draw: drawCoachScene,
     stats: [
       { label: "EPA / play", value: "+0.14", x: "6%", y: "12%", delay: 0.15 },
@@ -461,6 +466,7 @@ const StatCard = ({
 // ─── Main carousel ─────────────────────────────────────────────────────────
 export const HeroCarousel = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [prevIdx, setPrevIdx] = useState<number | null>(null);
   const [videoMode, setVideoMode] = useState(true);
@@ -545,6 +551,12 @@ export const HeroCarousel = () => {
   }, [prevIdx, videoMode]);
 
   const scene = SCENES[activeIdx];
+  const sceneId = scene.id as SceneId;
+  const heroVideoSrc = `${SCENE_VIDEOS[sceneId]}?${HERO_VIDEO_CACHE}`;
+
+  useEffect(() => {
+    heroVideoRef.current?.load();
+  }, [heroVideoSrc]);
 
   return (
     <div
@@ -572,7 +584,9 @@ export const HeroCarousel = () => {
               transition={{ duration: 0.45 }}
             >
               <video
-                src={VIDEO_SRCS[activeIdx]}
+                ref={heroVideoRef}
+                key={sceneId}
+                src={heroVideoSrc}
                 muted
                 playsInline
                 loop
