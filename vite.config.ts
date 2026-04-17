@@ -12,7 +12,7 @@ function portfolioOgHtml(): Plugin {
       const rawHost = process.env.VERCEL_URL?.replace(/^https?:\/\//, "").replace(/\/$/, "") ?? "";
       const vercel = rawHost && !rawHost.startsWith("localhost") ? `https://${rawHost}` : "";
       const origin = (fromEnv || vercel || "").replace(/\/$/, "");
-      const cb = "v=3";
+      const cb = "v=4";
       const image = origin ? `${origin}/images/thumbnail.jpg?${cb}` : `/images/thumbnail.jpg?${cb}`;
       const ogUrl = origin ? `${origin}/` : "";
 
