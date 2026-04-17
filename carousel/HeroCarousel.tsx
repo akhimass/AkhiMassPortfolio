@@ -344,7 +344,7 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
 /** MP4s must live under public/videos/ so /videos/… resolves in dev and production. */
 const VIDEO_SRCS = [
   "/videos/Cinematic_Data_Visualization_in_Sports_Arena.mp4",
-  "/videos/healthcarecarousel.mp4",
+  "/videos/Healthcare_App_Video_Ready.mp4",
   "/videos/pantherscoachingcarousel.mp4",
 ] as const;
 
