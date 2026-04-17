@@ -53,6 +53,14 @@ const CAPABILITIES = [
   },
 ];
 
+export const CapabilitiesSkillCards = () => (
+  <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+    {CAPABILITIES.map((cap, i) => (
+      <CapabilityCard key={cap.category} cap={cap} index={i} />
+    ))}
+  </div>
+);
+
 const CapabilityCard = ({ cap, index }: { cap: (typeof CAPABILITIES)[0]; index: number }) => {
   const [expanded, setExpanded] = useState(false);
   const Icon = cap.icon;
@@ -157,11 +165,7 @@ export const CapabilitiesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {CAPABILITIES.map((cap, i) => (
-            <CapabilityCard key={cap.category} cap={cap} index={i} />
-          ))}
-        </div>
+        <CapabilitiesSkillCards />
       </div>
     </section>
   );

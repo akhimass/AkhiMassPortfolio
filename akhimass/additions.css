@@ -1,0 +1,57 @@
+/* Add these to your existing index.css or globals.css */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - thin + purple accent */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Text selection accent */
+::selection {
+  background: rgba(139, 92, 246, 0.25);
+  color: #fff;
+}
+
+/* Focus ring consistent with brand */
+:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Ensure dark base */
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Tailwind custom utility: text balance (for headlines) */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Section dividers (optional - subtle gradient lines between sections) */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(139, 92, 246, 0.15) 50%,
+    transparent 100%
+  );
+  margin: 0 auto;
+  max-width: 400px;
+}

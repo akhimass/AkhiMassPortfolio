@@ -2,9 +2,8 @@ import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { JourneyDomainsSection } from "@/components/JourneyDomainsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
-import { CapabilitiesSection } from "@/components/CapabilitiesSection";
+import { WhatIDoSection } from "@/components/WhatIDoSection";
 import { StartupsSection } from "@/components/StartupsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -12,7 +11,8 @@ import { ContactSection } from "@/components/ContactSection";
 const pathToSection: Record<string, string> = {
   "/": "hero",
   "/projects": "projects",
-  "/engineering": "capabilities",
+  "/what-i-do": "what-i-do",
+  "/engineering": "what-i-do",
   "/startups": "startups",
   "/about": "about",
   "/contact": "contact",
@@ -41,11 +41,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <div className="section-divider mx-auto my-4" />
-      <JourneyDomainsSection />
-      <div className="section-divider mx-auto my-4" />
       <ProjectsSection />
       <div className="section-divider mx-auto my-4" />
-      <CapabilitiesSection />
+      <WhatIDoSection />
       <div className="section-divider mx-auto my-4" />
       <StartupsSection />
       <div className="section-divider mx-auto my-4" />

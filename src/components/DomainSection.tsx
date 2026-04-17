@@ -4,7 +4,7 @@ import { domains, domainDetails, projects } from "@/config/projects";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 
-/** Tabs + project cards only (no section wrapper) — used inside `JourneyDomainsSection`. */
+/** Tabs + project cards only (no section wrapper) — used inside `WhatIDoSection`. */
 export function DomainTabsPanel() {
   const defaultTab = domainDetails[domains[0]].id;
 

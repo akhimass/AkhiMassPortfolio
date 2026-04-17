@@ -100,7 +100,7 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.a
-              href="#story"
+              href="#what-i-do"
               custom={4}
               variants={fadeUp}
               initial="hidden"
