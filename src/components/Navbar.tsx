@@ -60,7 +60,7 @@ export const Navbar = () => {
         <Link to="/" className="inline-flex min-w-0 items-center gap-3 group">
           <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#070708] ring-1 ring-white/[0.12] shadow-[0_0_18px_rgba(37,99,235,0.22)]">
             <img
-              src="/images/logo-ac.png?v=9"
+              src="/images/logo-ac.png?v=11"
               alt=""
               width={112}
               height={112}
