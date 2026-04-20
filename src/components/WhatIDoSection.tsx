@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { DomainTabsPanel } from "@/components/DomainSection";
 import { CapabilitiesSkillCards } from "@/components/CapabilitiesSection";
+import { GitHubContributionsCalendar } from "@/components/GitHubContributionsCalendar";
 
 const JOURNEY = [
   {
@@ -196,6 +197,7 @@ export const WhatIDoSection = () => {
               Six capability layers — usually composed together so products feel cohesive end-to-end, not like a patchwork of demos.
             </p>
           </motion.div>
+          <GitHubContributionsCalendar />
           <CapabilitiesSkillCards />
         </div>
       </div>
