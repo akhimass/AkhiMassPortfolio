@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build public/images/logo-ac.png for the navbar from ac-logo-raw.png.
 
-Tab icon: use public/images/ac-favicon-source.png directly (see index.html) — no processing."""
+Tab icon: use public/images/acfav.png directly (see index.html) — no processing."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ def main() -> None:
     trimmed = trim_alpha_bbox(white_to_transparent(Image.open(RAW)))
     LOGO_NAV.parent.mkdir(parents=True, exist_ok=True)
     trimmed.save(LOGO_NAV, "PNG", optimize=True)
-    print("Wrote images/logo-ac.png (navbar). Favicon = /images/ac-favicon-source.png in index.html)")
+    print("Wrote images/logo-ac.png (navbar). Favicon = /images/acfav.png in index.html)")
 
 
 if __name__ == "__main__":
