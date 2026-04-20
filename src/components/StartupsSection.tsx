@@ -28,7 +28,7 @@ export const StartupsSection = () => {
   }, []);
 
   return (
-    <section id="startups" className="py-24">
+    <section id="startups" className="py-14 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

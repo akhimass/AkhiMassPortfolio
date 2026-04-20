@@ -40,15 +40,15 @@ const Index = () => {
     <div className="min-h-screen bg-[#09090b] text-foreground">
       <Navbar />
       <HeroSection />
-      <div className="section-divider mx-auto my-4" />
+      <div className="section-divider mx-auto my-2" />
       <ProjectsSection />
-      <div className="section-divider mx-auto my-4" />
+      <div className="section-divider mx-auto my-2" />
       <WhatIDoSection />
-      <div className="section-divider mx-auto my-4" />
+      <div className="section-divider mx-auto my-2" />
       <StartupsSection />
-      <div className="section-divider mx-auto my-4" />
+      <div className="section-divider mx-auto my-2" />
       <AboutSection />
-      <div className="section-divider mx-auto my-4" />
+      <div className="section-divider mx-auto my-2" />
       <ContactSection />
     </div>
   );

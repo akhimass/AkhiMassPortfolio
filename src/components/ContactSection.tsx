@@ -12,7 +12,7 @@ const socials = [
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 pb-16">
+    <section id="contact" className="py-14 pb-12 lg:py-16">
       <div className="container mx-auto px-6 max-w-3xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

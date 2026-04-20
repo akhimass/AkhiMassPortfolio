@@ -85,7 +85,7 @@ const JourneyStep = ({
         )}
       </div>
 
-      <div className="min-w-0 pb-12">
+      <div className="min-w-0 pb-8">
         <h3 className="mb-2 text-base font-bold tracking-tight" style={{ color: step.accent }}>
           {step.label}
         </h3>
@@ -112,7 +112,7 @@ const JourneyStep = ({
 
 export const WhatIDoSection = () => {
   return (
-    <section id="what-i-do" className="relative border-t border-white/5 py-24 lg:py-28">
+    <section id="what-i-do" className="relative border-t border-white/5 py-14 lg:py-16">
       <div
         className="pointer-events-none absolute left-0 top-1/2 h-96 w-72 -translate-y-1/2"
         style={{
@@ -126,7 +126,7 @@ export const WhatIDoSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mx-auto mb-14 max-w-3xl text-center"
+          className="mx-auto mb-8 max-w-3xl text-center"
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">What I do</p>
           <h2 className="mb-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
@@ -141,14 +141,14 @@ export const WhatIDoSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-14 border-t border-white/10 pt-14 lg:grid-cols-2 lg:gap-0 lg:border-t-0 lg:pt-0">
+        <div className="grid grid-cols-1 gap-8 border-t border-white/10 pt-8 lg:grid-cols-2 lg:gap-0 lg:border-t-0 lg:pt-0">
           <div id="story" className="min-w-0 scroll-mt-28 lg:border-r lg:border-white/10 lg:pr-10 xl:pr-14">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45 }}
-              className="mb-10"
+              className="mb-6"
             >
               <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">The journey</p>
               <h3 className="mb-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">From code to intelligent systems.</h3>
@@ -169,7 +169,7 @@ export const WhatIDoSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: 0.05 }}
-              className="mb-10"
+              className="mb-6"
             >
               <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">Domains</p>
               <h3 className="mb-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">
@@ -183,13 +183,13 @@ export const WhatIDoSection = () => {
           </div>
         </div>
 
-        <div id="capabilities" className="scroll-mt-28 border-t border-white/10 pt-16 mt-16 lg:mt-20 lg:pt-20">
+        <div id="capabilities" className="scroll-mt-28 border-t border-white/10 pt-10 mt-10 lg:mt-12 lg:pt-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="mb-10"
+            className="mb-6"
           >
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">Technical skills</p>
             <h3 className="mb-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">What I build with</h3>
@@ -197,8 +197,10 @@ export const WhatIDoSection = () => {
               Six capability layers — usually composed together so products feel cohesive end-to-end, not like a patchwork of demos.
             </p>
           </motion.div>
-          <GitHubContributionsCalendar />
           <CapabilitiesSkillCards />
+          <div className="mt-8 lg:mt-10">
+            <GitHubContributionsCalendar />
+          </div>
         </div>
       </div>
     </section>

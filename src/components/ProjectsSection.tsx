@@ -132,14 +132,14 @@ export const ProjectsSection = () => {
   }, [filter]);
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-14 lg:py-16">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mb-10 text-center lg:text-left"
+          className="mb-6 text-center lg:text-left"
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-400">Portfolio</p>
           <h2 className="mb-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Projects</h2>
@@ -149,7 +149,7 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap gap-2 mb-10">
+        <div className="mb-6 flex flex-wrap gap-2">
           <FilterPill active={filter === "all"} onClick={() => setFilter("all")} label="All" />
           {domains.map((d) => (
             <FilterPill

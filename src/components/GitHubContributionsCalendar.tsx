@@ -36,6 +36,22 @@ function endOfWeekSaturday(d: Date): Date {
   return x;
 }
 
+/** Feb–Apr (inclusive): average total commits per week over the calendar span covered by those days in the dataset. */
+function febThroughAprAvgCommitsPerWeek(days: ContributionDay[]): number | null {
+  const subset = days.filter((d) => {
+    const m = parseLocalDate(d.date).getMonth();
+    return m >= 1 && m <= 3;
+  });
+  if (subset.length === 0) return null;
+  const total = subset.reduce((s, d) => s + d.count, 0);
+  subset.sort((a, b) => a.date.localeCompare(b.date));
+  const t0 = parseLocalDate(subset[0].date).getTime();
+  const t1 = parseLocalDate(subset[subset.length - 1].date).getTime();
+  const inclusiveDays = Math.floor((t1 - t0) / 86400000) + 1;
+  const weeks = Math.max(1, inclusiveDays / 7);
+  return total / weeks;
+}
+
 /** Columns = weeks (Sun top → Sat bottom), matching GitHub profile layout. */
 function buildWeekColumns(days: ContributionDay[]): ContributionDay[][] {
   if (!days.length) return [];
@@ -97,6 +113,10 @@ export const GitHubContributionsCalendar = () => {
 
   const columns = useMemo(() => buildWeekColumns(data?.contributions ?? []), [data?.contributions]);
   const total = data?.total?.lastYear;
+  const febAprAvg = useMemo(
+    () => febThroughAprAvgCommitsPerWeek(data?.contributions ?? []),
+    [data?.contributions],
+  );
 
   return (
     <motion.div
@@ -104,25 +124,18 @@ export const GitHubContributionsCalendar = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.45 }}
-      className="mb-12 rounded-xl border border-white/10 bg-[#0c0c0f] p-5 sm:p-6"
+      className="rounded-xl border border-white/10 bg-[#0c0c0f] p-5 sm:p-6"
     >
-      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-sky-400/90">Shipping cadence</p>
-          <h4 className="mt-1 font-display text-lg font-bold tracking-tight text-white">GitHub activity</h4>
-          <p className="mt-1 max-w-xl text-xs text-muted-foreground sm:text-sm">
-            Public commits and contributions over the last year — same habit that backs the stacks below.
-          </p>
-        </div>
-        {typeof total === "number" && status === "ready" && (
-          <p className="text-sm tabular-nums text-muted-foreground">
-            <span className="font-semibold text-sky-300">{total.toLocaleString()}</span> in the last year
-          </p>
-        )}
+      <div className="mb-5 max-w-xl">
+        <p className="text-xs font-semibold uppercase tracking-widest text-sky-400/90">Shipping cadence</p>
+        <h4 className="mt-1 font-display text-lg font-bold tracking-tight text-white">GitHub activity</h4>
+        <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+          Public commits over the last rolling year — same shipping habit behind the capability stacks above.
+        </p>
       </div>
 
       {status === "loading" && (
-        <div className="flex h-28 items-center justify-center text-sm text-muted-foreground">Loading contributions…</div>
+        <div className="flex min-h-[8rem] items-center justify-center text-sm text-muted-foreground">Loading contributions…</div>
       )}
 
       {status === "error" && (
@@ -144,46 +157,69 @@ export const GitHubContributionsCalendar = () => {
       )}
 
       {status === "ready" && columns.length > 0 && (
-        <>
-          <div className="overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex min-w-max gap-[3px] sm:gap-1">
-              {columns.map((week, wi) => (
-                <div key={wi} className="flex flex-col gap-[3px] sm:gap-1">
-                  {week.map((day) => {
-                    const lv = Math.min(4, Math.max(0, day.level));
-                    return (
-                      <div
-                        key={day.date}
-                        title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
-                        className={`h-[10px] w-[10px] rounded-[2px] sm:h-3 sm:w-3 ${levelClass[lv]}`}
-                      />
-                    );
-                  })}
+        <div className="flex flex-col gap-6 lg:flex-row-reverse lg:items-stretch">
+          <div className="grid shrink-0 grid-cols-2 gap-3 sm:max-w-md sm:grid-cols-2 lg:w-[13.5rem] lg:max-w-none lg:grid-cols-1">
+            {typeof total === "number" && (
+              <div className="flex flex-col justify-center rounded-xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                <div className="font-display text-2xl font-bold tabular-nums tracking-tight text-sky-300 sm:text-3xl">
+                  {total.toLocaleString()}
                 </div>
-              ))}
-            </div>
+                <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">Public contributions in the last year</p>
+              </div>
+            )}
+            {febAprAvg != null && (
+              <div className="flex flex-col justify-center rounded-xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                <div className="font-display text-2xl font-bold tabular-nums tracking-tight text-sky-300 sm:text-3xl">
+                  {febAprAvg.toFixed(1)}
+                </div>
+                <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">
+                  Avg public commits / week (Feb–Apr days in this window)
+                </p>
+              </div>
+            )}
           </div>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <span>Less</span>
-              <div className="flex gap-1">
-                {[0, 1, 2, 3, 4].map((lv) => (
-                  <div key={lv} className={`h-3 w-3 rounded-[2px] ${levelClass[lv]}`} />
+
+          <div className="flex min-w-0 flex-1 flex-col">
+            <div className="overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex min-w-max gap-[3px] sm:gap-1">
+                {columns.map((week, wi) => (
+                  <div key={wi} className="flex flex-col gap-[3px] sm:gap-1">
+                    {week.map((day) => {
+                      const lv = Math.min(4, Math.max(0, day.level));
+                      return (
+                        <div
+                          key={day.date}
+                          title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
+                          className={`h-[10px] w-[10px] rounded-[2px] sm:h-3 sm:w-3 ${levelClass[lv]}`}
+                        />
+                      );
+                    })}
+                  </div>
                 ))}
               </div>
-              <span>More</span>
             </div>
-            <a
-              href={`https://github.com/${GITHUB_USER}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sky-400 transition-colors hover:text-sky-300"
-            >
-              @{GITHUB_USER}
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-            </a>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span>Less</span>
+                <div className="flex gap-1">
+                  {[0, 1, 2, 3, 4].map((lv) => (
+                    <div key={lv} className={`h-3 w-3 rounded-[2px] ${levelClass[lv]}`} />
+                  ))}
+                </div>
+                <span>More</span>
+              </div>
+              <a
+                href={`https://github.com/${GITHUB_USER}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sky-400 transition-colors hover:text-sky-300"
+              >
+                @{GITHUB_USER}
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+              </a>
+            </div>
           </div>
-        </>
+        </div>
       )}
     </motion.div>
   );

@@ -27,7 +27,7 @@ export const HeroSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] sm:min-h-screen pt-24 pb-16 lg:pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-[100dvh] sm:min-h-screen pt-24 pb-10 lg:pb-14 overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{

@@ -110,7 +110,7 @@ const JourneyStep = ({
 
 export const JourneyDomainsSection = () => {
   return (
-    <section className="relative py-24 lg:py-28">
+    <section className="relative py-14 lg:py-16">
       <div
         className="pointer-events-none absolute left-0 top-1/2 h-96 w-72 -translate-y-1/2"
         style={{
