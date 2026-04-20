@@ -20,7 +20,7 @@ const metrics = [
 const companyLogos: { src: string; label: string }[] = [
   { src: "/images/companies/espnlogo.png", label: "ESPN" },
   { src: "/images/companies/nba.png", label: "NBA" },
-  { src: "/images/companies/nsflogo.png", label: "NFL" },
+  { src: "/images/companies/nsf.png", label: "National Science Foundation (NSF)" },
   { src: "/images/companies/nflnextgen.png", label: "NFL Next Gen Stats" },
   { src: "/images/companies/panthers.png", label: "Carolina Panthers" },
   { src: "/images/companies/charlotte-hornets.png", label: "Charlotte Hornets" },
