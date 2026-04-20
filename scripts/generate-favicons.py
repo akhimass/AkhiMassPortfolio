@@ -34,13 +34,33 @@ def trim_alpha_bbox(im: Image.Image) -> Image.Image:
     return im.crop(bbox)
 
 
+def center_on_square(im: Image.Image, pad_ratio: float = 0.1) -> Image.Image:
+    """Equal padding on a square canvas so the mark sits centered (navbar / avatar crop)."""
+    im = im.convert("RGBA")
+    w, h = im.size
+    pad = int(max(w, h) * pad_ratio)
+    side = max(w, h) + 2 * pad
+    out = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    ox = (side - w) // 2
+    oy = (side - h) // 2
+    out.paste(im, (ox, oy), im)
+    return out
+
+
 def main() -> None:
     if not RAW.is_file():
         raise SystemExit(f"Missing source image: {RAW}")
 
     trimmed = trim_alpha_bbox(white_to_transparent(Image.open(RAW)))
+    squared = center_on_square(trimmed, pad_ratio=0.1)
+    max_side = 320
+    w, h = squared.size
+    if max(w, h) > max_side:
+        scale = max_side / max(w, h)
+        squared = squared.resize((int(w * scale), int(h * scale)), Image.Resampling.LANCZOS)
+
     LOGO_NAV.parent.mkdir(parents=True, exist_ok=True)
-    trimmed.save(LOGO_NAV, "PNG", optimize=True)
+    squared.save(LOGO_NAV, "PNG", optimize=True)
     print("Wrote images/logo-ac.png (navbar). Favicon = /images/acfav.png in index.html)")
 
 

@@ -123,7 +123,7 @@ export const AboutSection = () => {
               </p>
               <div className="mt-3 flex items-center gap-2">
                 <img
-                  src="/images/logo-ac.png?v=7"
+                  src="/images/logo-ac.png?v=9"
                   alt=""
                   width={112}
                   height={28}
