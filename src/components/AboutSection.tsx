@@ -10,11 +10,47 @@ const pillars = [
   { icon: Boxes, label: "Product", sub: "Shipping end-to-end" },
 ];
 
-const metrics = [
+const metrics: { label: string; value: number; suffix: string; detail?: string }[] = [
   { label: "Production-grade applications shipped", value: 10, suffix: "+" },
   { label: "Years building", value: 3, suffix: "+" },
-  { label: "Pro sports organizations worked with", value: 5, suffix: "" },
-  { label: "Hackathons won", value: 2, suffix: "" },
+  { label: "Pro sports organizations worked with", value: 8, suffix: "+" },
+  {
+    label: "Hackathons won",
+    value: 3,
+    suffix: "",
+    detail: "Datathons & hackathons won in San Francisco & Charlotte",
+  },
+];
+
+const hackathonTableRows: {
+  logos: { src: string; alt: string }[];
+  title: string;
+  result: string;
+}[] = [
+  {
+    logos: [{ src: "/images/competitions/zerve.png", alt: "Zerve" }],
+    title: "Zerve AI × UNC Charlotte Application Analytics Datathon",
+    result: "1st of 22 teams",
+  },
+  {
+    logos: [
+      { src: "/images/competitions/elevenlabs.png", alt: "ElevenLabs" },
+      { src: "/images/competitions/fontaine-founders.png", alt: "Fontaine Founders" },
+    ],
+    title:
+      "OpenClaw Lovable.ai ElevenLabs x Fontaine Founders Hackathon for Longevity, Health and Wellness",
+    result: "1st of 30+ teams",
+  },
+  {
+    logos: [{ src: "/images/competitions/coachclaw.png", alt: "CoachClaw" }],
+    title: "ElevenLabs SF Hackathon (CoachClaw)",
+    result: "1st place",
+  },
+  {
+    logos: [{ src: "/images/competitions/fontaine-founders.png", alt: "Fontaine Founders" }],
+    title: "SF Founders Hackathon",
+    result: "2nd place",
+  },
 ];
 
 const companyLogos: { src: string; label: string }[] = [
@@ -154,7 +190,7 @@ export const AboutSection = () => {
             </motion.div>
           </div>
 
-          <div className="space-y-6">
+          <div className="flex min-h-0 flex-col gap-6 lg:h-full">
             <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest">About</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">
               Building at the intersection of data, AI, and sport.
@@ -203,14 +239,7 @@ export const AboutSection = () => {
                     {m.suffix}
                   </div>
                   <div className="mt-1 text-[11px] text-muted-foreground">{m.label}</div>
-                  {m.label === "Hackathons won" && (
-                    <div className="mt-2 space-y-1.5 text-[10px] leading-relaxed text-muted-foreground/90">
-                      <p>1) Zerve AI × UNC Charlotte Application Analytics Datathon</p>
-                      <p>
-                        2) OpenClaw Lovable.ai ElevenLabs x Fontaine Founders Hackathon for Longevity, Health and Wellness
-                      </p>
-                    </div>
-                  )}
+                  {m.detail && <p className="mt-2 text-[10px] leading-snug text-muted-foreground/90">{m.detail}</p>}
                 </div>
               ))}
             </div>
@@ -219,12 +248,75 @@ export const AboutSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={statsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.45, delay: 0.15 }}
-              className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-4"
+              className="flex min-h-0 flex-1 flex-col rounded-xl border border-white/10 bg-[#0c0c0f] px-4 py-4 sm:px-5 sm:py-5"
             >
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">Competition & recognition</div>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Kaggle March Madness 2026 — top 8% of 4,000+ participants · YC Bio × AI Hackathon Participant
-              </p>
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">Competitions</div>
+
+              <div className="mt-4 space-y-3.5">
+                <div className="flex gap-3.5">
+                  <img
+                    src="/images/competitions/kaggle.png"
+                    alt=""
+                    role="presentation"
+                    className="mt-0.5 h-9 w-auto max-w-[4.5rem] flex-shrink-0 object-contain opacity-95"
+                  />
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    <span className="font-semibold text-white/95">Kaggle March Madness Hackathon</span> — Top 3% of 12K+
+                  </p>
+                </div>
+                <div className="flex gap-3.5">
+                  <img
+                    src="/images/competitions/yc.png"
+                    alt=""
+                    role="presentation"
+                    className="mt-0.5 h-9 w-auto max-w-[4.5rem] flex-shrink-0 object-contain opacity-95"
+                  />
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    <span className="font-semibold text-white/95">Y Combinator Bio × AI Hackathon</span>{" "}
+                    <span className="text-muted-foreground">(Participant)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 min-h-0 flex-1 border-t border-white/10 pt-4">
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">
+                  Hackathons & datathons
+                </p>
+                <div className="overflow-x-auto rounded-lg border border-white/[0.08] bg-white/[0.02]">
+                  <table className="w-full min-w-[520px] border-collapse text-left text-xs">
+                    <thead>
+                      <tr className="border-b border-white/10 bg-white/[0.03] text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        <th className="w-8 px-2 py-2.5 text-center">#</th>
+                        <th className="w-[5.5rem] px-2 py-2.5">Brand</th>
+                        <th className="px-3 py-2.5">Event</th>
+                        <th className="w-36 px-3 py-2.5">Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {hackathonTableRows.map((row, idx) => (
+                        <tr key={row.title} className="border-b border-white/[0.06] last:border-0">
+                          <td className="px-2 py-3 text-center font-mono text-[11px] text-muted-foreground">{idx + 1}</td>
+                          <td className="px-2 py-3">
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              {row.logos.map((logo) => (
+                                <img
+                                  key={logo.src}
+                                  src={logo.src}
+                                  alt=""
+                                  role="presentation"
+                                  className="h-7 max-w-[4.5rem] object-contain opacity-90 sm:h-8"
+                                />
+                              ))}
+                            </div>
+                          </td>
+                          <td className="px-3 py-3 text-[11px] leading-snug text-muted-foreground sm:text-xs">{row.title}</td>
+                          <td className="px-3 py-3 text-[11px] font-medium tabular-nums text-sky-300/95 sm:text-xs">{row.result}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </motion.div>
           </div>
         </motion.div>
