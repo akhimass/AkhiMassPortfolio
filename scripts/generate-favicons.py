@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 - Navbar: public/images/ac-logo-raw.png → trim white → public/images/logo-ac.png
-- Tab favicons: public/images/ac-favicon-source.png → trim black padding → square cover → ICO/PNGs
+- Tab favicons: public/images/ac-favicon-source.png → scale to fit inside a square (no crop;
+  letterbox on transparent). Wide mark fallback still uses cover when source favicon missing.
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ FAVICON_SRC = ROOT / "public" / "images" / "ac-favicon-source.png"
 OUT = ROOT / "public"
 LOGO_NAV = OUT / "images" / "logo-ac.png"
 
-COVER_SIDE = 512
+MASTER_SIDE = 512
 
 
 def white_to_transparent(im: Image.Image, thr: int = 250) -> Image.Image:
@@ -38,41 +39,23 @@ def trim_alpha_bbox(im: Image.Image) -> Image.Image:
     return im.crop(bbox)
 
 
-def trim_near_black_border(im: Image.Image, thr: int = 22) -> Image.Image:
-    """Tight crop for dark background plate (remove empty black margins)."""
-    im = im.convert("RGB")
-    px = im.load()
+def contain_square(im: Image.Image, side: int) -> Image.Image:
+    """Uniform scale so the whole image fits in side×side; center on transparent (no cropping)."""
+    im = im.convert("RGBA")
     w, h = im.size
-    min_x, min_y = w, h
-    max_x, max_y = 0, 0
-    found = False
-    for y in range(h):
-        for x in range(w):
-            r, g, b = px[x, y]
-            if r > thr or g > thr or b > thr:
-                found = True
-                if x < min_x:
-                    min_x = x
-                if y < min_y:
-                    min_y = y
-                if x > max_x:
-                    max_x = x
-                if y > max_y:
-                    max_y = y
-    if not found:
-        return im
-    pad = 2
-    return im.crop(
-        (
-            max(0, min_x - pad),
-            max(0, min_y - pad),
-            min(w, max_x + 1 + pad),
-            min(h, max_y + 1 + pad),
-        )
-    )
+    if w <= 0 or h <= 0:
+        return Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    scale = min(side / w, side / h)
+    nw = max(1, int(round(w * scale)))
+    nh = max(1, int(round(h * scale)))
+    resized = im.resize((nw, nh), Image.Resampling.LANCZOS)
+    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    canvas.paste(resized, ((side - nw) // 2, (side - nh) // 2), resized)
+    return canvas
 
 
 def cover_square(im: Image.Image, side: int) -> Image.Image:
+    """Scale + center-crop to square (only for wide navbar mark fallback)."""
     w, h = im.size
     if w <= 0 or h <= 0:
         return Image.new("RGBA", (side, side), (0, 0, 0, 0))
@@ -111,12 +94,11 @@ def main() -> None:
     trimmed.save(LOGO_NAV, "PNG", optimize=True)
 
     if FAVICON_SRC.is_file():
-        fav_base = trim_near_black_border(Image.open(FAVICON_SRC))
-        fav_square = cover_square(fav_base, COVER_SIDE)
+        fav_square = contain_square(Image.open(FAVICON_SRC), MASTER_SIDE)
         write_favicon_set(fav_square)
-        print("Favicons from ac-favicon-source.png; navbar logo from ac-logo-raw.png")
+        print("Favicons from ac-favicon-source.png (contain, no crop); navbar logo from ac-logo-raw.png")
     else:
-        fav_square = cover_square(trimmed, COVER_SIDE)
+        fav_square = cover_square(trimmed, MASTER_SIDE)
         write_favicon_set(fav_square)
         print("Favicons from navbar trim (ac-favicon-source.png missing)")
 
