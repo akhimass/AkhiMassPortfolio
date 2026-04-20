@@ -3,7 +3,7 @@
 From public/images/ac-logo-raw.png (AC mark on white):
 - Trim near-white margins to transparent
 - Write public/images/logo-ac.png for the navbar
-- Pad to a square, then write favicon.ico, favicon PNGs, and apple-touch-icon.png
+- Build favicons: uniform scale + center-crop to a square so the mark fills the icon (not tiny letterboxing)
 """
 
 from __future__ import annotations
@@ -16,6 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "public" / "images" / "ac-logo-raw.png"
 OUT = ROOT / "public"
 LOGO_NAV = OUT / "images" / "logo-ac.png"
+
+# High-res square before downscaling favicons — larger = sharper; cover zoom uses this side
+COVER_SIDE = 512
 
 
 def white_to_transparent(im: Image.Image, thr: int = 250) -> Image.Image:
@@ -37,12 +40,18 @@ def trim_alpha_bbox(im: Image.Image) -> Image.Image:
     return im.crop(bbox)
 
 
-def pad_to_square(im: Image.Image) -> Image.Image:
+def cover_square(im: Image.Image, side: int) -> Image.Image:
+    """Scale uniformly so the image covers `side`×`side`, then center-crop (bigger mark in tab icons)."""
     w, h = im.size
-    side = max(w, h)
-    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
-    canvas.paste(im, ((side - w) // 2, (side - h) // 2), im)
-    return canvas
+    if w <= 0 or h <= 0:
+        return Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    scale = max(side / w, side / h)
+    nw = max(1, int(round(w * scale)))
+    nh = max(1, int(round(h * scale)))
+    scaled = im.resize((nw, nh), Image.Resampling.LANCZOS)
+    left = (nw - side) // 2
+    top = (nh - side) // 2
+    return scaled.crop((left, top, left + side, top + side))
 
 
 def main() -> None:
@@ -53,7 +62,7 @@ def main() -> None:
     LOGO_NAV.parent.mkdir(parents=True, exist_ok=True)
     trimmed.save(LOGO_NAV, "PNG", optimize=True)
 
-    square = pad_to_square(trimmed)
+    square = cover_square(trimmed, COVER_SIDE)
 
     for px, name in [(16, "favicon-16.png"), (32, "favicon-32.png"), (48, "favicon-48.png")]:
         square.resize((px, px), Image.Resampling.LANCZOS).save(OUT / name, "PNG", optimize=True)

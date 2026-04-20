@@ -57,16 +57,16 @@ export const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="inline-flex min-w-0 items-center gap-3 group">
           <img
-            src="/images/logo-ac.png?v=6"
+            src="/images/logo-ac.png?v=7"
             alt=""
-            width={120}
-            height={28}
+            width={140}
+            height={36}
             decoding="async"
-            className="h-7 w-auto max-h-7 object-contain object-left drop-shadow-[0_0_14px_rgba(37,99,235,0.35)]"
+            className="block h-9 w-auto max-h-9 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(37,99,235,0.35)]"
           />
-          <span className="text-sm font-semibold tracking-tight text-white/95 group-hover:text-white transition-colors">
+          <span className="text-sm font-semibold leading-none tracking-tight text-white/95 group-hover:text-white transition-colors">
             Akhi Chappidi
           </span>
         </Link>
