@@ -106,10 +106,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
               <div className="border-t border-white/10 px-6 py-4">
                 {project.imageType === "ios" && project.images && project.images.length > 0 && (
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-end mb-4">
+                  <div className="mb-4 flex flex-col flex-wrap items-center justify-center gap-8 sm:flex-row sm:gap-10">
                     {project.images.map((src, i) => (
-                      <div key={src} className="w-[min(100%,200px)] sm:w-[32%]">
-                        <IPhoneMockup src={src} alt={`${project.title} screen ${i + 1}`} className="h-[280px] sm:h-[320px]" />
+                      <div key={src} className="w-full max-w-[min(100%,260px)] shrink-0 sm:w-[min(48%,260px)]">
+                        <IPhoneMockup src={src} alt={`${project.title} screen ${i + 1}`} className="w-full" />
                       </div>
                     ))}
                   </div>

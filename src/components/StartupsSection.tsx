@@ -195,9 +195,17 @@ function StartupMockups({ project }: { project: Project }) {
   }
   if (project.id === "athletiqx") {
     return (
-      <div className="grid grid-cols-1 items-end gap-6 py-2 sm:grid-cols-2 sm:gap-8">
-        <IPhoneMockup src="/images/AthletIQX2.PNG" alt="AthletIQX screen 1" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
-        <IPhoneMockup src="/images/AthletIQX3.PNG" alt="AthletIQX screen 2" className="mx-auto w-full max-w-[min(100%,280px)] max-h-[min(62dvh,560px)]" />
+      <div className="mx-auto grid w-full max-w-3xl grid-cols-1 place-items-center gap-8 py-1 sm:grid-cols-2 sm:gap-10">
+        <IPhoneMockup
+          src="/images/AthletIQX1.png"
+          alt="AthletIQX — AI Coach"
+          className="w-full max-w-[min(100%,268px)]"
+        />
+        <IPhoneMockup
+          src="/images/AthletIQX2.PNG"
+          alt="AthletIQX — Settings"
+          className="w-full max-w-[min(100%,268px)]"
+        />
       </div>
     );
   }

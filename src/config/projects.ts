@@ -321,7 +321,7 @@ export const projects: Project[] = [
       "Multi-agent AI system: Data Ingestion Agent → Athlete State Modeling Agent (HRV baseline, fatigue curve, readiness) → Injury Risk Agent → Performance Prediction Agent → Recommendation Agent (CoachClaw) → LLM Decision Layer (Claude, role-specific lens) → Feedback Learning Agent. Inputs: NBA API, MLB Statcast, NFL NextGen Stats, Apple Health, WHOOP, Oura, Betterness MCP.",
     stack: ["Python", "FastAPI", "Claude API", "ElevenLabs", "Next.js", "SwiftUI", "Supabase", "scikit-learn", "XGBoost", "PyTorch", "pgvector", "Railway", "Vercel"],
     tags: ["Hackathon Winner", "Multi-Agent AI", "Sports Performance", "iOS App", "Voice AI"],
-    images: ["/images/CoachClaw1.png", "/images/AthletIQX1.png", "/images/AthletIQX2.png"],
+    images: ["/images/AthletIQX1.png", "/images/AthletIQX2.PNG"],
     imageType: "ios",
     links: {},
     featured: true,
