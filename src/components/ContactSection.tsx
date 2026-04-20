@@ -65,9 +65,7 @@ export const ContactSection = () => {
             ))}
           </div>
 
-          <p className="mt-14 text-xs text-muted-foreground">
-            Designed & Engineered by Akhi Chappidi · Charlotte → San Francisco · 2026
-          </p>
+          <p className="mt-14 text-xs text-muted-foreground">Akhi Chappidi Portfolio</p>
         </motion.div>
       </div>
     </section>
