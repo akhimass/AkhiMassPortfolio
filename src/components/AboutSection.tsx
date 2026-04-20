@@ -42,14 +42,14 @@ const hackathonTableRows: {
     result: "1st of 30+ teams",
   },
   {
-    logos: [{ src: "/images/competitions/coachclaw.png", alt: "CoachClaw" }],
-    title: "ElevenLabs SF Hackathon (CoachClaw)",
-    result: "1st place",
+    logos: [{ src: "/images/competitions/kaggle.png", alt: "Kaggle" }],
+    title: "Kaggle March Madness Hackathon",
+    result: "Top 3% of 12K+",
   },
   {
-    logos: [{ src: "/images/competitions/fontaine-founders.png", alt: "Fontaine Founders" }],
-    title: "SF Founders Hackathon",
-    result: "2nd place",
+    logos: [{ src: "/images/competitions/yc.png", alt: "Y Combinator" }],
+    title: "Y Combinator Bio x AI Hackathon",
+    result: "(Participant)",
   },
 ];
 
@@ -252,33 +252,7 @@ export const AboutSection = () => {
             >
               <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">Competitions</div>
 
-              <div className="mt-4 space-y-3.5">
-                <div className="flex gap-3.5">
-                  <img
-                    src="/images/competitions/kaggle.png"
-                    alt=""
-                    role="presentation"
-                    className="mt-0.5 h-9 w-auto max-w-[4.5rem] flex-shrink-0 object-contain opacity-95"
-                  />
-                  <p className="text-xs leading-relaxed text-muted-foreground">
-                    <span className="font-semibold text-white/95">Kaggle March Madness Hackathon</span> — Top 3% of 12K+
-                  </p>
-                </div>
-                <div className="flex gap-3.5">
-                  <img
-                    src="/images/competitions/yc.png"
-                    alt=""
-                    role="presentation"
-                    className="mt-0.5 h-9 w-auto max-w-[4.5rem] flex-shrink-0 object-contain opacity-95"
-                  />
-                  <p className="text-xs leading-relaxed text-muted-foreground">
-                    <span className="font-semibold text-white/95">Y Combinator Bio × AI Hackathon</span>{" "}
-                    <span className="text-muted-foreground">(Participant)</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 min-h-0 flex-1 border-t border-white/10 pt-4">
+              <div className="mt-4 min-h-0 flex-1">
                 <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">
                   Hackathons & datathons
                 </p>
@@ -294,7 +268,7 @@ export const AboutSection = () => {
                     </thead>
                     <tbody>
                       {hackathonTableRows.map((row, idx) => (
-                        <tr key={row.title} className="border-b border-white/[0.06] last:border-0">
+                        <tr key={`competition-row-${idx}`} className="border-b border-white/[0.06] last:border-0">
                           <td className="px-2 py-3 text-center font-mono text-[11px] text-muted-foreground">{idx + 1}</td>
                           <td className="px-2 py-3">
                             <div className="flex flex-wrap items-center gap-1.5">
