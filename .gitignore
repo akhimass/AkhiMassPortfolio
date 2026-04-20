@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .claude/
+
+# Same asset as public/images/thumbnail.jpg; avoid duplicate in git
+images/thumbnail.jpg
