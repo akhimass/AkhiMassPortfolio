@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Layers, Database, Brain, BarChart3, Cpu, ChevronDown } from "lucide-react";
+import { Layers, Database, Brain, BarChart3, Cpu, ChevronDown, Activity, Gauge, Rocket } from "lucide-react";
 import { HeroCarousel } from "../../carousel/HeroCarousel";
 
 const fadeUp = {
@@ -20,6 +20,9 @@ const badges = [
   { label: "AI Platforms", icon: Brain },
   { label: "Analytics Systems", icon: BarChart3 },
   { label: "Product Engineering", icon: Cpu },
+  { label: "Sports Analytics Systems", icon: Activity },
+  { label: "Performance Optimization", icon: Gauge },
+  { label: "Startup Platforms", icon: Rocket },
 ];
 
 export const HeroSection = () => {
@@ -58,8 +61,8 @@ export const HeroSection = () => {
               animate={inView ? "show" : "hidden"}
               className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8"
             >
-              Software engineer, data engineer, and AI platform builder. I engineer systems that transform complex data into
-              decision-making tools — from NFL draft intelligence to AI drug discovery platforms.
+              Software engineer, data engineer, and AI platform builder focused on turning complex data into intelligent systems for
+              real-world decision-making.
             </motion.p>
 
             <motion.div
