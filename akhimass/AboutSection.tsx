@@ -122,15 +122,15 @@ export const AboutSection = () => {
                 usable systems and decision-making tools."
               </p>
               <div className="mt-3 flex items-center gap-2">
-                <div
-                  className="h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
-                  }}
-                >
-                  AK
-                </div>
+                <img
+                  src="/images/logo-ac.png?v=6"
+                  alt=""
+                  width={96}
+                  height={24}
+                  decoding="async"
+                  className="h-6 w-auto max-h-6 object-contain object-left"
+                  style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.3))" }}
+                />
                 <span className="text-xs text-muted-foreground font-medium">
                   Akhi
                 </span>

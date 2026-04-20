@@ -49,15 +49,15 @@ export const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-14 px-6 max-w-6xl">
         {/* Monogram / Brand */}
         <a href="#hero" className="flex items-center gap-2.5 group">
-          <div
-            className="h-7 w-7 rounded-md flex items-center justify-center text-xs font-bold text-white transition-all group-hover:scale-110"
-            style={{
-              background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
-              boxShadow: "0 0 12px rgba(37,99,235,0.4)",
-            }}
-          >
-            AK
-          </div>
+          <img
+            src="/images/logo-ac.png?v=6"
+            alt=""
+            width={120}
+            height={28}
+            decoding="async"
+            className="h-7 w-auto max-h-7 object-contain object-left transition-transform group-hover:scale-105"
+            style={{ filter: "drop-shadow(0 0 10px rgba(37,99,235,0.35))" }}
+          />
           <span className="text-sm font-semibold tracking-tight text-foreground/80 group-hover:text-foreground transition-colors">
             Akhi
           </span>
