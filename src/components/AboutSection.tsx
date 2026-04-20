@@ -25,6 +25,10 @@ const companyLogos: { src: string; label: string }[] = [
   { src: "/images/companies/panthers.png", label: "Carolina Panthers" },
   { src: "/images/companies/charlotte-hornets.png", label: "Charlotte Hornets" },
   { src: "/images/companies/cltfc.png", label: "Charlotte FC" },
+  {
+    src: "/images/companies/bioinformatics.jpg",
+    label: "UNC Charlotte Bioinformatics & Genomics Department",
+  },
 ];
 
 export const AboutSection = () => {
@@ -56,11 +60,11 @@ export const AboutSection = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start"
+          className="grid items-start gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16"
         >
-          <div className="mx-auto w-full max-w-md space-y-8 lg:mx-0">
+          <div className="mx-auto flex w-full max-w-md flex-col space-y-6 lg:mx-0 lg:h-full lg:min-h-0 lg:max-w-none lg:space-y-8">
             <div
-              className="relative cursor-pointer select-none"
+              className="relative shrink-0 cursor-pointer select-none"
               onClick={() => setPanthers((p) => !p)}
               role="button"
               tabIndex={0}
@@ -115,29 +119,32 @@ export const AboutSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="rounded-2xl border border-white/10 bg-[#0c0c0f] p-4 sm:p-5"
+              className="flex min-h-0 flex-1 flex-col rounded-2xl border border-white/10 bg-[#0c0c0f] p-4 sm:p-5 lg:p-6"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-400/90">Worked with</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Teams, leagues, and networks where my engineering and analytics work has shipped or been validated.
+              <p className="text-sm font-bold tracking-tight text-white">Companies Worked With</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Teams, leagues, networks, and research groups where my engineering and analytics work has shipped or been validated.
               </p>
-              <ul className="mt-4 grid grid-cols-2 gap-2.5" role="list">
+              <ul
+                className="mt-4 grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-3 lg:mt-5 lg:gap-4"
+                role="list"
+              >
                 {companyLogos.map(({ src, label }, i) => (
                   <motion.li
                     key={src}
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.35, delay: 0.08 + i * 0.04 }}
-                    className="group"
+                    className="group flex min-h-0"
                   >
-                    <div className="flex h-[4.5rem] flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] px-2 py-2 transition-colors duration-300 hover:border-blue-500/25 hover:bg-white/[0.04]">
+                    <div className="flex h-full min-h-[4.75rem] w-full flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] px-2 py-2.5 transition-colors duration-300 hover:border-blue-500/25 hover:bg-white/[0.04] lg:min-h-0 lg:px-3 lg:py-3">
                       <img
                         src={src}
                         alt=""
                         role="presentation"
-                        className="max-h-9 w-full max-w-[6.5rem] object-contain opacity-85 transition duration-300 group-hover:opacity-100 sm:max-h-10"
+                        className="max-h-10 w-full max-w-[7.5rem] flex-shrink-0 object-contain opacity-85 transition duration-300 group-hover:opacity-100 lg:max-h-11"
                       />
-                      <span className="mt-1.5 line-clamp-2 text-center text-[9px] font-medium leading-tight text-muted-foreground group-hover:text-muted-foreground/90">
+                      <span className="mt-2 line-clamp-3 text-center text-[8px] font-medium leading-snug text-muted-foreground group-hover:text-muted-foreground/90 sm:text-[9px]">
                         {label}
                       </span>
                     </div>
