@@ -123,15 +123,13 @@ export const AboutSection = () => {
               </p>
               <div className="mt-3 flex items-center gap-2">
                 <img
-                  src="/images/logo-ac.png?v=7"
+                  src="/images/logo-ac.jpeg?v=1"
                   alt=""
-                  width={112}
-                  height={28}
                   decoding="async"
-                  className="block h-7 w-auto max-h-7 shrink-0 object-contain"
+                  className="block h-[22px] w-auto shrink-0 object-contain object-center sm:h-6"
                   style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.3))" }}
                 />
-                <span className="text-xs text-muted-foreground font-medium">
+                <span className="text-xs leading-[1.15] text-muted-foreground font-medium">
                   Akhi
                 </span>
               </div>
