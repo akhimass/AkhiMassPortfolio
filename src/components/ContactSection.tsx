@@ -39,7 +39,7 @@ export const ContactSection = () => {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild className="rounded-full border-white/15 bg-transparent">
-              <a href="/resumee.pdf" download target="_blank" rel="noreferrer">
+              <a href={encodeURI("/Chappidi, Akhi Resume.pdf")} download="Chappidi, Akhi Resume.pdf" target="_blank" rel="noreferrer">
                 <FileText className="mr-2 h-4 w-4" /> Download Resume
               </a>
             </Button>
