@@ -58,16 +58,14 @@ export const Navbar = () => {
     >
       <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
         <Link to="/" className="inline-flex min-w-0 items-center gap-3 group">
-          <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#070708] ring-1 ring-white/[0.12] shadow-[0_0_18px_rgba(37,99,235,0.22)]">
-            <img
-              src="/images/logo-ac.png?v=11"
-              alt=""
-              width={112}
-              height={112}
-              decoding="async"
-              className="h-7 w-7 object-contain object-center drop-shadow-[0_0_10px_rgba(37,99,235,0.35)]"
-            />
-          </span>
+          <img
+            src="/images/logo-ac.png?v=7"
+            alt=""
+            width={140}
+            height={36}
+            decoding="async"
+            className="block h-9 w-auto max-h-9 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(37,99,235,0.35)]"
+          />
           <span className="text-sm font-semibold leading-none tracking-tight text-white/95 group-hover:text-white transition-colors">
             Akhi Chappidi
           </span>
