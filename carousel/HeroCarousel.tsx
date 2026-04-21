@@ -406,10 +406,12 @@ const StatCard = ({
   stat,
   accent,
   active,
+  compact,
 }: {
   stat: StatCard;
   accent: string;
   active: boolean;
+  compact: boolean;
 }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9, y: 8 }}
@@ -423,16 +425,16 @@ const StatCard = ({
       backdropFilter: "blur(12px)",
       WebkitBackdropFilter: "blur(12px)",
       border: `1px solid ${accent}44`,
-      borderRadius: 12,
-      padding: "10px 14px",
-      minWidth: 118,
-      maxWidth: 178,
+      borderRadius: compact ? 10 : 12,
+      padding: compact ? "6px 9px" : "10px 14px",
+      minWidth: compact ? 88 : 118,
+      maxWidth: compact ? 148 : 178,
       boxShadow: `0 4px 24px rgba(0,0,0,0.45), 0 0 20px ${accent}18`,
     }}
   >
     <div
       style={{
-        fontSize: 20,
+        fontSize: compact ? 15 : 20,
         fontWeight: 800,
         color: accent,
         lineHeight: 1.05,
@@ -444,11 +446,11 @@ const StatCard = ({
     </div>
     <div
       style={{
-        fontSize: 11,
+        fontSize: compact ? 9 : 11,
         fontWeight: 600,
         color: "rgba(255,255,255,0.62)",
         lineHeight: 1.25,
-        marginTop: 4,
+        marginTop: compact ? 2 : 4,
         letterSpacing: "0.04em",
         textTransform: "uppercase",
       }}
@@ -471,6 +473,8 @@ export const HeroCarousel = () => {
   const [prevIdx, setPrevIdx] = useState<number | null>(null);
   const [videoMode, setVideoMode] = useState(true);
   const [overlayWebmOk, setOverlayWebmOk] = useState(true);
+  /** Tighter stat HUD + copy on narrow viewports (split window / phone). */
+  const [compactHud, setCompactHud] = useState(false);
   const animRef = useRef<number>(0);
   const tRef = useRef(0);
   const activeRef = useRef(0);
@@ -493,6 +497,14 @@ export const HeroCarousel = () => {
     const id = setInterval(advance, INTERVAL);
     return () => clearInterval(id);
   }, [advance]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 520px)");
+    const sync = () => setCompactHud(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   // Canvas animation loop
   useEffect(() => {
@@ -613,11 +625,19 @@ export const HeroCarousel = () => {
         <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block" }} />
       )}
 
-      {/* Stat cards */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      {/* Stat cards — compact layout keeps HUD inside the frame on narrow widths */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          transform: compactHud ? "scale(0.92)" : undefined,
+          transformOrigin: "50% 8%",
+        }}
+      >
         <AnimatePresence mode="wait">
           {scene.stats.map((stat) => (
-            <StatCard key={`${scene.id}-${stat.label}`} stat={stat} accent={scene.accent} active />
+            <StatCard key={`${scene.id}-${stat.label}`} stat={stat} accent={scene.accent} active compact={compactHud} />
           ))}
         </AnimatePresence>
       </div>
@@ -629,7 +649,7 @@ export const HeroCarousel = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          padding: "20px 16px 16px",
+          padding: compactHud ? "12px 12px 12px" : "20px 16px 16px",
           background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
         }}
       >
@@ -641,7 +661,7 @@ export const HeroCarousel = () => {
         >
           <div
             style={{
-              fontSize: 10,
+              fontSize: compactHud ? 9 : 10,
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -652,33 +672,51 @@ export const HeroCarousel = () => {
           >
             {scene.domain}
           </div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", lineHeight: 1.4, maxWidth: "85%" }}>
+          <div
+            style={{
+              fontSize: compactHud ? 11 : 12,
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.45,
+              maxWidth: "100%",
+            }}
+          >
             {scene.sub}
           </div>
         </motion.div>
 
-        {/* Dot indicators */}
-        <div style={{ display: "flex", gap: 5, marginTop: 10 }}>
+        {/* Dot indicators — larger tap targets on touch */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-1.5" style={{ marginTop: compactHud ? 8 : 10 }}>
           {SCENES.map((s, i) => (
             <button
               key={s.id}
+              type="button"
+              aria-label={`Show ${s.domain}`}
               onClick={() => {
                 setPrevIdx(activeIdx);
                 setActiveIdx(i);
                 activeRef.current = i;
                 crossfadeRef.current = 0;
               }}
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center sm:min-h-0 sm:min-w-0 sm:p-0"
               style={{
-                width: activeIdx === i ? 20 : 6,
-                height: 6,
-                borderRadius: 3,
-                border: "none",
-                background: activeIdx === i ? scene.accent : "rgba(255,255,255,0.2)",
                 cursor: "pointer",
+                border: "none",
+                background: "transparent",
                 padding: 0,
                 transition: "all 0.3s ease",
               }}
-            />
+            >
+              <span
+                style={{
+                  display: "block",
+                  width: activeIdx === i ? 20 : 6,
+                  height: 6,
+                  borderRadius: 3,
+                  background: activeIdx === i ? scene.accent : "rgba(255,255,255,0.2)",
+                  transition: "all 0.3s ease",
+                }}
+              />
+            </button>
           ))}
         </div>
       </div>

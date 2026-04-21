@@ -56,17 +56,17 @@ export const Navbar = () => {
         scrolled ? "bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5" : "bg-transparent",
       )}
     >
-      <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
-        <Link to="/" className="inline-flex min-w-0 items-center gap-3 group">
+      <div className="container mx-auto flex h-16 min-w-0 max-w-[min(100%,1400px)] items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6 lg:px-10">
+        <Link to="/" className="inline-flex min-w-0 max-w-[min(100%,calc(100vw-5.5rem))] flex-1 items-center gap-2 sm:max-w-none sm:flex-none sm:gap-3 group">
           <img
             src="/images/logo-ac.png?v=8"
             alt=""
             width={140}
             height={36}
             decoding="async"
-            className="block h-9 w-auto max-h-9 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(37,99,235,0.35)]"
+            className="block h-8 w-auto max-h-8 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(37,99,235,0.35)] sm:h-9 sm:max-h-9"
           />
-          <span className="text-sm font-semibold leading-none tracking-tight text-white/95 group-hover:text-white transition-colors">
+          <span className="min-w-0 truncate text-sm font-semibold leading-none tracking-tight text-white/95 group-hover:text-white transition-colors">
             Akhi Chappidi
           </span>
         </Link>

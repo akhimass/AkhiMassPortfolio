@@ -37,7 +37,7 @@ const Index = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-foreground">
+    <div className="min-h-screen min-w-0 overflow-x-hidden bg-[#09090b] text-foreground">
       <Navbar />
       <HeroSection />
       <div className="section-divider mx-auto my-2" />

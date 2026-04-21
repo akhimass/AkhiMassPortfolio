@@ -90,15 +90,15 @@ export const AboutSection = () => {
   }, [statsInView]);
 
   return (
-    <section id="about" ref={sectionRef} className="py-14 lg:py-16">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+    <section id="about" ref={sectionRef} className="min-w-0 py-14 lg:py-16">
+      <div className="container mx-auto min-w-0 max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="grid items-start gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16"
+          className="grid min-w-0 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16"
         >
-          <div className="mx-auto flex w-full max-w-md flex-col space-y-6 lg:mx-0 lg:h-full lg:min-h-0 lg:max-w-none lg:space-y-8">
+          <div className="order-2 mx-auto flex w-full min-w-0 max-w-md flex-col space-y-6 lg:order-1 lg:mx-0 lg:h-full lg:min-h-0 lg:max-w-none lg:space-y-8">
             <div
               className="relative shrink-0 cursor-pointer select-none"
               onClick={() => setPanthers((p) => !p)}
@@ -162,7 +162,7 @@ export const AboutSection = () => {
                 Teams, leagues, networks, and research groups where my engineering and analytics work has shipped or been validated.
               </p>
               <ul
-                className="mt-4 grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-3 lg:mt-5 lg:gap-4"
+                className="mt-4 grid min-h-0 flex-1 grid-cols-2 gap-3 auto-rows-fr lg:mt-5 lg:gap-4"
                 role="list"
               >
                 {companyLogos.map(({ src, label }, i) => (
@@ -190,7 +190,7 @@ export const AboutSection = () => {
             </motion.div>
           </div>
 
-          <div className="flex min-h-0 flex-col gap-6 lg:h-full">
+          <div className="order-1 flex min-h-0 min-w-0 flex-col gap-6 lg:order-2 lg:h-full">
             <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest">About</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">
               Building at the intersection of data, AI, and sport.
@@ -256,8 +256,8 @@ export const AboutSection = () => {
                 <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">
                   Hackathons & datathons
                 </p>
-                <div className="overflow-x-auto rounded-lg border border-white/[0.08] bg-white/[0.02]">
-                  <table className="w-full min-w-[520px] border-collapse text-left text-xs">
+                <div className="-mx-1 min-w-0 overflow-x-auto rounded-lg border border-white/[0.08] bg-white/[0.02] px-1 sm:mx-0 sm:px-0">
+                  <table className="w-full min-w-[300px] sm:min-w-[520px] border-collapse text-left text-xs">
                     <thead>
                       <tr className="border-b border-white/10 bg-white/[0.03] text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                         <th className="w-8 px-2 py-2.5 text-center">#</th>

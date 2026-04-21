@@ -29,7 +29,10 @@ export const HeroSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] sm:min-h-screen pt-24 pb-10 lg:pb-14 overflow-hidden">
+    <section
+      id="hero"
+      className="relative max-lg:pt-28 overflow-x-clip pb-10 lg:min-h-[calc(100dvh-4rem)] lg:pt-24 lg:pb-14"
+    >
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
@@ -38,9 +41,9 @@ export const HeroSection = () => {
         }}
       />
 
-      <div ref={ref} className="relative z-10 mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-6 lg:px-10">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-14">
-          <div className="flex min-w-0 flex-1 flex-col justify-center">
+      <div ref={ref} className="relative z-10 mx-auto w-full min-w-0 max-w-[min(100%,1400px)] px-4 sm:px-6 lg:px-10">
+        <div className="flex min-w-0 flex-col gap-8 md:gap-10 lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-14">
+          <div className="flex min-w-0 max-w-full flex-col justify-center max-lg:flex-none lg:min-h-0 lg:flex-1">
             <motion.h1
               custom={0}
               variants={fadeUp}
@@ -69,7 +72,7 @@ export const HeroSection = () => {
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
-              className="flex flex-wrap gap-2 mb-10"
+              className="flex flex-wrap gap-2 mb-8 sm:mb-10"
             >
               {badges.map(({ label, icon: Icon }) => (
                 <span
@@ -118,7 +121,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.55 }}
-            className="relative w-full min-h-[min(52dvh,440px)] max-h-[min(72dvh,680px)] lg:min-h-0 lg:max-h-none lg:h-[min(72dvh,680px)]"
+            className="relative w-full min-h-0 min-w-0 shrink-0 h-[min(280px,42dvh)] min-[420px]:h-[min(300px,44dvh)] sm:h-[min(340px,48dvh)] md:h-[min(400px,52dvh)] lg:h-[min(72dvh,680px)] lg:max-h-none lg:min-h-[min(480px,55vh)]"
           >
             <HeroCarousel />
           </motion.div>
