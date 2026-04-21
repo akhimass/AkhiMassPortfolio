@@ -48,15 +48,17 @@ export const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-14 px-6 max-w-6xl">
         {/* Monogram / Brand */}
-        <a href="#hero" className="inline-flex min-w-0 items-center gap-2.5 sm:gap-3 group">
+        <a href="#hero" className="inline-flex min-w-0 items-center gap-2.5 group">
           <img
-            src="/images/logo-ac.jpeg?v=1"
+            src="/images/logo-ac.png?v=7"
             alt=""
+            width={140}
+            height={36}
             decoding="async"
-            className="block h-[22px] w-auto shrink-0 object-contain object-center sm:h-6 transition-transform group-hover:scale-105"
+            className="block h-9 w-auto max-h-9 shrink-0 object-contain transition-transform group-hover:scale-105"
             style={{ filter: "drop-shadow(0 0 10px rgba(37,99,235,0.35))" }}
           />
-          <span className="text-sm font-semibold leading-[1.15] tracking-tight text-foreground/80 group-hover:text-foreground transition-colors">
+          <span className="text-sm font-semibold leading-none tracking-tight text-foreground/80 group-hover:text-foreground transition-colors">
             Akhi
           </span>
         </a>
