@@ -64,7 +64,7 @@ const JourneyStep = ({
   const x = useTransform(scrollYProgress, [0, 1], [-14, 0]);
 
   return (
-    <motion.div ref={ref} style={{ opacity, x }} className="group flex items-start gap-6">
+    <motion.div ref={ref} style={{ opacity, x }} className="group flex items-start gap-4 min-[560px]:gap-6">
       <div className="flex w-14 flex-shrink-0 flex-col items-center">
         <div
           className="flex h-9 w-9 items-center justify-center rounded-full border text-xs font-bold transition-all duration-300 group-hover:scale-110"
@@ -141,8 +141,11 @@ export const WhatIDoSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 border-t border-white/10 pt-8 lg:grid-cols-2 lg:gap-0 lg:border-t-0 lg:pt-0">
-          <div id="story" className="min-w-0 scroll-mt-28 lg:border-r lg:border-white/10 lg:pr-10 xl:pr-14">
+        <div className="grid grid-cols-1 gap-8 border-t border-white/10 pt-8 min-[560px]:grid-cols-2 min-[560px]:gap-6 min-[560px]:border-t-0 min-[560px]:pt-0 lg:gap-10 xl:gap-12">
+          <div
+            id="story"
+            className="min-w-0 scroll-mt-28 min-[560px]:border-r min-[560px]:border-white/10 min-[560px]:pr-4 md:pr-8 lg:pr-10 xl:pr-14"
+          >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -163,7 +166,7 @@ export const WhatIDoSection = () => {
             </div>
           </div>
 
-          <div id="domains" className="min-w-0 scroll-mt-28 lg:pl-10 xl:pl-14">
+          <div id="domains" className="min-w-0 scroll-mt-28 min-[560px]:pl-4 md:pl-8 lg:pl-10 xl:pl-14">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

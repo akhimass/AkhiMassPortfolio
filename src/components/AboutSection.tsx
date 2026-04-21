@@ -70,8 +70,10 @@ const companyLogos: { src: string; label: string }[] = [
 export const AboutSection = () => {
   const sectionRef = useRef(null);
   const statsRef = useRef(null);
+  const extrasRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
   const statsInView = useInView(statsRef, { once: true, margin: "-40px" });
+  const extrasInView = useInView(extrasRef, { once: true, margin: "-40px" });
   const [panthers, setPanthers] = useState(false);
   const [counts, setCounts] = useState(metrics.map(() => 0));
 
@@ -96,11 +98,12 @@ export const AboutSection = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="grid min-w-0 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16"
+          className="flex min-w-0 flex-col gap-10 sm:gap-12"
         >
-          <div className="order-2 mx-auto flex w-full min-w-0 max-w-md flex-col space-y-6 lg:order-1 lg:mx-0 lg:h-full lg:min-h-0 lg:max-w-none lg:space-y-8">
+          {/* Headshot + narrative side by side; text wraps in remaining width */}
+          <div className="flex min-w-0 flex-row items-start gap-4 sm:gap-6 md:gap-8">
             <div
-              className="relative shrink-0 cursor-pointer select-none"
+              className="relative w-[6.75rem] shrink-0 cursor-pointer select-none sm:w-32 md:w-36"
               onClick={() => setPanthers((p) => !p)}
               role="button"
               tabIndex={0}
@@ -112,7 +115,7 @@ export const AboutSection = () => {
               }}
               aria-label="Toggle headshot"
             >
-              <div className="relative aspect-[4/5] rounded-2xl border border-blue-500/25 overflow-hidden bg-black shadow-[0_0_60px_rgba(37,99,235,0.15)]">
+              <div className="relative aspect-[4/5] rounded-xl border border-blue-500/25 overflow-hidden bg-black shadow-[0_0_40px_rgba(37,99,235,0.12)] sm:rounded-2xl">
                 <AnimatePresence mode="wait">
                   {!panthers ? (
                     <motion.img
@@ -142,120 +145,82 @@ export const AboutSection = () => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300"
+                    className="absolute bottom-2 left-2 rounded-full border border-white/15 bg-black/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-emerald-300 sm:bottom-3 sm:left-3 sm:px-3 sm:py-1 sm:text-[10px]"
                   >
                     Panthers
                   </motion.div>
                 )}
               </div>
-              <p className="mt-2 text-center text-[11px] text-muted-foreground">Tap to switch photo</p>
+              <p className="mt-1.5 text-center text-[10px] text-muted-foreground sm:mt-2 sm:text-[11px]">Tap to switch</p>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.12 }}
-              className="flex min-h-0 flex-1 flex-col rounded-2xl border border-white/10 bg-[#0c0c0f] p-4 sm:p-5 lg:p-6"
-            >
-              <p className="text-sm font-bold tracking-tight text-white">Companies Worked With</p>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Teams, leagues, networks, and research groups where my engineering and analytics work has shipped or been validated.
-              </p>
-              <ul
-                className="mt-4 grid min-h-0 flex-1 grid-cols-2 gap-3 auto-rows-fr lg:mt-5 lg:gap-4"
-                role="list"
-              >
-                {companyLogos.map(({ src, label }, i) => (
-                  <motion.li
-                    key={src}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.35, delay: 0.08 + i * 0.04 }}
-                    className="group flex min-h-0"
-                  >
-                    <div className="flex h-full min-h-[4.75rem] w-full flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] px-2 py-2.5 transition-colors duration-300 hover:border-blue-500/25 hover:bg-white/[0.04] lg:min-h-0 lg:px-3 lg:py-3">
-                      <img
-                        src={src}
-                        alt=""
-                        role="presentation"
-                        className="max-h-10 w-full max-w-[7.5rem] flex-shrink-0 object-contain opacity-85 transition duration-300 group-hover:opacity-100 lg:max-h-11"
-                      />
-                      <span className="mt-2 line-clamp-3 text-center text-[8px] font-medium leading-snug text-muted-foreground group-hover:text-muted-foreground/90 sm:text-[9px]">
-                        {label}
-                      </span>
-                    </div>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+            <div className="min-w-0 flex-1 space-y-4 sm:space-y-5">
+              <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest">About</p>
+              <h2 className="text-2xl font-bold tracking-tight font-display sm:text-3xl md:text-4xl text-balance">
+                Building at the intersection of data, AI, and sport.
+              </h2>
+
+              <div className="space-y-3 text-sm text-muted-foreground leading-relaxed sm:space-y-4">
+                <p>
+                  I'm Akhi Chappidi — a software engineer, data engineer, and AI platform builder based in Charlotte, NC, moving to San
+                  Francisco in May 2026. I'm a Computer Science major with a Bioinformatics concentration at UNC Charlotte, with a Sports
+                  Analytics Certificate. I build systems, not features.
+                </p>
+                <p>
+                  I engineer intelligent platforms across sports analytics, healthcare research, business intelligence, and early-stage
+                  startups. From NFL draft intelligence engines that replace editorial guesswork with quantified models, to AI operating systems
+                  for biological drug discovery, to the racquet sports platform I'm co-founding with a former Olympic athlete — every project is
+                  approached as a product, not a portfolio piece.
+                </p>
+                <p>
+                  Currently a Software Engineer at Pivot Point Analytics building full-stack data platforms on GCP. Incoming Football Analytics
+                  Engineer with the Carolina Panthers, where I'll work at the forefront of data, AI, and software for team performance. Moving
+                  to San Francisco in May 2026 to pursue ventures and build next-generation platforms.
+                </p>
+                <p>
+                  <span className="text-white/90 font-medium">Goal:</span> build systems that scale from everyday athletes to professional
+                  organizations. The platform layer between raw data and real decisions.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="order-1 flex min-h-0 min-w-0 flex-col gap-6 lg:order-2 lg:h-full">
-            <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest">About</p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">
-              Building at the intersection of data, AI, and sport.
-            </h2>
+          <div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-4">
+            {pillars.map(({ icon: Icon, label, sub }) => (
+              <Card key={label} className="border-white/10 bg-[#0f0f11]">
+                <CardContent className="pt-4 pb-4">
+                  <Icon className="h-4 w-4 text-blue-400 mb-2" />
+                  <div className="text-sm font-semibold text-white">{label}</div>
+                  <div className="text-[11px] text-muted-foreground">{sub}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-            <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-              <p>
-                I'm Akhi Chappidi — a software engineer, data engineer, and AI platform builder based in Charlotte, NC, moving to San
-                Francisco in May 2026. I'm a Computer Science major with a Bioinformatics concentration at UNC Charlotte, with a Sports
-                Analytics Certificate. I build systems, not features.
-              </p>
-              <p>
-                I engineer intelligent platforms across sports analytics, healthcare research, business intelligence, and early-stage
-                startups. From NFL draft intelligence engines that replace editorial guesswork with quantified models, to AI operating systems
-                for biological drug discovery, to the racquet sports platform I'm co-founding with a former Olympic athlete — every project is
-                approached as a product, not a portfolio piece.
-              </p>
-              <p>
-                Currently a Software Engineer at Pivot Point Analytics building full-stack data platforms on GCP. Incoming Football Analytics
-                Engineer with the Carolina Panthers, where I'll work at the forefront of data, AI, and software for team performance. Moving
-                to San Francisco in May 2026 to pursue ventures and build next-generation platforms.
-              </p>
-              <p>
-                <span className="text-white/90 font-medium">Goal:</span> build systems that scale from everyday athletes to professional
-                organizations. The platform layer between raw data and real decisions.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
-              {pillars.map(({ icon: Icon, label, sub }) => (
-                <Card key={label} className="border-white/10 bg-[#0f0f11]">
-                  <CardContent className="pt-4 pb-4">
-                    <Icon className="h-4 w-4 text-blue-400 mb-2" />
-                    <div className="text-sm font-semibold text-white">{label}</div>
-                    <div className="text-[11px] text-muted-foreground">{sub}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div ref={statsRef} className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-4">
-              {metrics.map((m, i) => (
-                <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-4">
-                  <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent sm:text-3xl">
-                    {counts[i]}
-                    {m.suffix}
-                  </div>
-                  <div className="mt-1 text-[11px] text-muted-foreground">{m.label}</div>
-                  {m.detail && <p className="mt-2 text-[10px] leading-snug text-muted-foreground/90">{m.detail}</p>}
+          <div ref={statsRef} className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {metrics.map((m, i) => (
+              <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-4">
+                <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent sm:text-3xl">
+                  {counts[i]}
+                  {m.suffix}
                 </div>
-              ))}
-            </div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{m.label}</div>
+                {m.detail && <p className="mt-2 text-[10px] leading-snug text-muted-foreground/90">{m.detail}</p>}
+              </div>
+            ))}
+          </div>
 
+          <div ref={extrasRef} className="flex min-w-0 flex-col gap-8 sm:gap-10">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: 0.15 }}
-              className="flex min-h-0 flex-1 flex-col rounded-xl border border-white/10 bg-[#0c0c0f] px-4 py-4 sm:px-5 sm:py-5"
+              animate={extrasInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: 0.05 }}
+              className="flex min-w-0 flex-col rounded-xl border border-white/10 bg-[#0c0c0f] px-4 py-4 sm:px-5 sm:py-5"
             >
               <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">Competitions</div>
 
-              <div className="mt-4 min-h-0 flex-1">
-                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">
-                  Hackathons & datathons
-                </p>
+              <div className="mt-4 min-w-0">
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">Hackathons & datathons</p>
                 <div className="-mx-1 min-w-0 overflow-x-auto rounded-lg border border-white/[0.08] bg-white/[0.02] px-1 sm:mx-0 sm:px-0">
                   <table className="w-full min-w-[300px] sm:min-w-[520px] border-collapse text-left text-xs">
                     <thead>
@@ -291,6 +256,44 @@ export const AboutSection = () => {
                   </table>
                 </div>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={extrasInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: 0.12 }}
+              className="flex min-w-0 flex-col rounded-2xl border border-white/10 bg-[#0c0c0f] p-4 sm:p-5 md:p-6"
+            >
+              <p className="text-sm font-bold tracking-tight text-white">Companies worked with</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Teams, leagues, networks, and research groups where my engineering and analytics work has shipped or been validated.
+              </p>
+              <ul
+                className="mt-4 grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 md:gap-4"
+                role="list"
+              >
+                {companyLogos.map(({ src, label }, i) => (
+                  <motion.li
+                    key={src}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.35, delay: 0.08 + i * 0.04 }}
+                    className="group flex min-h-0 min-w-0"
+                  >
+                    <div className="flex min-h-[5.25rem] w-full flex-col items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] px-2 py-3 transition-colors duration-300 hover:border-blue-500/25 hover:bg-white/[0.04] sm:min-h-[5.5rem] sm:px-3 md:min-h-[6rem] md:py-3.5">
+                      <img
+                        src={src}
+                        alt=""
+                        role="presentation"
+                        className="max-h-11 w-full max-w-[9rem] flex-shrink-0 object-contain opacity-85 transition duration-300 group-hover:opacity-100 sm:max-h-12 md:max-h-14"
+                      />
+                      <span className="mt-2 line-clamp-3 text-center text-[9px] font-medium leading-snug text-muted-foreground group-hover:text-muted-foreground/90 sm:text-[10px] md:text-[11px]">
+                        {label}
+                      </span>
+                    </div>
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </motion.div>
