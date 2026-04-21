@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, Cpu, Database, Brain, BarChart3, Layers } from "lucide-react";
+import { ArrowRight, ChevronDown, Database, Brain, BarChart3, Layers, Rocket } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { HeroCarousel } from "@/components/HeroCarousel";
 
@@ -9,7 +9,7 @@ const BADGES = [
   { label: "Data Engineering", icon: Database },
   { label: "AI Platforms", icon: Brain },
   { label: "Analytics Systems", icon: BarChart3 },
-  { label: "Product Engineering", icon: Cpu },
+  { label: "Startup Ventures", icon: Rocket },
 ];
 
 function AnimatedGridBg() {

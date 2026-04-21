@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Layers, Database, Brain, BarChart3, Cpu, ChevronDown, Activity, Gauge, Rocket } from "lucide-react";
+import { Layers, Database, Brain, BarChart3, ChevronDown, Activity, Gauge, Rocket } from "lucide-react";
 import { HeroCarousel } from "../../carousel/HeroCarousel";
 
 const fadeUp = {
@@ -19,10 +19,9 @@ const badges = [
   { label: "Data Engineering", icon: Database },
   { label: "AI Platforms", icon: Brain },
   { label: "Analytics Systems", icon: BarChart3 },
-  { label: "Product Engineering", icon: Cpu },
+  { label: "Startup Ventures", icon: Rocket },
   { label: "Sports Analytics Systems", icon: Activity },
   { label: "Performance Optimization", icon: Gauge },
-  { label: "Startup Platforms", icon: Rocket },
 ];
 
 export const HeroSection = () => {
