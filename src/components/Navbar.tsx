@@ -59,7 +59,7 @@ export const Navbar = () => {
       <div className="container mx-auto flex h-16 max-w-[min(100%,1400px)] items-center justify-between px-4 sm:px-6 lg:px-10">
         <Link to="/" className="inline-flex min-w-0 items-center gap-3 group">
           <img
-            src="/images/logo-ac.png?v=7"
+            src="/images/logo-ac.png?v=8"
             alt=""
             width={140}
             height={36}

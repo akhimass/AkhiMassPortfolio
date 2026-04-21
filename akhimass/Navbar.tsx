@@ -50,7 +50,7 @@ export const Navbar = () => {
         {/* Monogram / Brand */}
         <a href="#hero" className="inline-flex min-w-0 items-center gap-2.5 group">
           <img
-            src="/images/logo-ac.png?v=7"
+            src="/images/logo-ac.png?v=8"
             alt=""
             width={140}
             height={36}
