@@ -104,6 +104,48 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 {project.stats.metric && <StatMini label="Signal" value={project.stats.metric} accent={accent} />}
               </div>
 
+              {project.materials && project.materials.length > 0 && (
+                <div className="border-t border-white/10 px-6 py-5">
+                  <div className="mb-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">NSF research outputs</p>
+                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                      Thesis publication and symposium-style presentation from the Burkholderia resistance work — open either below.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {project.materials.map((m) => (
+                      <a
+                        key={m.href}
+                        href={m.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group relative flex flex-col rounded-xl border border-white/[0.12] bg-gradient-to-br from-blue-500/[0.08] via-white/[0.03] to-transparent p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-sky-400/45 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <p className="text-[15px] font-semibold leading-snug tracking-tight text-white group-hover:text-sky-100">
+                            {m.headline}
+                          </p>
+                          {m.format && (
+                            <span className="shrink-0 rounded-md border border-white/15 bg-black/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                              {m.format}
+                            </span>
+                          )}
+                        </div>
+                        {m.description && (
+                          <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground group-hover:text-muted-foreground/95">
+                            {m.description}
+                          </p>
+                        )}
+                        <span className="mt-4 inline-flex items-center text-xs font-medium text-sky-300/95">
+                          Open in new tab
+                          <ExternalLink className="ml-1.5 h-3.5 w-3.5 opacity-80 transition group-hover:translate-x-0.5" />
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="border-t border-white/10 px-6 py-4">
                 {project.imageType === "ios" && project.images && project.images.length > 0 && (
                   <div className="mb-4 flex flex-col flex-wrap items-center justify-center gap-8 sm:flex-row sm:gap-10">

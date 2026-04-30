@@ -4,6 +4,16 @@ export type ProjectDomain =
   | "Business Solutions"
   | "Startups";
 
+export type ProjectMaterial = {
+  href: string;
+  /** Primary call-to-action line (e.g. “View NSF research thesis”) */
+  headline: string;
+  /** Supporting copy shown under the headline */
+  description?: string;
+  /** Small badge, e.g. PDF / PPTX */
+  format?: string;
+};
+
 export interface Project {
   id: string;
   title: string;
@@ -20,6 +30,8 @@ export interface Project {
     caseStudy?: string;
     vercel?: string;
   };
+  /** Static downloads (PDF, slides, etc.) served from /public */
+  materials?: ProjectMaterial[];
   featured: boolean;
   images?: string[];
   imageType?: "screenshots" | "ios" | "single";
@@ -192,12 +204,12 @@ export const projects: Project[] = [
   },
   {
     id: "burkholderia",
-    title: "Burkholderia Genomic Pipeline",
+    title: "Antibiotic Treatment Optimization App",
     slug: "burkholderia",
     domain: "Healthcare Research",
-    tagline: "NSF×UNCC Genomic Mutation Intelligence Platform for Antibiotic Resistance",
+    tagline: "NSF×UNCC Burkholderia genomic pipeline — thesis research toward antibiotic treatment optimization",
     summary:
-      "Full-stack computational genomics platform that transforms large-scale sequencing outputs into lineage-aware SNP and indel analytics — detecting mutation \"flippers\" associated with antibiotic resistance and sensitivity transitions.",
+      "Full-stack computational genomics platform that transforms large-scale sequencing outputs into lineage-aware SNP and indel analytics — detecting mutation \"flippers\" associated with antibiotic resistance and sensitivity transitions. Thesis and capstone materials document the NSF-affiliated Burkholderia resistance study.",
     description:
       "Lineage-aware flipper discovery system. A flipper is a SNP or indel whose state changes across lineage paths, tracking antibiotic phenotype transitions — these may represent compensatory evolution, collateral sensitivity, or reversible resistance. Raw mutation outputs → parsing → normalization → lineage mapping → flipper detection → annotation → reporting.",
     stack: ["Python", "Biopython", "AWS", "Docker", "PostgreSQL", "pandas", "NumPy", "Excel/CSV reporting"],
@@ -205,6 +217,22 @@ export const projects: Project[] = [
     images: ["/images/Burk1.png", "/images/Burk2.png", "/images/Burk3.png"],
     imageType: "screenshots",
     links: {},
+    materials: [
+      {
+        href: "/materials/burkholderia/thesis.pdf",
+        headline: "View NSF research thesis",
+        description:
+          "Written thesis for the Burkholderia genomic pipeline — NSF×UNC Charlotte collaboration on resistance signals and antibiotic treatment optimization.",
+        format: "PDF",
+      },
+      {
+        href: "/materials/burkholderia/presentation.pptx",
+        headline: "View symposium presentation",
+        description:
+          "BINF 4600 final deck — pipeline walkthrough, key results, and how the platform supports treatment-optimization research.",
+        format: "PPTX",
+      },
+    ],
     featured: true,
     stats: { complexity: "High", dataPoints: "800K+ genomic variants", metric: "NSF×UNCC Research" },
     caseStudy: {
