@@ -45,7 +45,7 @@ In `src/config/projects.ts`, ensure the `domains` export exists:
 ```ts
 export const domains = [
   "Sports Analytics",
-  "Healthcare Research", 
+  "Biological AI Innovation",
   "Business Solutions",
   "Startups",
 ];
@@ -65,7 +65,7 @@ export const domains = [
 |-------|-------|
 | Primary accent | `#7c3aed` → `#6366f1` (violet-indigo gradient) |
 | Sports domain | `#10b981` emerald |
-| Healthcare domain | `#0ea5e9` sky |
+| Biological AI Innovation domain | `#06b6d4` cyan |
 | Business domain | `#f59e0b` amber |
 | Startups domain | `#a78bfa` violet |
 | Font | System default (Inter via shadcn) |

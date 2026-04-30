@@ -1,8 +1,4 @@
-export type ProjectDomain =
-  | "Sports Analytics"
-  | "Healthcare Research"
-  | "Business Solutions"
-  | "Startups";
+export type ProjectDomain = "Sports Analytics" | "Biological AI Innovation" | "Business Solutions" | "Startups";
 
 export type ProjectMaterial = {
   href: string;
@@ -32,6 +28,8 @@ export interface Project {
   };
   /** Static downloads (PDF, slides, etc.) served from /public */
   materials?: ProjectMaterial[];
+  /** Wide hero image shown at top of project modal (e.g. product header graphic) */
+  bannerImage?: string;
   featured: boolean;
   images?: string[];
   imageType?: "screenshots" | "ios" | "single";
@@ -50,7 +48,7 @@ export interface Project {
 
 export const domains: readonly ProjectDomain[] = [
   "Sports Analytics",
-  "Healthcare Research",
+  "Biological AI Innovation",
   "Business Solutions",
   "Startups",
 ] as const;
@@ -66,12 +64,12 @@ export const domainDetails: Record<
       "Building analytical engines and decision-support systems for elite sports organizations.",
     color: "#10b981",
   },
-  "Healthcare Research": {
-    id: "healthcare",
+  "Biological AI Innovation": {
+    id: "biological-ai",
     icon: "🧬",
     description:
-      "Computational pipelines and AI platforms for biomedical research and translational analysis.",
-    color: "#0ea5e9",
+      "Computational genomics, bioinformatics pipelines, and AI-native research execution — typed scientific programs, multi-agent systems, and deployable lab intelligence.",
+    color: "#06b6d4",
   },
   "Business Solutions": {
     id: "business",
@@ -177,7 +175,7 @@ export const projects: Project[] = [
     id: "schemabio",
     title: "SchemaBio",
     slug: "schemabio",
-    domain: "Healthcare Research",
+    domain: "Biological AI Innovation",
     tagline: "AI Operating System for Biological Research Programs",
     summary:
       "Built at YC Bio×AI Hackathon (sponsored by Anthropic, OpenAI, Modal) — an AI OS that ingests fragmented biological evidence (VCF, CSV, PDFs), structures it into typed scientific program state, and runs multi-agent reasoning to produce ranked, evidence-linked decisions.",
@@ -203,10 +201,82 @@ export const projects: Project[] = [
     },
   },
   {
+    id: "praxis",
+    title: "PRAXIS",
+    slug: "praxis",
+    domain: "Biological AI Innovation",
+    tagline:
+      "AI Research Execution System — Hack Nation 5th · Challenge 4 (AI Scientist OS) · April 25–26, 2026 (24-hour sprint)",
+    summary:
+      "PRAXIS is an AI research execution terminal: type a scientific hypothesis in plain language and get artifacts you could take to the lab on Monday — protocol steps with volumes and controls, reagent shopping lists with real catalog numbers, phase budgets, critical-path timelines, runnable analysis scripts, an in-browser protein structure you can rotate, scored funding opportunities, and a short methodological audit. Not a chat thread with a PDF attached: a structured multi-agent pipeline with a typed ResearchProgram object, SSE streaming so you watch work finish in real time, and deterministic gates so expensive models run only when synthesis is warranted.",
+    description:
+      "Built to prove one thesis: the bottleneck in science is operations, not ideas. Stage 1 — zero-LLM deterministic extraction turns free-text into a validated ResearchProgram schema. Stage 2 — literature novelty gate using Tavily plus Semantic Scholar with conservative rate limiting and merged ranking. Stage 3 — ten specialized agents stream progress over SSE into a terminal-style UI: literature synthesis, runnable Python/R scripts, protocols, Tamarind AlphaFold structures with RCSB fallback, sourcing, timelines, grants, GTM/regulatory framing, and audit flags. Modal-backed GPU for heavy analysis classes; dual-store feedback loop (SQLite + Chroma) for correction-aware runs.",
+    stack: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "FastAPI",
+      "Python 3.11",
+      "Railway",
+      "Vercel",
+      "SSE",
+      "Claude",
+      "Tavily",
+      "Semantic Scholar",
+      "ChromaDB",
+      "sentence-transformers",
+      "3Dmol.js",
+      "Tamarind Bio",
+      "Modal",
+      "SQLite",
+      "Pydantic",
+    ],
+    tags: [
+      "Hack Nation 2026",
+      "Multi-Agent AI",
+      "Scientific OS",
+      "SSE Streaming",
+      "Bio Research",
+      "Literature AI",
+      "24h Sprint",
+    ],
+    links: {
+      demo: "https://praxisalautomation.vercel.app",
+      vercel: "https://praxisalautomation.vercel.app",
+      github: "https://github.com/akhimass/praxis-research-terminal",
+    },
+    featured: true,
+    hasVercelDemo: true,
+    bannerImage: "/images/praxisheader.png",
+    stats: {
+      complexity: "Very High",
+      dataPoints: "10-agent pipeline · typed SSE contracts",
+      metric: "Hack Nation · built in 24 hours",
+    },
+    caseStudy: {
+      problem:
+        "Turning a hypothesis into an executable experiment is weeks of fragmented work: literature passes that do not answer “has someone already done this?” fast enough; protocols disconnected from what is in the freezer; reagent sourcing that drifts into fantasy SKUs; budgets that stay napkin-grade until finance asks for receipts; analysis code that lives on one laptop; grants that “might fit” but were never scored against real aims; structures skipped because AlphaFold jobs are annoying to babysit.",
+      solution:
+        "Stage 1 — Input: deterministic context extractor parses the hypothesis into a typed ResearchProgram before any LLM — the runtime-validated contract every downstream agent reads. Stage 2 — Literature QC: Tavily pulls live protocol-adjacent surfaces; Semantic Scholar adds TLDRs, citation counts, and influence signals; merge yields a three-state novelty signal (NOT FOUND / SIMILAR EXISTS / EXACT MATCH) with up to three reference objects usable in review — early signal before heavy synthesis. Stage 3 — Experiment plan: ten agents populate the program and stream over SSE with terminal state machines (idle → running → complete/error) — CONTEXT (already structured), LITERATURE, BIOINFORMATICS, PROTOCOL, STRUCTURE, REAGENTS, TIMELINE, FUNDING, GTM, AUDIT.",
+      engineering:
+        "Frontend: React + Vite + TypeScript + Tailwind + shadcn/ui on Vercel; SSE via fetch + ReadableStream (not EventSource) so auth headers and preview deployments behave; reducer-style pipeline hook drives tabs, agent cards, traces, and status dots; SVG-first charts; 3Dmol.js for WebGL structures. Backend: FastAPI + asyncio on Railway; Pydantic SSE contracts before bytes hit the wire; explicit CORS for Vercel prod + preview patterns. LLM layer: Claude with real tool use — run_agentic_loop where the model proposes tools and the runtime executes batches (often parallelized inside safe islands). Semantic Scholar rate limiting: global asyncio.Semaphore(1) with a clock that advances on every attempt so parallel callers cannot 429 the account. /usage exposes estimated USD spend for honesty.",
+      dataAI:
+        "Literature: Tavily for breadth and protocol-shaped web hits; Semantic Scholar for authority graph signals; deliberate merge/dedupe/ranking instead of two competing feeds. RAG: Chroma persistent collections (protocols, reagents, grants, feedback) with allenai/specter-style embeddings locally; opt-in indexing behind env flags so deploy health checks never block cold-start embeds; idempotent guards for warm stores. Structure: Tamarind REST for AlphaFold-class outputs with adaptive polling, disk cache, RCSB fallback when time or API budgets fail. GPU: Modal for Scanpy-shaped scrna pipelines, sandboxed execute_analysis_script, and batch embed jobs onto Modal Volume via HTTP triggers from FastAPI.",
+      architecture:
+        "CONTEXT (zero-LLM typed extraction) → LITERATURE (novelty-informed synthesis) → BIOINFORMATICS (runnable scripts) → PROTOCOL (SOP-grade steps) → STRUCTURE (Tamarind → RCSB fallback) → REAGENTS (real SKUs) → TIMELINE (critical-path language) → FUNDING (scored opportunities) → GTM (IND/regulatory pathway framing) → AUDIT (reviewer-red-team flags) — all streamed over SSE with deterministic gates upstream.",
+      outcomes:
+        "Wall-clock streaming compresses the operational arc into on the order of ~90 seconds with typed artifacts (representative demo narrative: multi-step protocol, ~18 reagents along recognizable vendor paths, phased budget ~$6.8k, multi-week timeline language, runnable analysis scripts, manipulable 3D structure, NIH/BARDA/Wellcome-style funding objects, GTM text, audit flags that read like internal QC — not generic ethics reminders). Stretch learning loop: SQLite + Chroma dual-write on structured reviews; agents retrieve prior corrections as few-shot context — pre-seeded expert corrections so hackathon demos land without live crowdsourcing.",
+      roadmap:
+        "Portfolio / venture framing: an AI operating system for research operations — not generic chat, not pure search, not LIMS logistics — owning the hypothesis → Monday gap. Expand from academic and translational planning into CRO packet prep, grant prose aligned to scored opportunities, and regulatory checklists mapped to generated timelines; compound accuracy via corrections without compound headcount.",
+    },
+  },
+  {
     id: "burkholderia",
     title: "Antibiotic Treatment Optimization App",
     slug: "burkholderia",
-    domain: "Healthcare Research",
+    domain: "Biological AI Innovation",
     tagline: "NSF×UNCC Burkholderia genomic pipeline — thesis research toward antibiotic treatment optimization",
     summary:
       "Full-stack computational genomics platform that transforms large-scale sequencing outputs into lineage-aware SNP and indel analytics — detecting mutation \"flippers\" associated with antibiotic resistance and sensitivity transitions. Thesis and capstone materials document the NSF-affiliated Burkholderia resistance study.",

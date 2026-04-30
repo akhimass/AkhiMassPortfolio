@@ -17,12 +17,12 @@ const DOMAIN_CONFIG: Record<
     border: "rgba(52,211,153,0.2)",
     dot: "#34d399",
   },
-  "Healthcare Research": {
-    color: "text-sky-400",
-    glow: "rgba(56,189,248,0.12)",
-    bg: "rgba(56,189,248,0.06)",
-    border: "rgba(56,189,248,0.2)",
-    dot: "#38bdf8",
+  "Biological AI Innovation": {
+    color: "text-cyan-400",
+    glow: "rgba(34,211,238,0.13)",
+    bg: "rgba(6,182,212,0.06)",
+    border: "rgba(6,182,212,0.22)",
+    dot: "#06b6d4",
   },
   "Business Solutions": {
     color: "text-amber-400",
@@ -43,7 +43,7 @@ const DOMAIN_CONFIG: Record<
 const DOMAIN_TABS = [
   "All",
   "Sports Analytics",
-  "Healthcare Research",
+  "Biological AI Innovation",
   "Business Solutions",
   "Startups",
 ];

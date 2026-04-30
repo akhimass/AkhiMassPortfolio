@@ -41,7 +41,8 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
   if (!project) return null;
 
-  const showIframePreview = project.hasVercelDemo && (!project.images || project.images.length === 0);
+  const showIframePreview =
+    project.hasVercelDemo && (!project.images || project.images.length === 0) && !project.bannerImage;
   const url = demoUrl(project);
 
   return (
@@ -98,6 +99,16 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </div>
               </div>
 
+              {project.bannerImage && (
+                <div className="relative w-full shrink-0 overflow-hidden border-b border-white/10 bg-black">
+                  <img
+                    src={project.bannerImage}
+                    alt=""
+                    className="max-h-[min(42vh,300px)] w-full object-cover object-center sm:max-h-[320px]"
+                  />
+                </div>
+              )}
+
               <div className="grid gap-3 px-6 py-4 sm:grid-cols-3">
                 <StatMini label="Complexity" value={project.stats.complexity} accent={accent} />
                 {project.stats.dataPoints && <StatMini label="Scale / Data" value={project.stats.dataPoints} accent={accent} />}
@@ -107,9 +118,13 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               {project.materials && project.materials.length > 0 && (
                 <div className="border-t border-white/10 px-6 py-5">
                   <div className="mb-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">NSF research outputs</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-blue-300/90">
+                      {project.id === "burkholderia" ? "NSF research outputs" : "Materials"}
+                    </p>
                     <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                      Thesis publication and symposium-style presentation from the Burkholderia resistance work — open either below.
+                      {project.id === "burkholderia"
+                        ? "Thesis publication and symposium-style presentation from the Burkholderia resistance work — open either below."
+                        : "Supporting files — open in a new tab."}
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">

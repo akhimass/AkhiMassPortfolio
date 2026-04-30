@@ -14,12 +14,12 @@ const DOMAIN_CONFIG: Record<string, { color: string; accent: string; bg: string;
     border: "rgba(16,185,129,0.2)",
     emoji: "⚡",
   },
-  "Healthcare Research": {
-    color: "#0ea5e9",
-    accent: "#38bdf8",
-    bg: "rgba(14,165,233,0.06)",
-    border: "rgba(14,165,233,0.2)",
-    emoji: "🔬",
+  "Biological AI Innovation": {
+    color: "#06b6d4",
+    accent: "#22d3ee",
+    bg: "rgba(6,182,212,0.07)",
+    border: "rgba(6,182,212,0.22)",
+    emoji: "🧬",
   },
   "Business Solutions": {
     color: "#f59e0b",
@@ -39,7 +39,8 @@ const DOMAIN_CONFIG: Record<string, { color: string; accent: string; bg: string;
 
 export const DomainSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const domainList = domains ?? ["Sports Analytics", "Healthcare Research", "Business Solutions", "Startups"];
+  const domainList =
+    domains ?? (["Sports Analytics", "Biological AI Innovation", "Business Solutions", "Startups"] as const);
 
   return (
     <section id="domains" className="py-28">
@@ -116,8 +117,8 @@ export const DomainSection = () => {
                     <p className="text-sm text-muted-foreground">
                       {domain === "Sports Analytics" &&
                         "Building data-driven decision systems for teams, coaches, and organizations across professional and emerging sports."}
-                      {domain === "Healthcare Research" &&
-                        "Engineering computational platforms for genomics, bioinformatics, and AI-assisted research workflows."}
+                      {domain === "Biological AI Innovation" &&
+                        "Genomics and bioinformatics pipelines plus AI-native research execution — typed programs, multi-agent systems, and lab-ready intelligence."}
                       {domain === "Business Solutions" &&
                         "Developing data platforms and intelligent tools that transform business operations and decision-making."}
                       {domain === "Startups" &&

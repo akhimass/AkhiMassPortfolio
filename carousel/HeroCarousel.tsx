@@ -371,7 +371,7 @@ const SCENES: Scene[] = [
   },
   {
     id: "health",
-    domain: "Healthcare Research",
+    domain: "Biological AI Innovation",
     headline: "Clinical & lab analytics",
     sub: "Mutations, experimental design, drug response, and antibiotic-resistance efficiency — from assay metrics to deployable intelligence.",
     accent: "#0ea5e9",
