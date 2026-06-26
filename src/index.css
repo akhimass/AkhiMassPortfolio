@@ -52,6 +52,35 @@
   }
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(124, 58, 237, 0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.6);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(124, 58, 237, 0.25);
+  color: white;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.3), transparent);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 @layer utilities {
   .font-mono {
     font-family: 'JetBrains Mono', monospace;

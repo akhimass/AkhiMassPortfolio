@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import { GitCommitHorizontal } from "lucide-react";
+
+const GITHUB_USERNAME = "akhimass";
 
 const stats = [
   { value: "9+", label: "Projects Shipped" },
@@ -125,6 +128,59 @@ export const AboutSection = () => {
             </div>
           </motion.div>
         </div>
+        {/* GitHub Activity */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-14"
+        >
+          <div className="flex items-center gap-2.5 mb-6">
+            <GitCommitHorizontal className="h-4 w-4 text-violet-400" />
+            <p className="text-xs text-muted-foreground/50 font-mono tracking-widest uppercase">
+              GitHub Activity — public &amp; private
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {/* Stats card */}
+            <div className="rounded-xl border border-white/[0.07] bg-card/40 p-3 flex items-center justify-center overflow-hidden min-h-[120px] relative">
+              <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-violet-600/8 blur-3xl pointer-events-none" />
+              <img
+                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&count_private=true&show_icons=true&bg_color=00000000&title_color=8b5cf6&icon_color=8b5cf6&text_color=71717a&hide_border=true&rank_icon=github&card_width=400`}
+                alt="GitHub Stats"
+                className="max-w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Streak card */}
+            <div className="rounded-xl border border-white/[0.07] bg-card/40 p-3 flex items-center justify-center overflow-hidden min-h-[120px] relative">
+              <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-indigo-600/8 blur-3xl pointer-events-none" />
+              <img
+                src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&count_private=true&background=00000000&border=ffffff12&stroke=ffffff12&ring=8b5cf6&fire=8b5cf6&currStreakLabel=8b5cf6&sideLabels=71717a&dates=71717a&sideNums=a1a1aa&currStreakNum=a1a1aa&hide_border=true&card_width=400`}
+                alt="GitHub Streak"
+                className="max-w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {/* Contribution calendar */}
+          <div className="mt-4 rounded-xl border border-white/[0.07] bg-card/40 p-4 overflow-hidden">
+            <img
+              src={`https://github-readme-activity-graph.vercel.app/graph?username=${GITHUB_USERNAME}&bg_color=00000000&color=71717a&line=8b5cf6&point=8b5cf6&area=true&area_color=8b5cf6&hide_border=true&custom_title=Commit+Activity+(Public+%26+Private)`}
+              alt="GitHub Contribution Graph"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+
+          <p className="mt-3 text-[10px] text-muted-foreground/30 font-mono text-right">
+            Private contributions counted when enabled on GitHub profile settings
+          </p>
+        </motion.div>
       </div>
     </section>
   );

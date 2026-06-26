@@ -13,7 +13,21 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Cal Sans', 'Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+      },
       colors: {
+        brand: {
+          primary: '#7c3aed',
+          accent: '#6366f1',
+        },
+        domain: {
+          sports: '#10b981',
+          health: '#0ea5e9',
+          business: '#f59e0b',
+          startups: '#a78bfa',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
