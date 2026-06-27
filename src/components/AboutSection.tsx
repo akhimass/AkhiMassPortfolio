@@ -51,6 +51,24 @@ const hackathonTableRows: {
     title: "Y Combinator Bio x AI Hackathon",
     result: "(Participant)",
   },
+  {
+    logos: [
+      { src: "/images/competitions/cursor.png", alt: "Cursor" },
+      { src: "/images/competitions/a16z.png", alt: "a16z" },
+    ],
+    title: "Build with Cursor & a16z Hackathon",
+    result: "Finalist",
+  },
+  {
+    logos: [{ src: "/images/competitions/yc.png", alt: "Y Combinator" }],
+    title: "Y Combinator Conversational AI Hackathon 2026",
+    result: "(Participant)",
+  },
+  {
+    logos: [{ src: "/images/competitions/yc.png", alt: "Y Combinator" }],
+    title: "Y Combinator Voice Agents Hackathon",
+    result: "(Participant)",
+  },
 ];
 
 const companyLogos: { src: string; label: string }[] = [
@@ -151,9 +169,8 @@ export const AboutSection = () => {
       </h2>
       <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
         <p>
-          I'm Akhi Chappidi — a software engineer, data engineer, and AI platform builder based in Charlotte, NC, moving to San Francisco in
-          May 2026. I'm a Computer Science major with a Bioinformatics concentration at UNC Charlotte, with a Sports Analytics Certificate. I
-          build systems, not features.
+          I'm Akhi Chappidi — a software engineer, data engineer, and AI platform builder based in Charlotte, NC. I'm a Computer Science major
+          with a Bioinformatics concentration at UNC Charlotte, with a Sports Analytics Certificate. I build systems, not features.
         </p>
         <p>
           I engineer intelligent platforms across sports analytics, healthcare research, business intelligence, and early-stage startups.
@@ -163,8 +180,7 @@ export const AboutSection = () => {
         </p>
         <p>
           Currently a Software Engineer at Pivot Point Analytics building full-stack data platforms on GCP. Incoming Football Analytics
-          Engineer with the Carolina Panthers, where I'll work at the forefront of data, AI, and software for team performance. Moving to San
-          Francisco in May 2026 to pursue ventures and build next-generation platforms.
+          Engineer with the Carolina Panthers, where I'll work at the forefront of data, AI, and software for team performance.
         </p>
         <p>
           <span className="text-white/90 font-medium">Goal:</span> build systems that scale from everyday athletes to professional

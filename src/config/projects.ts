@@ -378,6 +378,34 @@ export const projects: Project[] = [
     },
   },
   {
+    id: "caseflowy",
+    title: "CaseFlowy",
+    slug: "caseflowy",
+    domain: "Business Solutions",
+    tagline: "AI-Powered PI Case Intake Automation for California Law Firms",
+    summary:
+      "Full-stack SaaS platform automating personal injury case intake for law firms across California — replacing manual intake calls and paper forms with intelligent case screening, automated retainer generation, and real-time pipeline management. Being piloted across multiple law firms in California.",
+    description:
+      "Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon. CaseFlowy digitizes the full PI intake lifecycle: prospective clients submit via a smart intake form → AI screens and scores case merit → qualified leads are routed to attorneys with summaries → automated retainer packages sent for e-signature → case enters a tracked pipeline with statute-of-limitations monitoring.",
+    stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "OpenAI", "Twilio", "Resend", "Vercel", "YC Conv. AI Hackathon", "YC Voice Agents Hackathon"],
+    tags: ["Legal Tech", "PI Case Intake", "Law Firm SaaS", "AI Screening", "California", "YC Hackathon"],
+    links: {},
+    featured: true,
+    stats: { complexity: "High", dataPoints: "California PI market", metric: "Piloting — CA Law Firms" },
+    caseStudy: {
+      problem:
+        "PI law firms across California lose qualified leads to slow, manual intake — calls go to voicemail, intake forms pile up, and attorneys burn hours on unqualified consultations. No system tracks case status, SOL deadlines, or lead conversion in one place.",
+      solution:
+        "End-to-end intake automation: smart intake form → AI merit scoring across 8 signals (liability clarity, injury severity, insurance coverage, recency, damages estimate) → attorney routing → automated retainer + e-signature → case pipeline with SOL deadline alerts.",
+      engineering:
+        "React + Supabase with RLS policies scoped per firm. Twilio SMS for intake initiation and status updates. Resend for attorney and client email notifications. Automated retainer packaging and e-signature collection. Multi-role dashboard: intake coordinator, attorney, managing partner. Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon.",
+      dataAI:
+        "Case merit scoring engine: weighted signals — liability clarity (0.35), injury severity (0.25), insurance coverage (0.20), incident recency (0.10), damages estimate (0.10). Threshold routing: score > 70 → auto-schedule consultation; 40–70 → attorney review queue; < 40 → decline template. SOL tracker: 2-year standard PI, 6-month government entity — auto-alerts at 90/30/7 days.",
+      outcomes:
+        "Being piloted across multiple law firms in California. Reduces intake processing from hours to minutes. Automated qualification eliminates unqualified consultation load on attorneys. Real-time case pipeline with SOL deadline monitoring. Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon.",
+    },
+  },
+  {
     id: "racquethub",
     title: "RacquetHub",
     slug: "racquethub",
