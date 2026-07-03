@@ -382,27 +382,33 @@ export const projects: Project[] = [
     title: "CaseFlowy",
     slug: "caseflowy",
     domain: "Business Solutions",
-    tagline: "AI-Powered PI Case Intake Automation for California Law Firms",
+    tagline: "Bilingual AI Video Intake for California PI Law Firms",
     summary:
-      "Full-stack SaaS platform automating personal injury case intake for law firms across California — replacing manual intake calls and paper forms with intelligent case screening, automated retainer generation, and real-time pipeline management. Being piloted across multiple law firms in California.",
+      "Full-stack SaaS platform replacing manual PI case intake with a live AI video specialist — conducting bilingual (English + Spanish) intake interviews on-camera, screening case merit in real time, estimating settlement value using comparable CA cases, and routing qualified leads to a real-time firm dashboard. Being piloted across multiple law firms in California.",
     description:
-      "Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon. CaseFlowy digitizes the full PI intake lifecycle: prospective clients submit via a smart intake form → AI screens and scores case merit → qualified leads are routed to attorneys with summaries → automated retainer packages sent for e-signature → case enters a tracked pipeline with statute-of-limitations monitoring.",
-    stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "OpenAI", "Twilio", "Resend", "Vercel", "YC Conv. AI Hackathon", "YC Voice Agents Hackathon"],
-    tags: ["Legal Tech", "PI Case Intake", "Law Firm SaaS", "AI Screening", "California", "YC Hackathon"],
-    links: {},
+      "Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon. CaseFlowy's AI intake specialist conducts live video interviews in English and Spanish — asking the right questions, reviewing documents shown on-camera, and scoring case merit across 8 signals while estimating settlement range in real time ($45K–$186K based on Moss CA comparable data). Qualified leads flow instantly to attorneys with disposition scores, case type, and projected value. Firm dashboard shows live intakes, qualified count, and active sessions — no phone tag, no voicemail.",
+    stack: ["React", "TypeScript", "LiveKit", "OpenAI", "AWS", "Minimax", "Supabase", "PostgreSQL", "Twilio", "Resend", "Vercel"],
+    tags: ["Legal Tech", "Video AI", "PI Case Intake", "Spanish + English", "Law Firm SaaS", "YC Hackathon", "California"],
+    links: {
+      demo: "https://caseflowy.com",
+      vercel: "https://caseflowy.com",
+      github: "https://github.com/akhimass/Caseflowy",
+    },
     featured: true,
-    stats: { complexity: "High", dataPoints: "California PI market", metric: "Piloting — CA Law Firms" },
+    hasVercelDemo: true,
+    bannerImage: "/images/caseflowy-hero.png",
+    stats: { complexity: "High", dataPoints: "ES + EN · Live Video · ~15 min", metric: "Piloting — CA Law Firms" },
     caseStudy: {
       problem:
-        "PI law firms across California lose qualified leads to slow, manual intake — calls go to voicemail, intake forms pile up, and attorneys burn hours on unqualified consultations. No system tracks case status, SOL deadlines, or lead conversion in one place.",
+        "PI firms across California lose qualified leads to slow, manual intake — calls go to voicemail, forms pile up unread, and attorneys burn hours on unqualified consultations. Spanish-speaking clients face additional friction with English-only processes. No firm has real-time visibility into intake volume, qualification rates, or SOL deadlines.",
       solution:
-        "End-to-end intake automation: smart intake form → AI merit scoring across 8 signals (liability clarity, injury severity, insurance coverage, recency, damages estimate) → attorney routing → automated retainer + e-signature → case pipeline with SOL deadline alerts.",
+        "A live AI video specialist conducts intake sessions in English or Spanish — reviewing documents shown on-camera, scoring case merit across 8 weighted signals, surfacing comparable CA PI settlements via Moss, and routing qualified leads instantly to the firm dashboard with full summaries. Free for clients (~15 min); SaaS subscription for firms.",
       engineering:
-        "React + Supabase with RLS policies scoped per firm. Twilio SMS for intake initiation and status updates. Resend for attorney and client email notifications. Automated retainer packaging and e-signature collection. Multi-role dashboard: intake coordinator, attorney, managing partner. Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon.",
+        "LiveKit for real-time bilingual video intake with an AI agent conducting the conversation. OpenAI for dialogue management and merit scoring. Minimax for natural voice synthesis. Moss API for California settlement comparables surfaced during the intake session. React + TypeScript + Supabase with RLS policies scoped per firm. Multi-role firm dashboard: intake coordinator, attorney, managing partner views. Twilio SMS + Resend email for lead notifications. Deployed on Vercel at caseflowy.com.",
       dataAI:
-        "Case merit scoring engine: weighted signals — liability clarity (0.35), injury severity (0.25), insurance coverage (0.20), incident recency (0.10), damages estimate (0.10). Threshold routing: score > 70 → auto-schedule consultation; 40–70 → attorney review queue; < 40 → decline template. SOL tracker: 2-year standard PI, 6-month government entity — auto-alerts at 90/30/7 days.",
+        "Case merit scoring engine: liability clarity (0.35) + injury severity (0.25) + insurance coverage (0.20) + incident recency (0.10) + damages estimate (0.10). Threshold routing: score > 70 → qualified with live settlement range; 40–70 → attorney review queue; < 40 → decline template. Moss integration surfaces comparable CA PI settlements in real time. SOL tracker: 2-year standard PI, 6-month government entity — auto-alerts at 90/30/7 days. Firm dashboard metrics: intakes today, qualified, live sessions, disposition scores, projected case value.",
       outcomes:
-        "Being piloted across multiple law firms in California. Reduces intake processing from hours to minutes. Automated qualification eliminates unqualified consultation load on attorneys. Real-time case pipeline with SOL deadline monitoring. Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon.",
+        "Being piloted across multiple law firms in California. Reduces intake from 30-minute phone calls to a free ~15-minute AI video session. Bilingual support opens the Spanish-speaking client market. Real-time firm dashboard with live case metrics, disposition scores, and settlement value estimates. Built at YC Conversational AI Hackathon 2026 and YC Voice Agents Hackathon.",
     },
   },
   {
