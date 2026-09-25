@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, GraduationCap, Presentation } from "lucide-react";
+import { ExternalLink, Github, GraduationCap, Newspaper, Presentation } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -171,6 +171,13 @@ export const SportsHubSection = () => {
                       <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white">
                         <a href={selected.links.deck} target="_blank" rel="noreferrer">
                           <Presentation className="mr-1.5 h-3.5 w-3.5" /> View deck <ExternalLink className="ml-1.5 h-3 w-3" />
+                        </a>
+                      </Button>
+                    )}
+                    {selected.links.article && (
+                      <Button asChild size="sm" variant="outline" className="rounded-full border-white/15 bg-transparent">
+                        <a href={selected.links.article} target="_blank" rel="noreferrer">
+                          <Newspaper className="mr-1.5 h-3.5 w-3.5" /> Read the article <ExternalLink className="ml-1.5 h-3 w-3" />
                         </a>
                       </Button>
                     )}

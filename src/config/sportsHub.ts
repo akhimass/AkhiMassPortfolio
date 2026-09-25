@@ -21,7 +21,7 @@ export interface HubProject {
   recommendation: string;
   tags: string[];
   team: string;
-  links: { deck?: string; github?: string };
+  links: { deck?: string; github?: string; article?: string };
 }
 
 export const hubProjects: HubProject[] = [
@@ -266,51 +266,41 @@ export const hubProjects: HubProject[] = [
     links: { deck: "https://canva.link/icnlgh1bruft72l" },
   },
   {
-    id: "acc-expansion",
-    title: "ACC Expansion Project",
-    org: "Atlantic Coast Conference",
-    tagline: "Conference realignment case study.",
-    problem: "Evaluate how conference expansion affects an ACC member's revenue, competition, and brand.",
-    role: "UNC Charlotte · Sports Business Analytics",
-    lenses: ["administration", "analytics"],
-    lensNotes: { administration: "Conference membership, media rights, and travel considerations for expansion." },
-    approach: ["Full write-up and deck coming soon."],
-    findings: [],
-    recommendation: "Details coming soon.",
-    tags: ["Conference Realignment", "ACC", "Media Rights"],
-    team: "UNC Charlotte sports analytics team",
-    links: {},
-  },
-  {
     id: "super-bowl-lx",
-    title: "Super Bowl LX Group Project",
-    org: "NFL",
-    tagline: "Big-event analysis for Super Bowl LX.",
-    problem: "Apply sports business analytics to the economics and operations of a Super Bowl.",
-    role: "Group project · UNC Charlotte",
-    lenses: ["analytics", "administration"],
-    lensNotes: { analytics: "Event-level analysis for Super Bowl LX." },
-    approach: ["Full write-up and deck coming soon."],
-    findings: [],
-    recommendation: "Details coming soon.",
-    tags: ["NFL", "Super Bowl", "Event Economics"],
-    team: "UNC Charlotte sports analytics team",
-    links: {},
-  },
-  {
-    id: "trend-analysis",
-    title: "Historical Trend Analysis: CLT, ECU, App State",
-    org: "Charlotte · East Carolina · Appalachian State",
-    tagline: "How do three regional programs compare over time?",
-    problem: "Compare multi-year attendance and performance trends across UNC Charlotte, ECU, and App State.",
-    role: "UNC Charlotte · Sports Business Analytics",
-    lenses: ["analytics"],
-    lensNotes: { analytics: "Multi-year trend comparison across three regional athletic programs." },
-    approach: ["Full write-up and deck coming soon."],
-    findings: [],
-    recommendation: "Details coming soon.",
-    tags: ["Trend Analysis", "College Athletics", "Regional Programs"],
-    team: "UNC Charlotte sports analytics team",
-    links: {},
+    title: "Super Bowl LX Prediction Engine",
+    org: "NFL · Seahawks vs Patriots",
+    tagline: "Explainable win probabilities built on the 5 Keys to the game.",
+    problem:
+      "Super Bowl picks are usually narrative. In Professor John Tobias' Intro to Sports Analytics class, 19 of 20 groups picked Seattle. The goal here was a model that shows why, with a win probability, a projected score, and the keys behind it.",
+    role: "Intro to Sports Analytics · featured by Inside UNC Charlotte",
+    image: "/images/sports-hub/superbowl.jpg",
+    lenses: ["analytics", "engineering"],
+    lensNotes: {
+      analytics:
+        "A professor-style logistic model with turnover emphasis over five keys (time of possession, turnovers, big plays, 3rd-down %, red-zone TD %), plus a strength-of-schedule z-score and QB production scores.",
+      engineering:
+        "Python on nflverse play-by-play (nflreadpy). A Ridge score model, realism clamps found through a model audit, audit scripts and tests, and a React and FastAPI front end that grew into GridironIQ.",
+    },
+    approach: [
+      "Built the five keys for each team from nflverse play-by-play across the 2020-2025 seasons, with postseason games for the score model.",
+      "Converted key margins and a strength-of-schedule z-score into a win probability with a logistic model that weights turnovers heavily.",
+      "Trained a Ridge regression on postseason games to project margin and total, then rebuilt each team's score from them.",
+      "Audited the score model: extreme inputs could produce scores like 47-0, so totals are clamped to 24-62 and margins to plus or minus 24, with tests to keep them there.",
+      "Scored each quarterback's postseason production from accuracy, yards per attempt, TD, INT, and sack rates, rushing, and turnovers per game.",
+    ],
+    findings: [
+      { value: "93.8%", label: "Seattle win probability in the model's pre-game call" },
+      { value: "31-17", label: "Seahawks win, the prediction UNC Charlotte featured (engine output 31-18, margin sd 8.1)" },
+      { value: "3 of 5", label: "keys won by Seattle: turnovers, 3rd down, red zone" },
+      { value: "77.1 vs 36.8", label: "QB postseason production score, Darnold vs Maye" },
+    ],
+    recommendation:
+      "Lean Seattle with high confidence, but treat the score as a range. The biggest drivers were red-zone efficiency and third-down conversion, so the game plan for either side is to win those two situations.",
+    tags: ["Win Probability", "Logistic Regression", "Play-by-Play", "nflverse", "QB Evaluation", "Featured by UNC Charlotte"],
+    team: "Akhi Chappidi · Intro to Sports Analytics (Prof. John Tobias)",
+    links: {
+      github: "https://github.com/akhimass/SuperBowlEngine",
+      article: "https://inside.charlotte.edu/2026/02/05/sports-analytics-students-predict-super-bowl-lx-outcome/",
+    },
   },
 ];
