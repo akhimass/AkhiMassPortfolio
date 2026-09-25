@@ -14,6 +14,7 @@ export interface HubProject {
   tagline: string;
   role: string;
   image?: string;
+  figure?: { src: string; caption: string };
   lenses: HubLens[];
   lensNotes: Partial<Record<HubLens, string>>;
   approach: string[];
@@ -266,38 +267,79 @@ export const hubProjects: HubProject[] = [
     links: { deck: "https://canva.link/icnlgh1bruft72l" },
   },
   {
+    id: "acc-expansion",
+    title: "ACC Expansion Recommendation",
+    org: "Atlantic Coast Conference",
+    tagline: "Which school is the best fit for the ACC's next expansion slot?",
+    problem:
+      "The ACC needs a defensible way to pick a new member from ten candidates: Charlotte, App State, ECU, Liberty, Temple, USF, Tulane, Memphis, UConn, and Rice. Basketball, football, academics, and market all matter.",
+    role: "UNC Charlotte · Sports Business Analytics project",
+    image: "/images/sports-hub/acc.jpg",
+    lenses: ["analytics", "administration", "engineering"],
+    lensNotes: {
+      analytics:
+        "An ACC Value-Added Score: a weighted composite of basketball enterprise (25%), football value (20%), academics (15%), winning culture (15%), Olympic sport alignment (15%), and market.",
+      administration:
+        "Conference strategy: media market (DMA), academic fit (AAU and Carnegie R1), attendance, and whether a fifth North Carolina team makes sense.",
+      engineering:
+        "An evaluator fed by the NCAA OpenAPI, D1 Ticker attendance, Sports Reference scrapes, Carnegie and AAU lists, and NSF R&D data, using only cited, repeatable inputs.",
+    },
+    approach: [
+      "Eliminated Temple and Rice for bottom-tier records against easy schedules and low attendance.",
+      "Ruled out the North Carolina schools (App State, ECU, Charlotte): men's basketball drew 2.5K-4K per game against an ACC average of 9K, and their football records did not justify a fifth NC team.",
+      "Scored the remaining schools on normalized attendance, schedule difficulty, academics, and market, then compared finalists Tulane and UConn.",
+      "Kept Memphis and USF as strong alternates, held back by schedule difficulty and outlier basketball seasons.",
+    ],
+    findings: [
+      { value: "77.2", label: "UConn composite score, #1 of 10 candidates" },
+      { value: "68.5", label: "Tulane composite score, #3 of 10 candidates" },
+      { value: "12,733", label: "UConn men's basketball attendance per game" },
+      { value: "#32", label: "UConn DMA rank, 3rd highest among candidates" },
+    ],
+    recommendation:
+      "Add UConn: a championship basketball brand (6 men's and 12 women's NCAA titles), R1 research status, a strong attendance base, and the Hartford-New Haven market near Boston and NYC. Tulane is the strategic runner-up, with AAU and R1 academics and a recent football rise.",
+    tags: ["Conference Realignment", "ACC", "Composite Scoring", "Attendance", "Media Markets"],
+    team: "UNC Charlotte sports analytics team",
+    links: {},
+  },
+  {
     id: "super-bowl-lx",
     title: "Super Bowl LX Prediction Engine",
     org: "NFL · Seahawks vs Patriots",
     tagline: "Explainable win probabilities built on the 5 Keys to the game.",
     problem:
-      "Super Bowl picks are usually narrative. In Professor John Tobias' Intro to Sports Analytics class, 19 of 20 groups picked Seattle. The goal here was a model that shows why, with a win probability, a projected score, and the keys behind it.",
-    role: "Intro to Sports Analytics · featured by Inside UNC Charlotte",
+      "Super Bowl picks are usually narrative. In Professor John Tobias' Intro to Sports Analytics class, 19 of 20 groups picked Seattle. Group 3 wanted to show why, with a win probability, a projected score, and the keys behind it.",
+    role: "Intro to Sports Analytics · Group 3 · featured by Inside UNC Charlotte",
     image: "/images/sports-hub/superbowl.jpg",
+    figure: {
+      src: "/images/sports-hub/superbowl-prediction.jpg",
+      caption: "Model output: opponent-adjusted 5 Keys, SEA vs NE, postseason 2025.",
+    },
     lenses: ["analytics", "engineering"],
     lensNotes: {
       analytics:
-        "A professor-style logistic model with turnover emphasis over five keys (time of possession, turnovers, big plays, 3rd-down %, red-zone TD %), plus a strength-of-schedule z-score and QB production scores.",
+        "A professor-style logistic model with turnover emphasis over five keys (time of possession, turnovers, big plays, 3rd-down %, red-zone TD %), plus a strength-of-schedule z-score and a postseason QB Impact Index.",
       engineering:
         "Python on nflverse play-by-play (nflreadpy). A Ridge score model, realism clamps found through a model audit, audit scripts and tests, and a React and FastAPI front end that grew into GridironIQ.",
     },
     approach: [
       "Built the five keys for each team from nflverse play-by-play across the 2020-2025 seasons, with postseason games for the score model.",
-      "Converted key margins and a strength-of-schedule z-score into a win probability with a logistic model that weights turnovers heavily.",
+      "Converted opponent-adjusted key margins and a strength-of-schedule z-score into a win probability with a logistic model that weights turnovers heavily.",
       "Trained a Ridge regression on postseason games to project margin and total, then rebuilt each team's score from them.",
       "Audited the score model: extreme inputs could produce scores like 47-0, so totals are clamped to 24-62 and margins to plus or minus 24, with tests to keep them there.",
-      "Scored each quarterback's postseason production from accuracy, yards per attempt, TD, INT, and sack rates, rushing, and turnovers per game.",
+      "Built a QB Postseason Impact Index from drive sustain, situational play, off-script play, and the strength of the defenses faced.",
+      "Added team context from the class deck: road records (SEA 8-1, NE 9-0), points scored and allowed, turnovers, and injury reports, including Drake Maye's shoulder.",
     ],
     findings: [
       { value: "93.8%", label: "Seattle win probability in the model's pre-game call" },
-      { value: "31-17", label: "Seahawks win, the prediction UNC Charlotte featured (engine output 31-18, margin sd 8.1)" },
+      { value: "31-18", label: "engine's projected score, margin sd 8.1 (UNC Charlotte's article cited 31-17)" },
       { value: "3 of 5", label: "keys won by Seattle: turnovers, 3rd down, red zone" },
-      { value: "77.1 vs 36.8", label: "QB postseason production score, Darnold vs Maye" },
+      { value: "63 vs 47", label: "QB Impact Index, Darnold vs Maye (Maye faced the tougher defenses)" },
     ],
     recommendation:
-      "Lean Seattle with high confidence, but treat the score as a range. The biggest drivers were red-zone efficiency and third-down conversion, so the game plan for either side is to win those two situations.",
+      "Lean Seattle with high confidence, but treat the score as a range. Red-zone efficiency and third-down conversion were the biggest drivers. All five members of Group 3 picked Seattle, with scores from 23-17 to 34-24.",
     tags: ["Win Probability", "Logistic Regression", "Play-by-Play", "nflverse", "QB Evaluation", "Featured by UNC Charlotte"],
-    team: "Akhi Chappidi · Intro to Sports Analytics (Prof. John Tobias)",
+    team: "Akhi Chappidi · Group 3, Intro to Sports Analytics (Prof. John Tobias)",
     links: {
       github: "https://github.com/akhimass/SuperBowlEngine",
       article: "https://inside.charlotte.edu/2026/02/05/sports-analytics-students-predict-super-bowl-lx-outcome/",

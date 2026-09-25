@@ -205,6 +205,13 @@ export const SportsHubSection = () => {
                   ))}
                 </div>
 
+                {selected.figure && (
+                  <figure className="overflow-hidden rounded-xl border border-white/10 bg-white">
+                    <img src={selected.figure.src} alt={selected.figure.caption} loading="lazy" className="mx-auto max-h-[520px] w-auto" />
+                    <figcaption className="bg-[#0f0f11] px-4 py-2 text-[11px] text-muted-foreground">{selected.figure.caption}</figcaption>
+                  </figure>
+                )}
+
                 <div>
                   <h4 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Three lenses</h4>
                   <div className="grid gap-2">
