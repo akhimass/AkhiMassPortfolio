@@ -26,7 +26,10 @@ export const ContactSection = () => {
             Looking to build an AI platform, data system, or analytics product — or just want to talk sports tech? I'm open to roles,
             collaborations, and interesting problems.
           </p>
-          <p className="text-sm text-white/80 mb-10">📍 Charlotte, NC → San Francisco, CA · May 2026</p>
+          <p className="mb-10 inline-flex items-center gap-2 text-sm text-white/80">
+            <img src="/images/panthers-logo.png" alt="" className="h-4 w-auto" />
+            Software Engineer, Carolina Panthers · Charlotte, NC
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
             <Button

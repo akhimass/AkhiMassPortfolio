@@ -44,8 +44,20 @@ export const HeroSection = () => {
       <div ref={ref} className="relative z-10 mx-auto w-full min-w-0 max-w-[min(100%,1400px)] px-4 sm:px-6 lg:px-10">
         <div className="flex min-w-0 flex-col gap-8 md:gap-10 lg:grid lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-14">
           <div className="flex min-w-0 max-w-full flex-col justify-center max-lg:flex-none lg:min-h-0 lg:flex-1">
-            <motion.h1
+            <motion.div
               custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              className="mb-5 inline-flex w-fit items-center gap-2.5 rounded-full border border-[#0085CA]/35 bg-[#0085CA]/10 py-1.5 pl-2 pr-3.5 text-xs font-medium text-white/90 shadow-[0_0_24px_rgba(0,133,202,0.18)]"
+            >
+              <img src="/images/panthers-logo.png" alt="" className="h-4 w-auto" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+              Software Engineer · Carolina Panthers
+            </motion.div>
+
+            <motion.h1
+              custom={0.5}
               variants={fadeUp}
               initial="hidden"
               animate={inView ? "show" : "hidden"}
@@ -63,8 +75,8 @@ export const HeroSection = () => {
               animate={inView ? "show" : "hidden"}
               className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8"
             >
-              Software engineer, data engineer, and AI platform builder focused on turning complex data into intelligent systems for
-              real-world decision-making.
+              Software Engineer with the Carolina Panthers. I build data platforms, AI systems, and analytics products that turn
+              complex data into decisions — for pro sports organizations, research labs, and startups.
             </motion.p>
 
             <motion.div

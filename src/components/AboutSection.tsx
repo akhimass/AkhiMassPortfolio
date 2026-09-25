@@ -121,39 +121,50 @@ export const AboutSection = () => {
       }}
       aria-label="Toggle headshot"
     >
-      <div className="relative aspect-[4/5] rounded-2xl border border-blue-500/25 overflow-hidden bg-black shadow-[0_0_60px_rgba(37,99,235,0.15)]">
+      <div
+        className={`relative aspect-[4/5] overflow-hidden rounded-2xl border bg-black transition-[border-color,box-shadow] duration-500 ${
+          !panthers
+            ? "border-[#0085CA]/40 shadow-[0_0_70px_rgba(0,133,202,0.22)]"
+            : "border-blue-500/25 shadow-[0_0_60px_rgba(37,99,235,0.15)]"
+        }`}
+      >
         <AnimatePresence mode="wait">
           {!panthers ? (
+            <motion.img
+              key="panthers-2026"
+              src="/images/PanthersHeadshot2026.jpeg"
+              alt="Akhi Chappidi — Carolina Panthers"
+              className="absolute inset-0 h-full w-full object-cover object-top"
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            />
+          ) : (
             <motion.img
               key="regular"
               src="/images/RegularHeadShot.jpeg"
               alt="Akhi Chappidi"
               className="absolute inset-0 h-full w-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
-            />
-          ) : (
-            <motion.img
-              key="panthers"
-              src="/images/Panthersheadshot.jpeg"
-              alt="Akhi Chappidi — Panthers"
-              className="absolute inset-0 h-full w-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.4 }}
             />
           )}
         </AnimatePresence>
-        {panthers && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 to-transparent" />
+        {!panthers && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full border border-white/15 bg-black/70 py-1 pl-1.5 pr-3 backdrop-blur"
           >
-            Panthers
+            <img src="/images/panthers-logo.png" alt="" className="h-5 w-auto" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/90">
+              Software Engineer · Carolina Panthers
+            </span>
           </motion.div>
         )}
       </div>
@@ -179,8 +190,8 @@ export const AboutSection = () => {
           product, not a portfolio piece.
         </p>
         <p>
-          Currently a Software Engineer at Pivot Point Analytics building full-stack data platforms on GCP. Incoming Football Analytics
-          Engineer with the Carolina Panthers, where I'll work at the forefront of data, AI, and software for team performance.
+          Software Engineer with the <span className="font-medium text-white/90">Carolina Panthers</span>, building the data, AI, and
+          software systems behind team performance — from player-level signals to live game-day workflows for coaches and staff.
         </p>
         <p>
           <span className="text-white/90 font-medium">Goal:</span> build systems that scale from everyday athletes to professional
