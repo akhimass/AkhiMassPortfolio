@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { WhatIDoSection } from "@/components/WhatIDoSection";
+import { SportsHubSection } from "@/components/SportsHubSection";
 import { StartupsSection } from "@/components/StartupsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -13,6 +14,7 @@ const pathToSection: Record<string, string> = {
   "/projects": "projects",
   "/what-i-do": "what-i-do",
   "/engineering": "what-i-do",
+  "/sports-hub": "sports-hub",
   "/startups": "startups",
   "/about": "about",
   "/contact": "contact",
@@ -44,6 +46,8 @@ const Index = () => {
       <ProjectsSection />
       <div className="section-divider mx-auto my-2" />
       <WhatIDoSection />
+      <div className="section-divider mx-auto my-2" />
+      <SportsHubSection />
       <div className="section-divider mx-auto my-2" />
       <StartupsSection />
       <div className="section-divider mx-auto my-2" />

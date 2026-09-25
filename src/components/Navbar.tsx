@@ -5,12 +5,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const SECTION_IDS = ["hero", "projects", "what-i-do", "startups", "about", "contact"] as const;
+const SECTION_IDS = ["hero", "projects", "what-i-do", "sports-hub", "startups", "about", "contact"] as const;
 
 const navLinks = [
   { label: "Home", section: "hero" as const, to: "/" },
   { label: "Projects", section: "projects" as const, to: "/projects" },
   { label: "What I do", section: "what-i-do" as const, to: "/what-i-do" },
+  { label: "Sports Hub", section: "sports-hub" as const, to: "/sports-hub" },
   { label: "Startups", section: "startups" as const, to: "/startups" },
   { label: "About", section: "about" as const, to: "/about" },
   { label: "Contact", section: "contact" as const, to: "/contact" },
