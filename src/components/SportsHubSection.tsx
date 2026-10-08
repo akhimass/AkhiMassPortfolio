@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, GraduationCap, Newspaper, Presentation } from "lucide-react";
+import { ExternalLink, Github, Newspaper, Presentation } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -43,8 +43,9 @@ export const SportsHubSection = () => {
           transition={{ duration: 0.5 }}
           className="mb-8 text-center"
         >
-          <p className="mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400">
-            <GraduationCap className="h-3.5 w-3.5" /> UNC Charlotte
+          <p className="mb-3 inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-blue-400">
+            <img src="/images/charlotte-49ers-logo-white.svg" alt="Charlotte 49ers" className="h-7 w-auto" />
+            UNC Charlotte
           </p>
           <h2 className="mb-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">Sports Analytics Hub</h2>
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-muted-foreground">
