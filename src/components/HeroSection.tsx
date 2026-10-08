@@ -75,8 +75,9 @@ export const HeroSection = () => {
               animate={inView ? "show" : "hidden"}
               className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8"
             >
-              Software Engineer with the Carolina Panthers. I build data platforms, AI systems, and analytics products that turn
-              complex data into decisions — for pro sports organizations, research labs, and startups.
+              Software Engineer with the Carolina Panthers in Football Analytics. A software/data engineer, data scientist, and AI
+              builder engineering intelligent platforms across sports analytics, healthcare research, business intelligence, and
+              early-stage startups.
             </motion.p>
 
             <motion.div
