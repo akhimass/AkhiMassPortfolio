@@ -180,22 +180,23 @@ export const AboutSection = () => {
       </h2>
       <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
         <p>
-          I'm Akhi Chappidi — a software engineer, data engineer, and AI platform builder based in Charlotte, NC. I'm a Computer Science major
-          with a Bioinformatics concentration at UNC Charlotte, with a Sports Analytics Certificate. I build systems, not features.
+          I&apos;m Akhi Chappidi — a software/data engineer, data scientist, and AI builder based in Charlotte, NC. I graduated in May 2026
+          majoring in Computer Science with a Bioinformatics concentration, and a Sports Analytics Certificate from the University of North
+          Carolina at Charlotte.
         </p>
         <p>
-          I engineer intelligent platforms across sports analytics, healthcare research, business intelligence, and early-stage startups.
-          From NFL draft intelligence engines that replace editorial guesswork with quantified models, to AI operating systems for biological
-          drug discovery, to the racquet sports platform I'm co-founding with a former Olympic athlete — every project is approached as a
-          product, not a portfolio piece.
+          I&apos;ve engineered and architected intelligent platforms across sports analytics, healthcare research, business intelligence, and
+          early-stage startups. I&apos;ve built data-driven business platforms through my consulting work, AI-assisted drug discovery systems
+          through my biomedicine work, and robust data/AI models to transform the way sports analytics is digested through my early-stage
+          startups, in racquet sports and recovery analysis domains.
         </p>
         <p>
-          Software Engineer with the <span className="font-medium text-white/90">Carolina Panthers</span>, building the data, AI, and
-          software systems behind team performance — from player-level signals to live game-day workflows for coaches and staff.
+          My goal is to revolutionize the way we use AI, data, and software to bring solutions with systems and models to optimize team
+          performance.
         </p>
         <p>
-          <span className="text-white/90 font-medium">Goal:</span> build systems that scale from everyday athletes to professional
-          organizations. The platform layer between raw data and real decisions.
+          I&apos;m currently a Software Engineer with the <span className="font-medium text-white/90">Carolina Panthers</span> in the
+          Football Analytics department.
         </p>
       </div>
     </div>
