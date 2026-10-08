@@ -21,10 +21,9 @@ export const ContactSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-2">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 font-display">Let's Build Something Intelligent.</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 font-display">Get in Touch</h2>
           <p className="text-muted-foreground text-sm leading-relaxed mb-3 max-w-xl mx-auto">
-            Looking to build an AI platform, data system, or analytics product — or just want to talk sports tech? I'm open to roles,
-            collaborations, and interesting problems.
+            Have a question or want to say hello? The best way to reach me is by email or LinkedIn.
           </p>
           <p className="mb-10 inline-flex items-center gap-2 text-sm text-white/80">
             <img src="/images/panthers-logo.png" alt="" className="h-4 w-auto" />
