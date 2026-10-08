@@ -58,7 +58,7 @@ export const SportsHubSection = () => {
               { v: "3", l: "lenses per project" },
             ].map((s) => (
               <div key={s.l}>
-                <div className="bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text font-display text-2xl font-bold text-transparent">{s.v}</div>
+                <div className="bg-gradient-to-r from-[#0085CA] to-[#339ED5] bg-clip-text font-display text-2xl font-bold text-transparent">{s.v}</div>
                 <div className="text-[11px] text-muted-foreground">{s.l}</div>
               </div>
             ))}
@@ -68,7 +68,7 @@ export const SportsHubSection = () => {
         <div className="mb-8 flex flex-wrap justify-center gap-2">
           {FILTERS.map((f) => {
             const active = filter === f;
-            const color = f === "all" ? "#3b82f6" : lensMeta[f].color;
+            const color = f === "all" ? "#339ED5" : lensMeta[f].color;
             return (
               <button
                 key={f}
@@ -100,7 +100,7 @@ export const SportsHubSection = () => {
                 onClick={() => hasDetail(p) && setSelected(p)}
                 className={cn(
                   "group h-full overflow-hidden border-white/10 bg-[#0f0f11] transition-all",
-                  hasDetail(p) ? "cursor-pointer hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)]" : "opacity-75",
+                  hasDetail(p) ? "cursor-pointer hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(0, 133, 202,0.15)]" : "opacity-75",
                 )}
               >
                 <div className="relative aspect-[16/8] overflow-hidden bg-gradient-to-br from-blue-950/40 to-black">
@@ -168,7 +168,7 @@ export const SportsHubSection = () => {
                   <p className="text-[11px] text-muted-foreground/80">{selected.role} · {selected.team}</p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {selected.links.deck && (
-                      <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white">
+                      <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] text-white">
                         <a href={selected.links.deck} target="_blank" rel="noreferrer">
                           <Presentation className="mr-1.5 h-3.5 w-3.5" /> View deck <ExternalLink className="ml-1.5 h-3 w-3" />
                         </a>

@@ -65,7 +65,7 @@ export const Navbar = () => {
             width={140}
             height={36}
             decoding="async"
-            className="block h-8 w-auto max-h-8 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(37,99,235,0.35)] sm:h-9 sm:max-h-9"
+            className="block h-8 w-auto max-h-8 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(0, 133, 202,0.35)] sm:h-9 sm:max-h-9"
           />
           <span className="min-w-0 truncate text-sm font-semibold leading-none tracking-tight text-white/95 group-hover:text-white transition-colors">
             Akhi Chappidi
@@ -80,7 +80,7 @@ export const Navbar = () => {
                 {isActive && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 rounded-full bg-white/[0.06] border border-white/10 shadow-[0_0_24px_rgba(37,99,235,0.12)]"
+                    className="absolute inset-0 rounded-full bg-white/[0.06] border border-white/10 shadow-[0_0_24px_rgba(0, 133, 202,0.12)]"
                     transition={{ type: "spring", stiffness: 380, damping: 28 }}
                   />
                 )}
@@ -93,7 +93,7 @@ export const Navbar = () => {
         <div className="hidden lg:block">
           <Button
             asChild
-            className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white shadow-[0_0_28px_rgba(59,130,246,0.35)] hover:opacity-95 border-0"
+            className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] text-white shadow-[0_0_28px_rgba(51, 158, 213,0.35)] hover:opacity-95 border-0"
           >
             <Link to="/contact">Get in Touch</Link>
           </Button>
@@ -128,7 +128,7 @@ export const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button asChild className="mt-3 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6]">
+              <Button asChild className="mt-3 rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5]">
                 <Link to="/contact" onClick={() => setMobileOpen(false)}>
                   Get in Touch
                 </Link>

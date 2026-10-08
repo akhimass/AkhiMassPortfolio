@@ -35,7 +35,7 @@ export const ContactSection = () => {
             <Button
               size="lg"
               asChild
-              className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white shadow-[0_0_28px_rgba(59,130,246,0.35)] border-0"
+              className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] text-white shadow-[0_0_28px_rgba(51, 158, 213,0.35)] border-0"
             >
               <a href="mailto:achappidi3725@gmail.com">
                 <Mail className="mr-2 h-4 w-4" /> Send an Email
@@ -57,7 +57,7 @@ export const ContactSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.05 * i }}
-                className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0f0f11] px-4 py-3 text-sm hover:border-blue-500/40 hover:shadow-[0_0_24px_rgba(37,99,235,0.12)] transition-all"
+                className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0f0f11] px-4 py-3 text-sm hover:border-blue-500/40 hover:shadow-[0_0_24px_rgba(0, 133, 202,0.12)] transition-all"
               >
                 <Icon className="h-4 w-4 text-blue-400 shrink-0" />
                 <div>

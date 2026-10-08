@@ -2,7 +2,7 @@ export type HubLens = "analytics" | "engineering" | "administration";
 
 export const lensMeta: Record<HubLens, { label: string; color: string; blurb: string }> = {
   analytics: { label: "Sports Analytics", color: "#10b981", blurb: "Modeling demand, value, and performance from real data." },
-  engineering: { label: "Software Engineering", color: "#3b82f6", blurb: "Pipelines, models, and systems built to answer the question." },
+  engineering: { label: "Software Engineering", color: "#339ED5", blurb: "Pipelines, models, and systems built to answer the question." },
   administration: { label: "Sports Administration", color: "#f59e0b", blurb: "Policy, budgets, pricing, and operations that run a sports business." },
 };
 

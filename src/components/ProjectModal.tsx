@@ -19,7 +19,7 @@ const demoUrl = (p: Project) => p.links?.demo ?? p.links?.vercel ?? "";
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const open = !!project;
-  const accent = project ? domainDetails[project.domain].color : "#2563eb";
+  const accent = project ? domainDetails[project.domain].color : "#0085CA";
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [ctbnSlide, setCtbnSlide] = useState(0);
@@ -87,7 +87,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     </Button>
                   )}
                   {project.hasVercelDemo && url && (
-                    <Button size="sm" asChild className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] border-0">
+                    <Button size="sm" asChild className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] border-0">
                       <a href={url} target="_blank" rel="noreferrer">
                         Live Demo <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
                       </a>
@@ -134,7 +134,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                         href={m.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="group relative flex flex-col rounded-xl border border-white/[0.12] bg-gradient-to-br from-blue-500/[0.08] via-white/[0.03] to-transparent p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-sky-400/45 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50"
+                        className="group relative flex flex-col rounded-xl border border-white/[0.12] bg-gradient-to-br from-blue-500/[0.08] via-white/[0.03] to-transparent p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-sky-400/45 hover:shadow-[0_0_28px_rgba(51, 158, 213,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <p className="text-[15px] font-semibold leading-snug tracking-tight text-white group-hover:text-sky-100">

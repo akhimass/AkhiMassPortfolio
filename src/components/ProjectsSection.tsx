@@ -208,7 +208,7 @@ function FilterPill({
               borderColor: `${color}55`,
             }
           : active
-            ? { background: "rgba(37,99,235,0.15)", borderColor: "rgba(37,99,235,0.35)" }
+            ? { background: "rgba(0, 133, 202,0.15)", borderColor: "rgba(0, 133, 202,0.35)" }
             : undefined
       }
     >

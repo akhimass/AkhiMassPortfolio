@@ -20,7 +20,7 @@ const NotFound = () => {
           Nothing lives at <span className="font-mono text-white/80">{location.pathname}</span>. Try the main sections below.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Button asChild className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] border-0">
+          <Button asChild className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] border-0">
             <Link to="/">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to portfolio
             </Link>

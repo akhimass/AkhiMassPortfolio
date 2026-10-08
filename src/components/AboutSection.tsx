@@ -125,7 +125,7 @@ export const AboutSection = () => {
         className={`relative aspect-[4/5] overflow-hidden rounded-2xl border bg-black transition-[border-color,box-shadow] duration-500 ${
           !panthers
             ? "border-[#0085CA]/40 shadow-[0_0_70px_rgba(0,133,202,0.22)]"
-            : "border-blue-500/25 shadow-[0_0_60px_rgba(37,99,235,0.15)]"
+            : "border-blue-500/25 shadow-[0_0_60px_rgba(0, 133, 202,0.15)]"
         }`}
       >
         <AnimatePresence mode="wait">
@@ -219,7 +219,7 @@ export const AboutSection = () => {
     <div ref={statsRef} className="order-4 grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-2 lg:col-start-2 lg:row-start-3 lg:grid-cols-4">
       {metrics.map((m, i) => (
         <div key={m.label} className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-4">
-          <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent sm:text-3xl">
+          <div className="text-2xl font-bold font-display bg-gradient-to-r from-[#0085CA] to-[#339ED5] bg-clip-text text-transparent sm:text-3xl">
             {counts[i]}
             {m.suffix}
           </div>

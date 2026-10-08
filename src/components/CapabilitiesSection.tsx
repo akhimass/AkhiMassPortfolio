@@ -9,7 +9,7 @@ const CAPABILITIES = [
     description:
       "Component-driven architectures with design systems, performance optimization, and seamless UX for data-rich interfaces.",
     tools: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    accent: "#3b82f6",
+    accent: "#339ED5",
   },
   {
     category: "Backend APIs",
@@ -33,7 +33,7 @@ const CAPABILITIES = [
     description:
       "LLM-powered applications, RAG pipelines, ML model deployment, and intelligent automation systems at production scale.",
     tools: ["LangChain", "OpenAI", "PyTorch", "scikit-learn", "Vector DBs"],
-    accent: "#38bdf9",
+    accent: "#339ED5",
   },
   {
     category: "Cloud & Deployment",

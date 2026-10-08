@@ -33,9 +33,9 @@ function AnimatedGridBg() {
       for (let y = 0; y < H; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
       const scanY = ((Math.sin(t * 0.001) + 1) / 2) * H;
       const g = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50);
-      g.addColorStop(0, "rgba(59,130,246,0)");
-      g.addColorStop(0.5, "rgba(59,130,246,0.03)");
-      g.addColorStop(1, "rgba(59,130,246,0)");
+      g.addColorStop(0, "rgba(51, 158, 213,0)");
+      g.addColorStop(0.5, "rgba(51, 158, 213,0.03)");
+      g.addColorStop(1, "rgba(51, 158, 213,0)");
       ctx.fillStyle = g; ctx.fillRect(0, scanY - 50, W, 100);
       t++; id = requestAnimationFrame(draw);
     };
@@ -54,7 +54,7 @@ export const HeroSection = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at 30% 50%, rgba(37,99,235,0.12) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at 30% 50%, rgba(0, 133, 202,0.12) 0%, transparent 60%)",
         }}
       />
 
@@ -91,7 +91,7 @@ export const HeroSection = () => {
               <span
                 className="bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #38bdf9 0%, #60a5fa 40%, #3b82f6 100%)",
+                  backgroundImage: "linear-gradient(135deg, #339ED5 0%, #339ED5 40%, #339ED5 100%)",
                 }}
               >
                 intelligent
@@ -149,8 +149,8 @@ export const HeroSection = () => {
                 asChild
                 className="rounded-full px-6 text-sm font-medium"
                 style={{
-                  background: "linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)",
-                  boxShadow: "0 0 24px rgba(37,99,235,0.35)",
+                  background: "linear-gradient(135deg, #0085CA 0%, #339ED5 100%)",
+                  boxShadow: "0 0 24px rgba(0, 133, 202,0.35)",
                   border: "none",
                 }}
               >

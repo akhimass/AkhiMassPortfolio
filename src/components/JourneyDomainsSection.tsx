@@ -8,7 +8,7 @@ const JOURNEY = [
     label: "Software Engineering",
     description:
       "Building the foundation — full-stack systems, APIs, and scalable application architectures from the ground up.",
-    accent: "#3b82f6",
+    accent: "#339ED5",
     items: ["React / Next.js", "TypeScript", "Node.js", "REST APIs", "System Design"],
   },
   {
@@ -32,7 +32,7 @@ const JOURNEY = [
     label: "AI / LLM Systems",
     description:
       "Engineering the intelligence layer — LLM pipelines, ML model deployment, and AI-driven product experiences.",
-    accent: "#38bdf9",
+    accent: "#339ED5",
     items: ["LangChain", "OpenAI", "PyTorch", "Vector DBs", "RAG Pipelines"],
   },
   {
@@ -114,7 +114,7 @@ export const JourneyDomainsSection = () => {
       <div
         className="pointer-events-none absolute left-0 top-1/2 h-96 w-72 -translate-y-1/2"
         style={{
-          background: "radial-gradient(ellipse at left center, rgba(59,130,246,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at left center, rgba(51, 158, 213,0.08) 0%, transparent 70%)",
         }}
       />
 

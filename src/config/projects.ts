@@ -83,7 +83,7 @@ export const domainDetails: Record<
     icon: "🚀",
     description:
       "Founding and shipping sports-tech products with tenant-aware architecture and marketplace dynamics.",
-    color: "#38bdf9",
+    color: "#339ED5",
   },
 };
 

@@ -135,7 +135,7 @@ export function CinematicIntro({
       <motion.div
         className="pointer-events-none absolute left-1/2 top-[38%] h-[min(42vh,320px)] w-[min(42vh,320px)] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 68%)",
+          background: "radial-gradient(circle, rgba(0, 133, 202,0.2) 0%, transparent 68%)",
         }}
         animate={{
           opacity: phase === 1 ? 0.35 : phase === 2 ? 0.55 : 0.25,
@@ -156,8 +156,8 @@ export function CinematicIntro({
         transition={{ duration: 0.9 }}
         style={{
           backgroundImage: `
-            linear-gradient(rgba(37,99,235,0.35) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59,130,246,0.25) 1px, transparent 1px)
+            linear-gradient(rgba(0, 133, 202,0.35) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(51, 158, 213,0.25) 1px, transparent 1px)
           `,
           backgroundSize: phase >= 5 ? "40px 40px" : "48px 48px",
         }}
@@ -217,8 +217,8 @@ export function CinematicIntro({
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#2563eb" stopOpacity="0" />
-            <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.9" />
+            <stop offset="0%" stopColor="#0085CA" stopOpacity="0" />
+            <stop offset="50%" stopColor="#339ED5" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -237,7 +237,7 @@ export function CinematicIntro({
               <motion.path
                 d="M15 70 L35 40 L55 65 L85 35"
                 fill="none"
-                stroke="rgba(37,99,235,0.45)"
+                stroke="rgba(0, 133, 202,0.45)"
                 strokeWidth="0.25"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: pipelineFull ? 1 : 0.45 }}
@@ -254,7 +254,7 @@ export function CinematicIntro({
                 cx={cx}
                 cy={38 + (i % 2) * 22}
                 r="1.8"
-                fill="#38bdf9"
+                fill="#339ED5"
                 initial={{ scale: 0 }}
                 animate={{ scale: [0, 1.25, 1] }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
@@ -268,7 +268,7 @@ export function CinematicIntro({
       <motion.div
         className="pointer-events-none absolute -left-1/4 top-1/3 h-[60vh] w-[60vw] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0, 133, 202,0.35) 0%, transparent 70%)",
         }}
         animate={{
           opacity: glowPeak ? 0.95 : phase >= 4 ? 0.55 : phase >= 3 ? 0.32 : 0.12,
@@ -342,7 +342,7 @@ export function CinematicIntro({
               >
                 <Button
                   size="lg"
-                  className="rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] px-10 text-base shadow-[0_0_48px_rgba(37,99,235,0.38)]"
+                  className="rounded-full bg-gradient-to-r from-[#0085CA] to-[#339ED5] px-10 text-base shadow-[0_0_48px_rgba(0, 133, 202,0.38)]"
                   onClick={finish}
                 >
                   Enter Platform

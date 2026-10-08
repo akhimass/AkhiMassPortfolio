@@ -200,13 +200,13 @@ function drawHealthScene(ctx: CanvasRenderingContext2D, w: number, h: number, t:
 
     // Strand dots
     const alpha1 = 0.5 + Math.sin(phase) * 0.3;
-    ctx.fillStyle = "#38bdf8";
+    ctx.fillStyle = "#339ED5";
     ctx.globalAlpha = Math.max(0.1, alpha1);
     ctx.beginPath();
     ctx.arc(x1, y, 2.5, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = "#2563eb";
+    ctx.fillStyle = "#0085CA";
     ctx.globalAlpha = Math.max(0.1, 1 - alpha1);
     ctx.beginPath();
     ctx.arc(x2, y, 2.5, 0, Math.PI * 2);
@@ -263,7 +263,7 @@ function drawHealthScene(ctx: CanvasRenderingContext2D, w: number, h: number, t:
 function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: number) {
   ctx.fillStyle = "#0d0a1a";
   ctx.fillRect(0, 0, w, h);
-  drawGrid(ctx, w, h, "#38bdf9");
+  drawGrid(ctx, w, h, "#339ED5");
 
   // Heat map grid (field view)
   const cols = 10, rows = 7;
@@ -317,7 +317,7 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
     y: lineY + lineH - v * lineH,
   }));
 
-  ctx.strokeStyle = "#38bdf9";
+  ctx.strokeStyle = "#339ED5";
   ctx.lineWidth = 1.5;
   ctx.globalAlpha = 0.8;
   ctx.beginPath();
@@ -331,7 +331,7 @@ function drawCoachScene(ctx: CanvasRenderingContext2D, w: number, h: number, t: 
   if (idx < pts.length - 1) {
     const dx = pts[idx].x + (pts[idx + 1].x - pts[idx].x) * frac;
     const dy = pts[idx].y + (pts[idx + 1].y - pts[idx].y) * frac;
-    ctx.fillStyle = "#38bdf9";
+    ctx.fillStyle = "#339ED5";
     ctx.globalAlpha = 1;
     ctx.beginPath();
     ctx.arc(dx, dy, 4, 0, Math.PI * 2);
@@ -390,8 +390,8 @@ const SCENES: Scene[] = [
     headline: "Professional coaching intelligence",
     sub:
       "Tools for coaches and staff — player-level signals, team context, and live game workflows so professional athletes and organizations optimize performance together.",
-    accent: "#38bdf9",
-    accentGlow: "rgba(56,189,248,0.15)",
+    accent: "#339ED5",
+    accentGlow: "rgba(51, 158, 213,0.15)",
     draw: drawCoachScene,
     stats: [
       { label: "EPA / play", value: "+0.14", x: "6%", y: "12%", delay: 0.15 },
